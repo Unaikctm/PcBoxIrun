@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class Conector {
 	
-	protected Connection conexion;
+	protected Connection cn;
 
 	/**
 	 */
