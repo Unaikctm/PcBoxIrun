@@ -14,14 +14,14 @@ import modelo.ModeloCliente;
 /**
  * Servlet implementation class Update
  */
-@WebServlet("/Update")
-public class Update extends HttpServlet {
+@WebServlet("/Update_cliente")
+public class Update_cliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Update() {
+    public Update_cliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,7 +58,7 @@ public class Update extends HttpServlet {
 				
 		//abrir lo que quiera, en mi caso inicio
 		//como ya tengo un controlador que abra el inicio redirijo a ese controlador
-		response.sendRedirect("index");
+		response.sendRedirect("Index_cliente");
 	}
 
 }

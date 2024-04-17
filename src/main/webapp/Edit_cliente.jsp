@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col">
                 
-                    <form action="Update" method="POST">
+                    <form action="Update_cliente" method="POST">
                     	<input type="hidden" name="id" value="${tarea.id}"/>
 						Titulo: <input type="text" name="titulo" value="${tarea.titulo}"/>
 						Descripcion: <input type="text" name="descripcion" value="${tarea.descripcion}"/>

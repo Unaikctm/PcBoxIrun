@@ -86,7 +86,7 @@
                 					<h5 class="modal-title" id="exampleModalLabel">Editar cliente</h5>
                 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             					</div>
-            					<form action="Update" method="POST">
+            					<form action="Update_cliente" method="POST">
 								    <div class="modal-body">
 								        <input type="hidden" name="id" value="${tarea.id}"/>
 								

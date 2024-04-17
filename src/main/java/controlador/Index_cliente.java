@@ -15,14 +15,14 @@ import modelo.ModeloCliente;
 /**
  * Servlet implementation class index
  */
-@WebServlet("/index")
-public class index extends HttpServlet {
+@WebServlet("/Index_cliente")
+public class Index_cliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public index() {
+    public Index_cliente() {
         super();
         // TODO Auto-generated constructor stub
     }
