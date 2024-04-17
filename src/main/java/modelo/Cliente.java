@@ -23,6 +23,11 @@ public class Cliente {
 		this.pedidos = pedidos;
 		this.reparaciones = reparaciones;
 	}
+	public Cliente(String dni, String nombre, String apellido) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
 
 	public String getDni() {
 		return dni;

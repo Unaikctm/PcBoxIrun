@@ -1,8 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +11,16 @@ import modelo.Cliente;
 import modelo.ModeloCliente;
 
 /**
- * Servlet implementation class index
+ * Servlet implementation class show
  */
-@WebServlet("/index")
-public class index extends HttpServlet {
+@WebServlet("/Show")
+public class Show_Cliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public index() {
+    public Show_Cliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +30,14 @@ public class index extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String DNI = request.getParameter("dni");
+		
 		ModeloCliente mc = new ModeloCliente();
-		ArrayList<Cliente> clientes = mc.getClientes();
-
+		Cliente cliente = mc.getCliente(DNI);
 		
-		request.setAttribute("clientes", clientes);
+		request.setAttribute("cliente", cliente);
 		
-		request.getRequestDispatcher("cliente.jsp").forward(request, response);
+		request.getRequestDispatcher("show_cliente.jsp").forward(request, response);
 	}
 
 	/**
