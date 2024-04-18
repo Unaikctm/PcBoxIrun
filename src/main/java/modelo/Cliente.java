@@ -7,6 +7,7 @@ public class Cliente {
 	private String nombre;
 	private String apellido;
 	private String direccion;
+	private int codigopostal;
 	private String email;
 	private int telefono;
 	private ArrayList<Pedido> pedidos;
@@ -63,6 +64,14 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 	
+	public int getCodigopostal() {
+		return codigopostal;
+	}
+
+	public void setCodigopostal(int codigopostal) {
+		this.codigopostal = codigopostal;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -97,8 +106,11 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return dni + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion
-				+ "email=" + email +  "telefono=" + telefono + ", pedidos=" + pedidos + ", reparaciones=" + reparaciones;
+		return "Cliente [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion
+				+ ", codigopostal=" + codigopostal + ", email=" + email + ", telefono=" + telefono + ", pedidos="
+				+ pedidos + ", reparaciones=" + reparaciones + "]";
 	}
+
+	
 	
 }

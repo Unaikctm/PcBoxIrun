@@ -57,6 +57,11 @@
 					                        <input type="text" class="form-control" id="direccion" name="direccion" value="${cliente.direccion}">
 					                    </div>
 	                    
+	                    				<div class="mb-3">
+					                        <label for="codigopostal" class="form-label">Código postal:</label>
+					                        <input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
+					                    </div>
+					                    
 					                    <div class="mb-3">
 					                        <label for="email" class="form-label">Email:</label>
 					                        <input type="email" class="form-control" id="email" name="email" value="${cliente.email}">
@@ -137,6 +142,11 @@
 								        <div class="mb-3">
 								            <label for="direccion" class="form-label">Direccion:</label>
 								            <input type="text" class="form-control" id="direccion" name="direccion" value="${cliente.direccion}">
+								        </div>
+								        
+								        <div class="mb-3">
+								            <label for="codigopostal" class="form-label">Código postal:</label>
+								            <input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
 								        </div>
 								
 										<div class="mb-3">

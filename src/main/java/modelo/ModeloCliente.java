@@ -20,6 +20,7 @@ public class ModeloCliente extends Conector{
 	                cliente.setNombre(rs.getString("nombre"));
 	                cliente.setApellido(rs.getString("apellido"));
 	                cliente.setDireccion(rs.getString("direccion"));
+	                cliente.setCodigopostal(rs.getInt("codigopostal"));
 	                cliente.setEmail(rs.getString("email"));
 	                cliente.setTelefono(rs.getInt("telefono"));
 	                cliente.setPedidos(null);
@@ -48,6 +49,7 @@ public class ModeloCliente extends Conector{
 	             cliente.setNombre(rs.getString("nombre"));
 	             cliente.setApellido(rs.getString("apellido"));
 	             cliente.setDireccion(rs.getString("direccion"));
+	             cliente.setCodigopostal(rs.getInt("codigopostal"));
 	             cliente.setEmail(rs.getString("email"));
 	             cliente.setTelefono(rs.getInt("telefono"));
 	             cliente.setPedidos(null);
@@ -76,13 +78,14 @@ public class ModeloCliente extends Conector{
 	 
 	 public int update(Cliente cliente) {
 	     try {
-	         PreparedStatement pst = this.cn.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, direccion = ?, email = ?, telefono = ? WHERE dni = ?");
+	         PreparedStatement pst = this.cn.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, direccion = ?, codigopostal = ?, email = ?, telefono = ? WHERE dni = ?");
 	         pst.setString(1, cliente.getNombre());
 	         pst.setString(2, cliente.getApellido());
 	         pst.setString(3, cliente.getDireccion());
-	         pst.setString(4, cliente.getEmail());
-	         pst.setInt(5, cliente.getTelefono());
-	         pst.setString(6, cliente.getDni());
+	         pst.setInt(4, cliente.getCodigopostal());
+	         pst.setString(5, cliente.getEmail());
+	         pst.setInt(6, cliente.getTelefono());
+	         pst.setString(7, cliente.getDni());
 
 	         return pst.executeUpdate();
 	         
@@ -94,13 +97,14 @@ public class ModeloCliente extends Conector{
 	 
 	 public void insert(Cliente cliente) {
 		    try {
-		        PreparedStatement pst = this.cn.prepareStatement("INSERT INTO cliente (dni,nombre, apellido, direccion, email, telefono) VALUES (?,?,?,?,?,?)");
+		        PreparedStatement pst = this.cn.prepareStatement("INSERT INTO cliente (dni, nombre, apellido, direccion, codigopostal, email, telefono) VALUES (?,?,?,?,?,?,?)");
 		        pst.setString(1, cliente.getDni());
 		        pst.setString(2, cliente.getNombre());
 		        pst.setString(3, cliente.getApellido());
 		        pst.setString(4, cliente.getDireccion());
-		        pst.setString(5, cliente.getEmail());
-		        pst.setInt(6, cliente.getTelefono());
+		        pst.setInt(5, cliente.getCodigopostal());
+		        pst.setString(6, cliente.getEmail());
+		        pst.setInt(7, cliente.getTelefono());
 		        pst.execute();
 		    } catch (SQLException e) {
 		        e.printStackTrace();

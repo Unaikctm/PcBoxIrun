@@ -43,6 +43,7 @@ public class Update_cliente extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String direccion = request.getParameter("direccion");
+		int codPostal = Integer.parseInt(request.getParameter("codigopostal"));
 		String email = request.getParameter("email");
 		int telefono = Integer.parseInt(request.getParameter("telefono"));
 		
@@ -52,6 +53,7 @@ public class Update_cliente extends HttpServlet {
 		cliente.setNombre(nombre);
 		cliente.setApellido(apellido);
 		cliente.setDireccion(direccion);
+		cliente.setCodigopostal(codPostal);
 		cliente.setEmail(email);
 		cliente.setTelefono(telefono);
 		
