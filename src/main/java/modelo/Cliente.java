@@ -7,18 +7,20 @@ public class Cliente {
 	private String nombre;
 	private String apellido;
 	private String direccion;
+	private String email;
 	private int telefono;
 	private ArrayList<Pedido> pedidos;
 	private ArrayList<Reparacion> reparaciones;
 	
 	public Cliente() {}
 	
-	public Cliente(String dni, String nombre, String apellido, String direccion, int telefono,
+	public Cliente(String dni, String nombre, String apellido, String direccion,String email, int telefono,
 			ArrayList<Pedido> pedidos, ArrayList<Reparacion> reparaciones) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
+		this.email = email;
 		this.telefono = telefono;
 		this.pedidos = pedidos;
 		this.reparaciones = reparaciones;
@@ -60,7 +62,15 @@ public class Cliente {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public int getTelefono() {
 		return telefono;
 	}
@@ -88,7 +98,7 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return dni + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion
-				+ ", telefono=" + telefono + ", pedidos=" + pedidos + ", reparaciones=" + reparaciones;
+				+ "email=" + email +  "telefono=" + telefono + ", pedidos=" + pedidos + ", reparaciones=" + reparaciones;
 	}
 	
 }

@@ -43,6 +43,7 @@ public class Update_cliente extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String direccion = request.getParameter("direccion");
+		String email = request.getParameter("email");
 		int telefono = Integer.parseInt(request.getParameter("telefono"));
 		
 		//almacenar la tarea en BBDD
@@ -51,6 +52,7 @@ public class Update_cliente extends HttpServlet {
 		cliente.setNombre(nombre);
 		cliente.setApellido(apellido);
 		cliente.setDireccion(direccion);
+		cliente.setEmail(email);
 		cliente.setTelefono(telefono);
 		
 		ModeloCliente mc = new ModeloCliente();

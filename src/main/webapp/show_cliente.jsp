@@ -54,6 +54,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Direccion</th>
+            <th scope="col">Email</th>
             <th scope="col">Telefono</th>
             <th scope="col">Pedidos</th>
             <th scope="col">Reparación</th>
@@ -66,6 +67,7 @@
 	            <td>${cliente.nombre}</td>
 	            <td>${cliente.apellido}</td>
 	            <td>${cliente.direccion}</td>
+	            <td>${cliente.email}</td>
 	            <td>${cliente.telefono}</td>
 
 			</tr>
