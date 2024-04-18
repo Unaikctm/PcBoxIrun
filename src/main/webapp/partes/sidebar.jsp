@@ -1,5 +1,5 @@
 <div class="row flex-nowrap">
-            <div class="col-auto px-sm-2 px-0 bg-success" style="width: 350px;">
+            <div class="col-auto px-sm-2 px-0 bg-dark" style="width: 300px;">
                 <div class="d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100">
                     <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <span class="fs-5 d-none d-sm-inline">Menu</span>
