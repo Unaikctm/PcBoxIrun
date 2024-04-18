@@ -48,6 +48,7 @@ public class ModeloCliente extends Conector{
 	             cliente.setNombre(rs.getString("nombre"));
 	             cliente.setApellido(rs.getString("apellido"));
 	             cliente.setDireccion(rs.getString("direccion"));
+	             cliente.setEmail(rs.getString("email"));
 	             cliente.setTelefono(rs.getInt("telefono"));
 	             cliente.setPedidos(null);
 	             cliente.setPedidos(null);
@@ -93,7 +94,7 @@ public class ModeloCliente extends Conector{
 	 
 	 public void insert(Cliente cliente) {
 		    try {
-		        PreparedStatement pst = this.cn.prepareStatement("INSERT INTO cliente (dni,nombre, apellido, direccion, email, telefono) VALUES (?,?,?,?,?)");
+		        PreparedStatement pst = this.cn.prepareStatement("INSERT INTO cliente (dni,nombre, apellido, direccion, email, telefono) VALUES (?,?,?,?,?,?)");
 		        pst.setString(1, cliente.getDni());
 		        pst.setString(2, cliente.getNombre());
 		        pst.setString(3, cliente.getApellido());

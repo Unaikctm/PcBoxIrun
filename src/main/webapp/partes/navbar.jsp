@@ -1,9 +1,9 @@
-	<nav class="navbar navbar-expand-lg navbar-success bg-secondary">
-    <div class="container">
+	<nav class="navbar navbar-expand-lg navbar-success bg-success">
+    <div class="container-fluid">
     
         <!-- Logo -->
         <a class="navbar-brand" href="#">
-            <img src="img/images.png" alt="Logo" width="80">
+            <img src="img/images.png" alt="Logo" width="80" float="left">
         </a>
 
         <!-- Botón para colapsar en dispositivos pequeños -->
@@ -15,10 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Enlace</a>
+                    <a color="white" class="nav-link active" aria-current="page" href="#">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,12 +29,6 @@
                     </ul>
                 </li>
             </ul>
-
-            <!-- Formulario de búsqueda -->
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
         </div>
     </div>
 </nav>
