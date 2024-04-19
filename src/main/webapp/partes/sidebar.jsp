@@ -1,51 +1,46 @@
-
-    <div class="row">
-        <div class="col-sm-auto bg-light sticky-top">
-            <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
-                <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-                    <i class="bi-bootstrap fs-1"></i>
-                </a>
-                <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-                            <i class="bi-house fs-1"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
-                            <i class="bi-speedometer2 fs-1"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
-                            <i class="bi-table fs-1"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
-                            <i class="bi-heart fs-1"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link py-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
-                            <i class="bi-people fs-1"></i>
-                        </a>
-                    </li>
-                </ul>
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi-person-circle h2"></i>
+ <div class="row">
+    <div class="col-sm-auto bg-dark sticky-top">
+        <div class="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top" style=width:150px>
+            <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
+                <li class="nav-item">
+                    <a href="#" class="nav-link py-3 px-2" title="Cliente" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Cliente">
+                        <i class="bi-person-fill fs-1 text-success"></i> <!-- Silueta de humano -->
                     </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                    </ul>
-                </div>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 px-2" title="Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Pedido">
+                        <i class="bi-box-seam fs-1 text-success"></i> <!-- Paquete -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 px-2" title="Factura" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Factura">
+                        <i class="bi-file-earmark-fill fs-1 text-success"></i> <!-- Factura -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 px-2" title="Productos" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Productos">
+                        <i class="bi-laptop fs-1 text-success"></i> <!-- Productos -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 px-2" title="Reparación" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Reparación">
+                        <i class="bi-tools fs-1 text-success"></i> <!-- Reparación -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link py-3 px-2" title="Línea Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Línea Pedido">
+                        <i class="bi-cart fs-1 text-success"></i> <!-- Línea de pedido -->
+                    </a>
+                </li>
+            </ul>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" title="Inicio Sesión" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi-person-circle h2 text-success"></i>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                    <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
+                    <li><a class="dropdown-item" href="#">Salir</a></li>
+                </ul>
             </div>
         </div>
-        <div class="col-sm p-3 min-vh-100">
-            <!-- content -->
-        </div>
-    </div>
-</div>
+	</div>
