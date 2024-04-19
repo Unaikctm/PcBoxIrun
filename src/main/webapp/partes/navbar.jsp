@@ -2,8 +2,8 @@
     <div class="container-fluid">
     
         <!-- Logo -->
-        <a class="navbar-brand" href="#">
-            <img src="img/images.png" alt="Logo" width="80" float="left">
+        <a class="navbar-brand navbar-light bg-light" href="#">
+            <img src="img/logo-pc-box.svg" alt="Logo" width="80" float="left">
         </a>
 
         <!-- Botón para colapsar en dispositivos pequeños -->
@@ -15,10 +15,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a color="white" class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    <a color="white" class="nav-link active text-white" aria-current="page" href="#">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Desplegable
                     </a>
                     <ul class="dropdown-menu">
