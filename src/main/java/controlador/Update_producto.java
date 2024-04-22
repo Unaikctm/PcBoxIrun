@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Cliente;
 import modelo.ModeloCliente;
+import modelo.ModeloProducto;
+import modelo.Producto;
 
 /**
- * Servlet implementation class show
+ * Servlet implementation class Update_producto
  */
-@WebServlet("/Show_cliente")
-public class Show_Cliente extends HttpServlet {
+@WebServlet("/Update_producto")
+public class Update_producto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Show_Cliente() {
+    public Update_producto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +30,8 @@ public class Show_Cliente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String DNI = request.getParameter("dni");
-		
-		ModeloCliente mc = new ModeloCliente();
-		Cliente cliente = mc.getCliente(DNI);
-		
-		request.setAttribute("cliente", cliente);
-		
-		request.getRequestDispatcher("show_cliente.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -45,7 +39,18 @@ public class Show_Cliente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		Producto producto = new Producto();
+		producto.setId(Integer.parseInt(request.getParameter("id")));
+		producto.setNombre(request.getParameter("nombre"));
+		producto.setTipo(request.getParameter("tipo"));
+		producto.setMarca(request.getParameter("marca"));
+		producto.setPrecio(Double.parseDouble(request.getParameter("precio")));
+		producto.setStock(Integer.parseInt(request.getParameter("stock")));
+		
+		ModeloProducto mp = new ModeloProducto();
+		mp.update(producto);
+		
+		response.sendRedirect("Index_producto");
 	}
 
 }

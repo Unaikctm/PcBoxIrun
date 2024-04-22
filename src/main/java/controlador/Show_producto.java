@@ -9,18 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Cliente;
 import modelo.ModeloCliente;
+import modelo.ModeloProducto;
+import modelo.Producto;
 
 /**
- * Servlet implementation class show
+ * Servlet implementation class Show_producto
  */
-@WebServlet("/Show_cliente")
-public class Show_Cliente extends HttpServlet {
+@WebServlet("/Show_producto")
+public class Show_producto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Show_Cliente() {
+    public Show_producto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +31,14 @@ public class Show_Cliente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id")); 
 		
-		String DNI = request.getParameter("dni");
+		ModeloProducto mp = new ModeloProducto();
+		Producto producto = mp.getProducto(id);
 		
-		ModeloCliente mc = new ModeloCliente();
-		Cliente cliente = mc.getCliente(DNI);
+		request.setAttribute("producto", producto);
 		
-		request.setAttribute("cliente", cliente);
-		
-		request.getRequestDispatcher("show_cliente.jsp").forward(request, response);
+		request.getRequestDispatcher("show_producto.jsp").forward(request, response);
 	}
 
 	/**

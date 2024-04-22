@@ -1,26 +1,28 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Cliente;
-import modelo.ModeloCliente;
+import modelo.ModeloProducto;
+import modelo.Producto;
 
 /**
- * Servlet implementation class show
+ * Servlet implementation class Index_producto
  */
-@WebServlet("/Show_cliente")
-public class Show_Cliente extends HttpServlet {
+@WebServlet("/Index_producto")
+public class Index_producto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Show_Cliente() {
+    public Index_producto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +31,15 @@ public class Show_Cliente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		ModeloProducto mProducto = new ModeloProducto();
 		
-		String DNI = request.getParameter("dni");
+		ArrayList<Producto> productos = mProducto.getProductos();
 		
-		ModeloCliente mc = new ModeloCliente();
-		Cliente cliente = mc.getCliente(DNI);
+		request.setAttribute("productos", productos);
 		
-		request.setAttribute("cliente", cliente);
+		request.getRequestDispatcher("producto.jsp").forward(request, response);
 		
-		request.getRequestDispatcher("show_cliente.jsp").forward(request, response);
 	}
 
 	/**

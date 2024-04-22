@@ -3,33 +3,33 @@
         <div class="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top" style=width:150px>
             <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
                 <li class="nav-item">
-                    <a href="#" class="nav-link py-3 px-2" title="Cliente" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Cliente">
+                    <a href="Index_cliente?" class="nav-link py-3 px-2" title="Cliente" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Cliente">
                         <i class="bi-person-fill fs-1 text-success"></i> <!-- Silueta de humano -->
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link py-3 px-2" title="Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Pedido">
-                        <i class="bi-box-seam fs-1 text-success"></i> <!-- Paquete -->
+                        <i class="bi-box-seam fs-1 text-success" style="opacity: 0.3"></i> <!-- Paquete -->
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link py-3 px-2" title="Factura" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Factura">
-                        <i class="bi-file-earmark-fill fs-1 text-success"></i> <!-- Factura -->
+                        <i class="bi-file-earmark-fill fs-1 text-success" style="opacity: 0.3"></i> <!-- Factura -->
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link py-3 px-2" title="Productos" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Productos">
+                    <a href="Index_producto?" class="nav-link py-3 px-2" title="Productos" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Productos">
                         <i class="bi-laptop fs-1 text-success"></i> <!-- Productos -->
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link py-3 px-2" title="Reparación" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Reparación">
-                        <i class="bi-tools fs-1 text-success"></i> <!-- Reparación -->
+                        <i class="bi-tools fs-1 text-success" style="opacity: 0.3"></i> <!-- Reparación -->
                     </a>
                 </li>
                 <li>
                     <a href="#" class="nav-link py-3 px-2" title="Línea Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Línea Pedido">
-                        <i class="bi-cart fs-1 text-success"></i> <!-- Línea de pedido -->
+                        <i class="bi-cart fs-1 text-success" style="opacity: 0.3"></i> <!-- Línea de pedido -->
                     </a>
                 </li>
             </ul>
