@@ -30,7 +30,7 @@ public class Destroy_cliente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//recibir la id
 		String DNI = request.getParameter("dni"); 
-		
+		System.out.println(DNI);
 		//eliminar la tarea
 		ModeloCliente mc = new ModeloCliente();
 		mc.delete(DNI);
