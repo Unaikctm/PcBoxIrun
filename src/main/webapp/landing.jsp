@@ -8,23 +8,21 @@
 <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.cdnfonts.com/css/feast-of-flesh-bb" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <div class="row">
-            <div class="col-12 col-md-2 col-lg-2"><img class="logo" width="100%" src="img/logo_pcbox_irun.png" alt=""></div>
-        </div>
-    </header>
-    <div class="container-fluid">
+
+	<%@ include file="/partes/navbar.jsp"%>
+	
+    <div class="container-fluid-izq">
         <div class="row">
             <!-- Columna con botón -->
             <div class="col-12 col-md-6">
                 <div class="text-center u_catch">¡Descubre las mejores ofertas en PCs ahora mismo!</div>
                 <div class="text-center">
-                    <button class="btn-lg u_btn-purple">¡Explora las ofertas!</button>
+                    <a href="Index_cliente" class="btn-lg u_btn-contrast u_btn-rounded">¡Explora las ofertas!</a>
                 </div>
             </div>
             <!-- Columna con slider de imágenes -->
@@ -47,7 +45,7 @@
     </div>
 
     <footer>
-        <div class="row">
+        <div class="row ">
             <div class="col-12 col-md-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                 <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
