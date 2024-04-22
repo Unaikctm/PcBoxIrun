@@ -74,7 +74,7 @@ public class ModeloCliente extends Conector{
 	         e.printStackTrace();
 	         return false;
 	     }
-	 }
+	 } 
 	 
 	 public int update(Cliente cliente) {
 	     try {
