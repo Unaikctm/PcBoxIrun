@@ -32,8 +32,8 @@ CREATE TABLE pedido (
 
 CREATE TABLE producto (
     ID INT NOT NULL,
-    Nombre VARCHAR(30) NOT NULL,
-    Tipo VARCHAR(20) NOT NULL,
+    Nombre VARCHAR(50) NOT NULL,
+    Tipo VARCHAR(50) NOT NULL,
     Marca VARCHAR(15) NOT NULL,
     Precio DECIMAL(6,2) NOT NULL,
     Stock INT NOT NULL
@@ -142,3 +142,11 @@ INSERT INTO `cliente` (`DNI`, `Nombre`, `Apellido`, `Direccion`, `CodigoPostal`,
 ('76343784D', 'Beñat', 'Merino', 'Dario de Reboyos, 5', 20229, 'lujazo@gmail.com', 676676776),
 ('89211425L', 'Jagoba', 'Peruarena', 'Amute Kalea, 17', 20303, 'jperuvian@gmail.com', 634607848),
 ('90987654G', 'Xabier', 'Vacas', 'Av. Gipuzkoa, 5', 20300, 'ponytail32@gmail.com', 643326766);
+
+INSERT INTO `producto`(`Nombre`, `Tipo`, `Marca`, `Precio`, `Stock`) VALUES
+('GeForce RTX 4060 Ti OC 8GB GDD','Tarjeta gráfica','Asus',275.00,80),
+('B760 GAMING PLUS WIFI','Placa base','MSI',154.99,150),
+('Vengance RGB 8GB','Memoria RAM','Corsair',30.99,500),
+('Ryzen 7 5800X 3.8GHz','Procesador','AMD',219.00,120),
+('EXCERIA PLUS G3 2TB SSD M.2','Disco Duro SSD','Kioxia',105.99,340),
+('Liquid Cooler 360 ARGB 360mm','Refrigeración Líquida','Tempest',134.99,175);
