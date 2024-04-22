@@ -1,0 +1,65 @@
+@import url('https://fonts.cdnfonts.com/css/feast-of-flesh-bb');
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+footer {
+    text-align: left; /* Centrar el texto */
+    padding: 20px; /* Espaciado interno */
+    font-family: sans-serif;
+  }
+
+/* Estilo para la sección principal */
+.container-fluid-izq {
+    background-color: #ffffff;
+    /* Tonalidad diferente de verde */
+    padding: 20px;
+}
+
+.u_btn-contrast {
+    background-color: #deaa34;
+    color: #ffffff; /* Color del texto */
+    padding: 18px 36px; /* Aumentamos el padding para hacerlo más grande */
+    border: none;
+    border-radius: 10px; /* Hacemos el botón más redondeado */
+    font-family: sans-serif;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 20px; /* Ajustamos el tamaño del texto */
+}
+
+.u_btn-contrast:hover {
+    background-color: #c49227; /* Cambia el color al pasar el cursor */
+    text-decoration: none;
+    color: #ffffff; /* Color del texto */
+}
+
+.u_btn-rounded {
+    border-radius: 30px; /* Ajusta el radio de la esquina */
+}
+.text-center{
+    padding: 15%;
+    font-size: larger;
+}
+
+.carousel-inner {
+    height: auto; 
+}
+
+.carousel-item img {
+    width: auto;
+    max-height: 100%; 
+    margin: auto;
+}
+
+.col-md-custom {
+    flex: 0 0 1%; /* Define el ancho deseado */
+    max-width: 1%;
+}
+
+.u_catch{
+    font-size: xx-large;
+    font-family: 'Feast of Flesh BB', sans-serif;
+}
