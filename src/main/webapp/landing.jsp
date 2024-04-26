@@ -32,8 +32,64 @@
             <div class="col-12 col-md-6">
                 <div class="text-center u_catch">¡Descubre las mejores ofertas en PCs ahora mismo!</div>
                 <div class="text-center">
-                    <a href="Index_cliente" class="btn-lg u_btn-contrast u_btn-rounded">¡Explora las ofertas!</a>
+                    <button type="button" class="btn-lg u_btn-contrast u_btn-rounded" data-bs-toggle="modal" data-bs-target="#insertModal">¡Explora las ofertas!</button>
+                    	<!-- Modal de registro -->
+               		<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header bg-success text-white">
+								<h5 class="modal-title" id="exampleModalLabel">¡Registrate para verlas!</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<form action="Store_cliente" method="POST">
+								<div class="modal-body">
+
+									<div class="mb-3">
+										<label for="nombre" class="form-label">Nombre:</label> 
+										<input type="text" class="form-control" id="nombre" name="nombre" value="${cliente.nombre}" required>
+									</div>
+
+									<div class="mb-3">
+										<label for="apellido" class="form-label">Apellido:</label>
+										<input type="text" class="form-control" id="apellido" name="apellido" value="${cliente.apellido}" required>
+									</div>
+
+									<div class="mb-3">
+										<label for="dni" class="form-label">DNI:</label> 
+										<input type="text" class="form-control" id="dni" name="dni" value="${cliente.dni}">
+									</div>
+
+									<div class="mb-3">
+										<label for="direccion" class="form-label">Dirección:</label>
+										<input type="text" class="form-control" id="direccion" name="direccion" value="${cliente.direccion}">
+									</div>
+
+									<div class="mb-3">
+										<label for="codigopostal" class="form-label">Código postal:</label>
+										<input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
+									</div>
+
+									<div class="mb-3">
+										<label for="email" class="form-label">Email:</label> 
+										<input type="email" class="form-control" id="email" name="email" value="${cliente.email}">
+									</div>
+
+									<div class="mb-3">
+										<label for="telefono" class="form-label">Teléfono:</label>
+										<input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+									<button type="submit" class="btn btn-success">Guardar Cambios</button>
+								</div>
+										</form>
+									</div>
+								</div>
+							</div>
                 </div>
+               
+               	
             </div>
             <!-- Columna con slider de imágenes -->
             <div class="col-12 col-md-6">
@@ -65,6 +121,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>
