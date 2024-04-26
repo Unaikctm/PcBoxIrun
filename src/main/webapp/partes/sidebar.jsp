@@ -3,7 +3,7 @@
         <div class="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top" style=width:150px>
             <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
                 <li class="nav-item">
-                    <a href="Index_cliente?" class="nav-link py-3 px-2" title="Cliente" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Cliente">
+                    <a href="Index_cliente" class="nav-link py-3 px-2" title="Cliente" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Cliente">
                         <i class="bi-person-fill fs-1 text-success"></i> <!-- Silueta de humano -->
                     </a>
                 </li>
@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="Index_producto?" class="nav-link py-3 px-2" title="Productos" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Productos">
+                    <a href="Index_producto" class="nav-link py-3 px-2" title="Productos" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Productos">
                         <i class="bi-laptop fs-1 text-success"></i> <!-- Productos -->
                     </a>
                 </li>

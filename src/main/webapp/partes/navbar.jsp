@@ -17,10 +17,6 @@
                 <li class="nav-item">
                     <a color="white" class="nav-link active text-white" aria-current="page" href="Landing">Inicio</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Desplegable
-                    </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Acción</a></li>
                         <li><a class="dropdown-item" href="#">Otra acción</a></li>
