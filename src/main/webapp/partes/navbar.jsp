@@ -1,4 +1,4 @@
-	<nav class="navbar navbar-expand-lg navbar-success bg-success">
+	<nav class="navbar navbar-expand-lg bg-success">
     <div class="container-fluid">
     
         <!-- Logo -->
