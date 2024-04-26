@@ -1,8 +1,8 @@
 package modelo;
 
 public class LineaPedido {
-	private Producto producto;
 	private Pedido pedido;
+	private Producto producto;
 	private int cantidad;
 	
 	public LineaPedido() {}
