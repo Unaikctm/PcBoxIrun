@@ -1,7 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.*;
 
 /**
- * Servlet implementation class show
+ * Servlet implementation class Update_pedido
  */
-@WebServlet("/Show_cliente")
-public class Show_Cliente extends HttpServlet {
+@WebServlet("/Update_pedido")
+public class Update_pedido extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Show_Cliente() {
+    public Update_pedido() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +28,8 @@ public class Show_Cliente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String DNI = request.getParameter("dni");
-		
-		ModeloCliente mc = new ModeloCliente();
-		Cliente cliente = mc.getCliente(DNI);
-		
-		request.setAttribute("cliente", cliente);
-		
-		request.getRequestDispatcher("show_cliente.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -45,7 +37,18 @@ public class Show_Cliente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		/*Pedido pedido = new Pedido();
+		pedido.setId(Integer.parseInt(request.getParameter("id")));
+		pedido.setTotal(request.getParameter("nombre"));
+		pedido.setFecha(request.getParameter("tipo"));
+		pedido.setCliente(request.getParameter("marca"));
+		pedido.setPrecio(Double.parseDouble(request.getParameter("precio")));
+		pedido.setStock(Integer.parseInt(request.getParameter("stock")));
+		
+		ModeloPedido mp = new ModeloPedido();
+		//mp.update(pedido);*/
+		
+		response.sendRedirect("Index_pedido");
 	}
 
 }

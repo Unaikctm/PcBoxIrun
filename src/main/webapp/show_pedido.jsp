@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show cliente</title>
+    <title>Show pedido</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.css" rel="stylesheet">
 	
@@ -19,25 +19,21 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">DNI</th>
+            <th scope="col">id</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Código postal</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telefono</th>
-            
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
           </tr>
         </thead>
 	          <tr>
 	            <th scope="row"></th>
-	            <td>${cliente.dni}</td>
-	            <td>${cliente.nombre}</td>
-	            <td>${cliente.apellido}</td>
-	            <td>${cliente.direccion}</td>
-	            <td>${cliente.codigopostal}</td>
-	            <td>${cliente.email}</td>
-	            <td>${cliente.telefono}</td>
+	            <td>${pedido.id}</td>
+	            <td>${pedido.total}</td>
+	            <td>${pedido.fecha}</td>
+	            <td>${producto.marca}${producto.nombre}</td>
+	            <td>${producto.id}</td>
+	            <td>${lineapedido.cantidad}</td>
+
 			</tr>
       </table>
       
