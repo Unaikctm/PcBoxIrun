@@ -1,25 +1,28 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.*;
+import modelo.ModeloPedido;
+import modelo.Pedido;
 
 /**
- * Servlet implementation class Update_lineapedido
+ * Servlet implementation class Show_pedido_de_cliente
  */
-@WebServlet("/Update_lineapedido")
-public class Update_lineapedido extends HttpServlet {
+@WebServlet("/Show_pedido_de_cliente")
+public class Show_pedido_de_cliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Update_lineapedido() {
+    public Show_pedido_de_cliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,24 +31,22 @@ public class Update_lineapedido extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String DNI = request.getParameter("dni");
+		
+		ModeloPedido mp = new ModeloPedido();
+		ArrayList<Pedido> pedidos = mp.getPedidosByDNI(DNI);
+		
+		request.setAttribute("pedidos", pedidos);
+		
+		request.getRequestDispatcher("show_pedido_de_cliente.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ModeloLineaPedido mlp = new ModeloLineaPedido();
-		
-		LineaPedido lineapedido = new LineaPedido();
-		lineapedido.setPedido(new ModeloPedido().getPedido(Integer.parseInt(request.getParameter("id_pedido"))));
-		lineapedido.setProducto(new ModeloProducto().getProducto(Integer.parseInt(request.getParameter("id_producto"))));
-		lineapedido.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
-		
-		mlp.update(lineapedido);
-		
-		response.sendRedirect("Index_lineapedido");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

@@ -23,8 +23,7 @@ public class ModeloCliente extends Conector{
 				cliente.setCodigopostal(rs.getInt("codigopostal"));
 				cliente.setEmail(rs.getString("email"));
 				cliente.setTelefono(rs.getInt("telefono"));
-				cliente.setPedidos(null);
-				cliente.setPedidos(null);
+				cliente.setPedidos(new ModeloPedido().getPedidosByDNI(rs.getString("dni")));
 
 				clientes.add(cliente);
 				System.out.println(cliente);
@@ -52,8 +51,7 @@ public class ModeloCliente extends Conector{
 				cliente.setCodigopostal(rs.getInt("codigopostal"));
 				cliente.setEmail(rs.getString("email"));
 				cliente.setTelefono(rs.getInt("telefono"));
-				cliente.setPedidos(null);
-				cliente.setPedidos(null);
+				cliente.setPedidos(new ModeloPedido().getPedidosByDNI(rs.getString("dni")));
 
 
 				return cliente;

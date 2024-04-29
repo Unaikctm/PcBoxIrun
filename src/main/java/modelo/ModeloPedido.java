@@ -35,6 +35,31 @@ public class ModeloPedido extends Conector{
 		return pedidos;
 	}
 
+	public ArrayList<Pedido> getPedidosByDNI(String dni) {
+		ModeloLineaPedido modeloLineaPedido = new ModeloLineaPedido();
+		ArrayList<Pedido> pedidos = new ArrayList<>();
+
+		try {
+			PreparedStatement pst = cn.prepareStatement("SELECT * FROM pedido WHERE DNI_Cliente=?");
+			pst.setString(1, dni);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				Pedido pedido = new Pedido();
+				pedido.setId(rs.getInt("id"));
+				pedido.setFecha(rs.getDate("fecha"));
+				pedido.setProductos(modeloLineaPedido.getProductosByIdPedido(rs.getInt("id")));
+				pedido.getTotal();
+
+				pedidos.add(pedido);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return pedidos;
+	}
+	
 	public Pedido getPedido(int id) {
 		
 		ModeloLineaPedido modeloLineaPedido = new ModeloLineaPedido();

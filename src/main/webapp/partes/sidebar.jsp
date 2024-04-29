@@ -27,11 +27,6 @@
                         <i class="bi-tools fs-1 text-success" style="opacity: 0.3"></i> <!-- Reparación -->
                     </a>
                 </li>
-                <li>
-                    <a href="Index_lineapedido" class="nav-link py-3 px-2" title="Línea Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Línea Pedido">
-                        <i class="bi-cart fs-1 text-success"></i> <!-- Línea de pedido -->
-                    </a>
-                </li>
             </ul>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" title="Inicio Sesión" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
