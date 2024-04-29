@@ -26,8 +26,6 @@
             <th scope="col">Código postal</th>
             <th scope="col">Email</th>
             <th scope="col">Telefono</th>
-            <th scope="col">Pedidos</th>
-            <th scope="col">Reparación</th>
             
           </tr>
         </thead>
@@ -40,12 +38,6 @@
 	            <td>${cliente.codigopostal}</td>
 	            <td>${cliente.email}</td>
 	            <td>${cliente.telefono}</td>
-	            <td>
-        			<c:forEach var="pedido" items="${pedidos}">
-            			${pedido.id}<br>
-        			</c:forEach>
-    			</td>
-
 			</tr>
       </table>
       
