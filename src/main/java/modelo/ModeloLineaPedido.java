@@ -7,14 +7,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ModeloLineaPedido extends Conector{
-	private ModeloPedido modeloPedido = new ModeloPedido();
-	
-	private ModeloProducto modeloProducto = new ModeloProducto();
 	
 	public ArrayList<LineaPedido> getLineaPedidos() {
 		
 		
-		ArrayList<LineaPedido> lineapedidos = new ArrayList<>();
+		ModeloPedido modeloPedido = new ModeloPedido();
+		ModeloProducto modeloProducto = new ModeloProducto();
+		
+		ArrayList<LineaPedido> lineapedidos = new ArrayList<LineaPedido>();
 
 		try {
 			Statement st = cn.createStatement();
@@ -26,16 +26,21 @@ public class ModeloLineaPedido extends Conector{
 				lineapedido.setCantidad(rs.getInt("cantidad"));
 
 				lineapedidos.add(lineapedido);
+				
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
+		System.out.println(lineapedidos);
 		return lineapedidos;
 	}
 
 	public LineaPedido getLineaPedidoByIdPedido(int id_pedido) {
+		ModeloPedido modeloPedido = new ModeloPedido();
+		ModeloProducto modeloProducto = new ModeloProducto();
+		
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM lineapedido WHERE id_pedido=?");
 			pst.setInt(1, id_pedido);
@@ -60,6 +65,8 @@ public class ModeloLineaPedido extends Conector{
 	public ArrayList<Producto> getProductosByIdPedido(int id_pedido) {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		
+		ModeloProducto modeloProducto = new ModeloProducto();
+		
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("SELECT id_producto FROM lineapedido WHERE id_pedido=?");
 			pst.setInt(1, id_pedido);
@@ -67,10 +74,12 @@ public class ModeloLineaPedido extends Conector{
 
 			while (rs.next()) {
 				Producto producto = new Producto();
-				modeloProducto.getProducto(rs.getInt("id_producto"));
+				producto=modeloProducto.getProducto(rs.getInt("id_producto"));
 				productos.add(producto);
 			}
+			System.out.println(productos);
 			return productos;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

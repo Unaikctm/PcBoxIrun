@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 
 public class ModeloPedido extends Conector{
-	
-	private ModeloLineaPedido modeloLineaPedido = new ModeloLineaPedido();
+
 	
 	public ArrayList<Pedido> getPedidos() {
+		ModeloLineaPedido modeloLineaPedido = new ModeloLineaPedido();
 		ArrayList<Pedido> pedidos = new ArrayList<>();
 
 		try {
@@ -26,7 +26,6 @@ public class ModeloPedido extends Conector{
 				pedido.getTotal();
 
 				pedidos.add(pedido);
-				System.out.println(pedido);
 			}
 
 		} catch (SQLException e) {
@@ -37,18 +36,22 @@ public class ModeloPedido extends Conector{
 	}
 
 	public Pedido getPedido(int id) {
+		
+		ModeloLineaPedido modeloLineaPedido = new ModeloLineaPedido();
+		
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM pedido WHERE id=?");
 			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 
-				Pedido pedido = new Pedido();
-				pedido.setId(rs.getInt("id"));
-				pedido.setFecha(rs.getDate("fecha"));
-				pedido.setProductos(modeloLineaPedido.getProductosByIdPedido(rs.getInt("id")));
-				pedido.getTotal();
+			Pedido pedido = new Pedido();
+			rs.next();
+			pedido.setId(rs.getInt("id"));
+			pedido.setFecha(rs.getDate("fecha"));
+			pedido.setProductos(modeloLineaPedido.getProductosByIdPedido(rs.getInt("id")));
+			pedido.getTotal();
 
-				return pedido;
+			return pedido;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

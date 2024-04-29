@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.*;
 
 /**
- * Servlet implementation class Show_pedido
+ * Servlet implementation class Destroy_lineapedido
  */
-@WebServlet("/Show_pedido")
-public class Show_pedido extends HttpServlet {
+@WebServlet("/Destroy_lineapedido")
+public class Destroy_lineapedido extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Show_pedido() {
+    public Destroy_lineapedido() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,15 +28,15 @@ public class Show_pedido extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id")); 
-		
-		ModeloPedido mp = new ModeloPedido();
-		Pedido pedido = mp.getPedido(id);
-		
-		request.setAttribute("pedido", pedido);
-		
-		request.getRequestDispatcher("show_pedido.jsp").forward(request, response);
+		//recibir la id
+		int id_pedido = Integer.parseInt(request.getParameter("id_pedido")); 
+		//eliminar la tarea
+		ModeloLineaPedido mlp = new ModeloLineaPedido();
+		mlp.delete(id_pedido);
+						
+		//abrir lo que quiera, en mi caso inicio
+		//como ya tengo un controlador que abra el inicio redirijo a ese controlador
+		response.sendRedirect("Index_lineapedido");
 	}
 
 	/**

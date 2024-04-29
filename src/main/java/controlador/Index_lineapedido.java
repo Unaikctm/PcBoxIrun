@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.*;
 
 /**
- * Servlet implementation class Show_pedido
+ * Servlet implementation class Index_lineapedido
  */
-@WebServlet("/Show_pedido")
-public class Show_pedido extends HttpServlet {
+@WebServlet("/Index_lineapedido")
+public class Index_lineapedido extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Show_pedido() {
+    public Index_lineapedido() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,14 +31,17 @@ public class Show_pedido extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id")); 
+		ModeloLineaPedido mLPedido = new ModeloLineaPedido();
 		
-		ModeloPedido mp = new ModeloPedido();
-		Pedido pedido = mp.getPedido(id);
+		ArrayList<LineaPedido> lPedidos = mLPedido.getLineaPedidos();
 		
-		request.setAttribute("pedido", pedido);
+		for (LineaPedido lineaPedido : lPedidos) {
+			System.out.println(lineaPedido);
+		}
 		
-		request.getRequestDispatcher("show_pedido.jsp").forward(request, response);
+		request.setAttribute("lineapedidos", lPedidos);
+		
+		request.getRequestDispatcher("lineapedido.jsp").forward(request, response);
 	}
 
 	/**

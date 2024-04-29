@@ -28,7 +28,8 @@
 	          <tr>
 	            <th scope="row"></th>
 	            <td>${pedido.id}</td>
-	            <td>${producto.id}</td>
+	            <td>${pedido.total}</td>
+	            <td>${pedido.fecha}</td>
 	            <td>${producto.marca}${producto.nombre}</td>
 	            <td>${producto.id}</td>
 	            <td>${lineapedido.cantidad}</td>

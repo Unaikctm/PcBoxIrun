@@ -8,8 +8,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link py-3 px-2" title="Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Pedido">
-                        <i class="bi-box-seam fs-1 text-success" style="opacity: 0.3"></i> <!-- Paquete -->
+                    <a href="Index_pedido" class="nav-link py-3 px-2" title="Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Pedido">
+                        <i class="bi-box-seam fs-1 text-success"></i> <!-- Paquete -->
                     </a>
                 </li>
                 <li>
@@ -28,8 +28,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link py-3 px-2" title="Línea Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Línea Pedido">
-                        <i class="bi-cart fs-1 text-success" style="opacity: 0.3"></i> <!-- Línea de pedido -->
+                    <a href="Index_lineapedido" class="nav-link py-3 px-2" title="Línea Pedido" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Línea Pedido">
+                        <i class="bi-cart fs-1 text-success"></i> <!-- Línea de pedido -->
                     </a>
                 </li>
             </ul>

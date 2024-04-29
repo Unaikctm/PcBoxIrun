@@ -33,11 +33,10 @@ public class Pedido {
 	}
 
 	public Double getTotal() {
-		double total=0;
+		Double total = 0.0;
 		for (Producto producto : productos) {
 			total=total+producto.getPrecio();
 		}
-		
 		return total;
 	}
 
