@@ -24,7 +24,7 @@
     </nav>
     
     <div class="container mt-4">
-        <div class="row ">
+        <div class="row  d-flex justify-content-center">
             <div class="col-md-4" >
                 <div class="card mb-4 shadow-lg">
                     <img src="img/main_page/cliente.png" height="320px" class="card-img-top" alt="clientes">
@@ -69,17 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-lg">
-                    <img src="img/main_page/lineapedido.png" height="320px" class="card-img-top" alt="linea pedido">
-                    <br><hr>
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Panel de Linea Pedido</h5>
-                        <p class="card-text text-center">En este panel se pueden consultar todos los productos que contiene un pedido.</p>
-                        <a href="Index_lineapedido" class="btn btn-primary px-5 fs-5 d-flex justify-content-center bg-success">Ir al Panel</a>
-                    </div>
-                </div>
-            </div>
+            
             <div class="col-md-4">
                 <div class="card mb-4 shadow-lg">
                     <img src="img/main_page/factura.png" height="320px" class="card-img-top" alt="facturas">
