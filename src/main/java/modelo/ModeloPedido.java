@@ -83,10 +83,28 @@ public class ModeloPedido extends Conector{
 		}
 		return null;
 	}
+	
+	public String getDni(int id) {
+		try {
+			PreparedStatement pst = this.cn.prepareStatement("SELECT dni_cliente FROM pedido WHERE id=?");
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+
+			String dni;
+			rs.next();
+			dni = rs.getString("dni_cliente");
+			
+			return dni;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	public boolean delete(int id) {
 		try {
-			PreparedStatement pst = this.cn.prepareStatement("DELETE FROM pedido WHERE id=?");
+			PreparedStatement pst = this.cn.prepareStatement("{call Eliminar_Pedido(?)}");
 			pst.setInt(1, id);
 			pst.execute();
 			return true;
@@ -103,7 +121,7 @@ public class ModeloPedido extends Conector{
 
 			// Establecer los parámetros del procedimiento almacenado
 			cs.setInt(1, pedido.getId());
-			cs.setDate(2, pedido.getFecha());
+			cs.setDate(2, new java.sql.Date(pedido.getFecha().getTime()));
 			cs.setDouble(3, pedido.getTotal());
 			cs.setString(4, dni);
 

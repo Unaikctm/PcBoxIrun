@@ -5,12 +5,12 @@ public class Reparacion {
 	private String tipo;
 	private String descripcion;
 	private int horas; 
-	private double precio;
+	private Double precio;
 	private Factura factura;
 	
 	public Reparacion() {}
 	
-	public Reparacion(int id, String tipo, String descripcion, int horas, double precio, Factura factura) {
+	public Reparacion(int id, String tipo, String descripcion, int horas, Double precio, Factura factura) {
 		this.id = id;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
@@ -51,11 +51,11 @@ public class Reparacion {
 		this.horas = horas;
 	}
 
-	public double getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 

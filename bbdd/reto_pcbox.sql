@@ -69,17 +69,15 @@ ALTER TABLE factura MODIFY ID INT AUTO_INCREMENT;
 
 -- Foreign Keys
 ALTER TABLE reparacion ADD CONSTRAINT FK_Reparacion FOREIGN KEY (DNI_CLIENTE)
-    REFERENCES cliente(DNI);
+    REFERENCES cliente(DNI) ON DELETE CASCADE;
 ALTER TABLE pedido ADD CONSTRAINT FK_Pedido FOREIGN KEY (DNI_Cliente)
-    REFERENCES cliente(DNI);
+    REFERENCES cliente(DNI) ON DELETE CASCADE;
 ALTER TABLE lineapedido ADD CONSTRAINT FK_LineaPedido FOREIGN KEY (ID_Pedido)
-    REFERENCES pedido(ID);
+    REFERENCES pedido(ID) ON DELETE CASCADE;
 ALTER TABLE lineapedido ADD CONSTRAINT FK_LineaPedido1 FOREIGN KEY (ID_Producto)
-    REFERENCES producto(ID);
+    REFERENCES producto(ID) ON DELETE CASCADE;
 ALTER TABLE factura ADD CONSTRAINT FK_Factura FOREIGN KEY (ID)
-    REFERENCES pedido(ID);
-ALTER TABLE factura ADD CONSTRAINT FK_Factura2 FOREIGN KEY (ID)
-    REFERENCES reparacion(ID);
+    REFERENCES pedido(ID) ON DELETE CASCADE;
 
 -- Checks
 ALTER TABLE factura ADD CHECK (Pagado IN ('Si', 'No'));
@@ -90,6 +88,8 @@ DELIMITER //
 
 DROP PROCEDURE IF EXISTS Insertar_Pedido //
 DROP PROCEDURE IF EXISTS Insertar_Reparacion //
+DROP PROCEDURE IF EXISTS Eliminar_Pedido //
+DROP PROCEDURE IF EXISTS Eliminar_Reparacion //
 
 CREATE PROCEDURE Insertar_Pedido (
     p_ID_Pedido INT,
@@ -107,7 +107,7 @@ BEGIN
     VALUES (p_ID_Pedido, p_Fecha, f_Total, 'No', 'Pedido');
 
     COMMIT;
-    SELECT CONCAT('Factura creada correctamente para el pedido ', p_ID_Pedido, ' de tipo pedido.') AS Message;
+    -- SELECT CONCAT('Factura creada correctamente para el pedido ', p_ID_Pedido, ' de tipo pedido.') AS Message;
 END//
 
 CREATE PROCEDURE Insertar_Reparacion (
@@ -133,6 +133,43 @@ BEGIN
     SELECT CONCAT('Factura creada correctamente para la reparacion ', r_ID_Reparacion, ' de tipo reparacion.') AS Message;
 END//
 
+CREATE PROCEDURE Eliminar_Pedido(
+	pedido_id INT
+)
+BEGIN
+    -- Iniciar una transacción
+    START TRANSACTION;
+    
+    -- Eliminar las facturas asociadas al pedido
+    DELETE FROM factura WHERE ID IN (SELECT ID FROM pedido WHERE ID = pedido_id) AND Tipo_Factura = 'Pedido';
+    
+    -- Luego, eliminar el pedido
+    DELETE FROM pedido WHERE ID = pedido_id;
+    
+    -- Confirmar la transacción
+    COMMIT;
+    
+    SELECT 'Pedido eliminado exitosamente' AS Message;
+END//
+
+CREATE PROCEDURE Eliminar_Reparacion(
+	reparacion_id INT
+)
+BEGIN
+    -- Iniciar una transacción
+    START TRANSACTION;
+    
+    -- Eliminar las facturas asociadas al pedido
+    DELETE FROM factura WHERE ID IN (SELECT ID FROM reparacion WHERE ID = reparacion_id) AND Tipo_Factura = 'Reparacion';
+    
+    -- Luego, eliminar el pedido
+    DELETE FROM reparacion WHERE ID = reparacion_id;
+    
+    -- Confirmar la transacción
+    COMMIT;
+    
+    SELECT 'Reparacion eliminada exitosamente' AS Message;
+END//
 DELIMITER ;
 
 INSERT INTO `cliente` (`DNI`, `Nombre`, `Apellido`, `Direccion`, `CodigoPostal`, `Email`, `Telefono`) VALUES
@@ -150,3 +187,40 @@ INSERT INTO `producto`(`Nombre`, `Tipo`, `Marca`, `Precio`, `Stock`) VALUES
 ('Ryzen 7 5800X 3.8GHz','Procesador','AMD',219.00,120),
 ('EXCERIA PLUS G3 2TB SSD M.2','Disco Duro SSD','Kioxia',105.99,340),
 ('Liquid Cooler 360 ARGB 360mm','Refrigeración Líquida','Tempest',134.99,175);
+
+CALL Insertar_Pedido (1,'2024-04-04',0.0,'54647912K');
+CALL Insertar_Pedido (2,'2024-04-14',0.0,'89211425L');
+CALL Insertar_Pedido (3,'2024-04-12',0.0,'21376754C');
+CALL Insertar_Pedido (4,'2024-04-03',0.0,'90987654G');
+CALL Insertar_Pedido (5,'2024-04-27',0.0,'76343784D');
+CALL Insertar_Pedido (6,'2024-04-18',0.0,'21376754C');
+
+INSERT INTO `lineapedido` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
+(1,1,1),
+(2,3,4),
+(3,5,1),
+(3,1,1),
+(4,2,2),
+(5,3,2),
+(6,6,1);
+
+-- Create roles
+-- CREATE ROLE appAdmin;
+-- CREATE ROLE appUser;
+
+-- Grant privileges to appAdmin role
+-- GRANT CREATE USER, CREATE TABLESPACE, ALTER ON *.* TO appAdmin;
+
+-- Grant privileges to appUser role
+-- GRANT CREATE ON *.* TO appUser;
+
+-- Create users
+-- CREATE USER 'app_admin' IDENTIFIED BY 'admin';
+-- CREATE USER 'app_user' IDENTIFIED BY 'user';
+
+-- Assign roles to users
+-- GRANT appAdmin TO 'app_admin'@'localhost';
+-- GRANT appUser TO 'app_user'@'localhost';
+
+-- DROP USER 'app_admin'@'localhost';
+-- DROP USER 'app_user'@'localhost';

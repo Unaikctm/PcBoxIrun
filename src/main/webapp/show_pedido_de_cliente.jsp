@@ -16,7 +16,7 @@
 	<%@ include file="partes/navbar.jsp" %>
 	
      <div class="container">
-        <h1>Detalles de Pedidos</h1>
+        <h1>Pedidos de ${cliente.nombre} ${cliente.apellido}</h1>
         <c:forEach var="pedido" items="${pedidos}">
             <div class="card mb-3">
             	<div class="col">
