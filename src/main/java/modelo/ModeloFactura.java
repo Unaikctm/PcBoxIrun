@@ -44,9 +44,7 @@ public class ModeloFactura extends Conector{
 			pst.setInt(1, id);
 			pst.setString(2, tipo);
 			ResultSet rs = pst.executeQuery();
-			System.out.println("LLega aqui");
 			if (rs.next()) {
-				System.out.println("Encuentra algo");
 				Factura factura = new Factura();
 				factura.setId(rs.getInt("id"));
 				factura.setFecha(rs.getDate("fecha"));
@@ -57,7 +55,6 @@ public class ModeloFactura extends Conector{
 				}
 				factura.setPedido(mP.getPedido(rs.getInt("id")));
 				factura.setTotal(factura.getTotal());
-				System.out.println(factura);
 				return factura;
 			}
 		} catch (SQLException e) {

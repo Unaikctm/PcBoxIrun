@@ -34,6 +34,7 @@
                 <p class="card-text">Tipo de Factura: ${factura.tipo}</p>
                 <p class="card-text">Fecha de Emisión: ${factura.fecha}</p>
                 <p class="card-text">Total de la Factura + IVA includo: ${factura.total}</p>
+                <p class="card-text">Pagado: ${factura.pagado}</p>
             </div>
         </div>
     </div>
