@@ -6,17 +6,15 @@ public class Reparacion {
 	private String descripcion;
 	private int horas; 
 	private Double precio;
-	private Factura factura;
 	
 	public Reparacion() {}
 	
-	public Reparacion(int id, String tipo, String descripcion, int horas, Double precio, Factura factura) {
+	public Reparacion(int id, String tipo, String descripcion, int horas, Double precio) {
 		this.id = id;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
 		this.horas = horas;
 		this.precio = precio;
-		this.factura = factura;
 	}
 
 	public int getId() {
@@ -59,18 +57,10 @@ public class Reparacion {
 		this.precio = precio;
 	}
 
-	public Factura getFactura() {
-		return factura;
-	}
-
-	public void setFactura(Factura factura) {
-		this.factura = factura;
-	}
-
 	@Override
 	public String toString() {
 		return "Reparacion [id=" + id + ", tipo=" + tipo + ", descripcion=" + descripcion + ", horas=" + horas
-				+ ", precio=" + precio + ", factura=" + factura + "]";
+				+ ", precio=" + precio;
 	}
 	
 	
