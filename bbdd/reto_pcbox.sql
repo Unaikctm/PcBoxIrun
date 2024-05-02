@@ -78,8 +78,6 @@ ALTER TABLE lineapedido ADD CONSTRAINT FK_LineaPedido1 FOREIGN KEY (ID_Producto)
     REFERENCES producto(ID);
 ALTER TABLE factura ADD CONSTRAINT FK_Factura FOREIGN KEY (ID)
     REFERENCES pedido(ID);
-ALTER TABLE factura ADD CONSTRAINT FK_Factura2 FOREIGN KEY (ID)
-    REFERENCES reparacion(ID);
 
 -- Checks
 ALTER TABLE factura ADD CHECK (Pagado IN ('Si', 'No'));
@@ -107,7 +105,7 @@ BEGIN
     VALUES (p_ID_Pedido, p_Fecha, f_Total, 'No', 'Pedido');
 
     COMMIT;
-    SELECT CONCAT('Factura creada correctamente para el pedido ', p_ID_Pedido, ' de tipo pedido.') AS Message;
+    -- SELECT CONCAT('Factura creada correctamente para el pedido ', p_ID_Pedido, ' de tipo pedido.') AS Message;
 END//
 
 CREATE PROCEDURE Insertar_Reparacion (
@@ -150,3 +148,41 @@ INSERT INTO `producto`(`Nombre`, `Tipo`, `Marca`, `Precio`, `Stock`) VALUES
 ('Ryzen 7 5800X 3.8GHz','Procesador','AMD',219.00,120),
 ('EXCERIA PLUS G3 2TB SSD M.2','Disco Duro SSD','Kioxia',105.99,340),
 ('Liquid Cooler 360 ARGB 360mm','Refrigeración Líquida','Tempest',134.99,175);
+
+CALL Insertar_Pedido (1,'2024-04-04',0.0,'54647912K');
+CALL Insertar_Pedido (2,'2024-04-14',0.0,'89211425L');
+CALL Insertar_Pedido (3,'2024-04-12',0.0,'21376754C');
+CALL Insertar_Pedido (4,'2024-04-03',0.0,'90987654G');
+CALL Insertar_Pedido (5,'2024-04-27',0.0,'76343784D');
+CALL Insertar_Pedido (6,'2024-04-18',0.0,'21376754C');
+
+INSERT INTO `lineapedido` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
+(1,1,1),
+(2,3,4),
+(3,5,1),
+(3,1,1),
+(4,2,2),
+(5,3,2),
+(6,6,1);
+
+
+-- Create roles
+-- CREATE ROLE appAdmin;
+-- CREATE ROLE appUser;
+
+-- Grant privileges to appAdmin role
+-- GRANT CREATE USER, CREATE TABLESPACE, ALTER ON *.* TO appAdmin;
+
+-- Grant privileges to appUser role
+-- GRANT CREATE ON *.* TO appUser;
+
+-- Create users
+-- CREATE USER 'app_admin' IDENTIFIED BY 'admin';
+-- CREATE USER 'app_user' IDENTIFIED BY 'user';
+
+-- Assign roles to users
+-- GRANT appAdmin TO 'app_admin'@'localhost';
+-- GRANT appUser TO 'app_user'@'localhost';
+
+-- DROP USER 'app_admin'@'localhost';
+-- DROP USER 'app_user'@'localhost';
