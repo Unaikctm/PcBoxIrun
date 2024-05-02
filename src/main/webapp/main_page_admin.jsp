@@ -24,7 +24,7 @@
     </nav>
     
     <div class="container mt-4">
-        <div class="row  d-flex justify-content-center">
+        <div class="row d-flex justify-content-center">
             <div class="col-md-4" >
                 <div class="card mb-4 shadow-lg">
                     <img src="img/main_page/cliente.png" height="320px" class="card-img-top" alt="clientes">

@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,41 +12,47 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.*;
 
 /**
- * Servlet implementation class Store_producto
+ * Servlet implementation class Index_reparacion
  */
-@WebServlet("/Store_producto")
-public class Store_producto extends HttpServlet {
+@WebServlet("/Index_reparacion")
+public class Index_reparacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Store_producto() {
+    public Index_reparacion() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ModeloReparacion mr = new ModeloReparacion();
+		
+		ArrayList<Reparacion> reparaciones = mr.getReparaciones();
+		
+		request.setAttribute("reparaciones", reparaciones);
+		
+		ArrayList<Cliente> clientes = new ModeloCliente().getClientes();; 
+		ArrayList<String> listaDNI = new ArrayList<String>();
+		for (Cliente cliente : clientes) {
+			listaDNI.add(cliente.getDni());
+		}
+		
+		request.setAttribute("listaDNI", listaDNI);
+		
+		request.getRequestDispatcher("reparacion.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Producto producto = new Producto();
-		producto.setNombre(request.getParameter("nombre"));
-		producto.setTipo(request.getParameter("tipo"));
-		producto.setMarca(request.getParameter("marca"));
-		producto.setPrecio(Double.parseDouble(request.getParameter("precio")));
-		producto.setStock(Integer.parseInt(request.getParameter("stock")));
-				
-		ModeloProducto mp = new ModeloProducto();
-		mp.insert(producto);
-				
-		response.sendRedirect("Index_producto");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

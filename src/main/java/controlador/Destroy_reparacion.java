@@ -7,44 +7,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.*;
+import modelo.ModeloPedido;
+import modelo.ModeloReparacion;
 
 /**
- * Servlet implementation class Store_producto
+ * Servlet implementation class Destroy_reparacion
  */
-@WebServlet("/Store_producto")
-public class Store_producto extends HttpServlet {
+@WebServlet("/Destroy_reparacion")
+public class Destroy_reparacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Store_producto() {
+    public Destroy_reparacion() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//recibir la id
+		int id = Integer.parseInt(request.getParameter("id")); 
+		//eliminar la tarea
+		ModeloReparacion mr = new ModeloReparacion();
+		mr.delete(id);
+						
+		//abrir lo que quiera, en mi caso inicio
+		//como ya tengo un controlador que abra el inicio redirijo a ese controlador
+		response.sendRedirect("Index_reparacion");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Producto producto = new Producto();
-		producto.setNombre(request.getParameter("nombre"));
-		producto.setTipo(request.getParameter("tipo"));
-		producto.setMarca(request.getParameter("marca"));
-		producto.setPrecio(Double.parseDouble(request.getParameter("precio")));
-		producto.setStock(Integer.parseInt(request.getParameter("stock")));
-				
-		ModeloProducto mp = new ModeloProducto();
-		mp.insert(producto);
-				
-		response.sendRedirect("Index_producto");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
