@@ -10,23 +10,25 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.*;
 
 /**
- * Servlet implementation class Store_producto
+ * Servlet implementation class Update_reparacion
  */
-@WebServlet("/Store_producto")
-public class Store_producto extends HttpServlet {
+@WebServlet("/Update_reparacion")
+public class Update_reparacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Store_producto() {
+    public Update_reparacion() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -34,17 +36,18 @@ public class Store_producto extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Producto producto = new Producto();
-		producto.setNombre(request.getParameter("nombre"));
-		producto.setTipo(request.getParameter("tipo"));
-		producto.setMarca(request.getParameter("marca"));
-		producto.setPrecio(Double.parseDouble(request.getParameter("precio")));
-		producto.setStock(Integer.parseInt(request.getParameter("stock")));
-				
-		ModeloProducto mp = new ModeloProducto();
-		mp.insert(producto);
-				
-		response.sendRedirect("Index_producto");
+		Reparacion reparacion = new Reparacion();
+		reparacion.setId(Integer.parseInt(request.getParameter("id")));
+		reparacion.setTipo(request.getParameter("tipo"));
+		reparacion.setDescripcion(request.getParameter("descripcion"));
+		reparacion.setHoras(Integer.parseInt(request.getParameter("horas")));
+		reparacion.setPrecio(Double.parseDouble(request.getParameter("precio")));
+
+		ModeloReparacion mr = new ModeloReparacion();
+		mr.update(reparacion);
+
+		response.sendRedirect("Index_reparacion");
+
 	}
 
 }

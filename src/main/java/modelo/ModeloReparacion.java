@@ -118,7 +118,7 @@ public class ModeloReparacion extends Conector{
             cs.setString(3, reparacion.getDescripcion());
             cs.setInt(4, reparacion.getHoras());
             cs.setDouble(5, reparacion.getPrecio());
-            cs.setDouble(6, (reparacion.getPrecio()*reparacion.getHoras()*1.21));
+            cs.setDouble(6, (reparacion.getPrecio()*reparacion.getHoras()*1.21)); //total de la factura
             cs.setDate(7, new java.sql.Date(new java.util.Date().getTime()));
             cs.setString(8, dni);
 
@@ -127,4 +127,23 @@ public class ModeloReparacion extends Conector{
             e.printStackTrace();
         }
     }
+
+	public void update(Reparacion reparacion) {
+
+		try {
+			PreparedStatement pst = this.cn.prepareStatement("UPDATE reparacion SET tipo = ?, descripcion = ?, horas = ?, precio = ? WHERE dni_cliente = ? AND id = ?");
+			pst.setString(1, reparacion.getTipo());
+			pst.setString(2, reparacion.getDescripcion());
+			pst.setInt(3, reparacion.getHoras());
+			pst.setDouble(4, reparacion.getPrecio());
+			pst.setString(5, reparacion.getDni());
+			pst.setInt(6, reparacion.getId());
+			
+			pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

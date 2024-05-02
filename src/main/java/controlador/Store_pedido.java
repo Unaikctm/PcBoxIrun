@@ -9,11 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Cliente;
-import modelo.ModeloCliente;
-import modelo.ModeloPedido;
-import modelo.Pedido;
-
+import modelo.*;
 /**
  * Servlet implementation class Store_pedido
  */

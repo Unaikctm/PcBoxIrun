@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,17 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.*;
 
 /**
- * Servlet implementation class Store_producto
+ * Servlet implementation class Store_reparacion
  */
-@WebServlet("/Store_producto")
-public class Store_producto extends HttpServlet {
+@WebServlet("/Store_reparacion")
+public class Store_reparacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Store_producto() {
+    public Store_reparacion() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,17 +36,18 @@ public class Store_producto extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Producto producto = new Producto();
-		producto.setNombre(request.getParameter("nombre"));
-		producto.setTipo(request.getParameter("tipo"));
-		producto.setMarca(request.getParameter("marca"));
-		producto.setPrecio(Double.parseDouble(request.getParameter("precio")));
-		producto.setStock(Integer.parseInt(request.getParameter("stock")));
+		Reparacion reparacion = new Reparacion();
+		reparacion.setTipo(request.getParameter("tipo"));
+		reparacion.setDescripcion(request.getParameter("descripcion"));
+		reparacion.setHoras(Integer.parseInt(request.getParameter("horas")));
+		reparacion.setPrecio(Double.parseDouble(request.getParameter("precio")));
+	
+		ModeloCliente mc = new ModeloCliente();
+		String dni = mc.getCliente(request.getParameter("dni")).getDni();
+		ModeloReparacion mr = new ModeloReparacion();
+		mr.insert(reparacion,dni);
 				
-		ModeloProducto mp = new ModeloProducto();
-		mp.insert(producto);
-				
-		response.sendRedirect("Index_producto");
+		response.sendRedirect("Index_reparacion");
 	}
 
 }

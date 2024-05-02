@@ -23,8 +23,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link py-3 px-2" title="Reparación" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Reparación">
-                        <i class="bi-tools fs-1 text-success" style="opacity: 0.3"></i> <!-- Reparación -->
+                    <a href="Index_reparacion" class="nav-link py-3 px-2" title="Reparación" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Reparación">
+                        <i class="bi-tools fs-1 text-success"></i> <!-- Reparación -->
                     </a>
                 </li>
             </ul>

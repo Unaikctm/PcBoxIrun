@@ -56,6 +56,11 @@ public class Reparacion {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
+	
+	public String getDni() {
+		ModeloReparacion mr = new ModeloReparacion();
+		return mr.getDni(this.id);
+	}
 
 	@Override
 	public String toString() {
