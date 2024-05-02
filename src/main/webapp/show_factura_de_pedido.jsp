@@ -15,7 +15,7 @@
     <%@ include file="partes/navbar.jsp" %>
     
     <div class="container">
-        <h1>Factura del Pedido #${pedido.id}</h1>
+        <h1 style="margin-top: 3%; margin-bottom: 3%;">Factura del Pedido #${pedido.id}</h1>
         <div class="card mb-3">
             <div class="card-header">
                 <h2>Información del Pedido:</h2>
@@ -25,16 +25,40 @@
                 <p class="card-text">Total del Pedido: ${pedido.total}</p>
             </div>
         </div>
+        	
         <div class="card mb-3">
             <div class="card-header">
                 <h2>Información de la Factura:</h2>
             </div>
             <div class="card-body">
-                <p class="card-text">ID de la Factura: ${factura.id}</p>
-                <p class="card-text">Tipo de Factura: ${factura.tipo}</p>
-                <p class="card-text">Fecha de Emisión: ${factura.fecha}</p>
-                <p class="card-text">Total de la Factura + IVA includo: ${factura.total}</p>
-                <p class="card-text">Pagado: ${factura.pagado}</p>
+                <table class="table">
+	           	<thead>
+	            	<tr>
+	                	<th>ID</th>
+	                    <th>Tipo</th>
+	                    <th>Marca</th>
+	                    <th>Nombre</th>
+	                    <th>Precio</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	               	<c:forEach var="producto" items="${pedido.productos}">
+	                    	<tr>
+	                        	<td>${producto.id}</td>
+	                        	<td>${producto.tipo}</td>
+	                        	<td>${producto.marca}</td>
+	                        	<td>${producto.nombre}</td>
+	                        	<td>${producto.precio}</td>
+	                    	</tr>
+	                </c:forEach>
+	            </tbody>
+        		</table>
+                <div class="row justify-content-end" style="text-align: right; font-weight: bold;"> <!-- Utilizamos la clase row de Bootstrap con justify-content-end -->
+                <div class="col-md-6"> <!-- Utilizamos la clase col-md-6 para limitar el ancho y text-right para alinear el texto a la derecha -->
+                    <p class="card-text">Total de la Factura + IVA incluido: ${factura.total}</p>
+                    <p class="card-text">Pagado: ${factura.pagado}</p>
+                </div>
+            </div>
             </div>
         </div>
     </div>

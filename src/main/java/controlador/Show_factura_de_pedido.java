@@ -38,9 +38,13 @@ public class Show_factura_de_pedido extends HttpServlet {
 		ModeloPedido mp = new ModeloPedido();
 		Pedido pedido = mp.getPedido(id);
 		
+		String euroSymbol = "u20AC";
+		
 		request.setAttribute("factura", factura);
 		
 		request.setAttribute("pedido", pedido);
+		
+		request.setAttribute("euro", euroSymbol);
 		
 		request.getRequestDispatcher("show_factura_de_pedido.jsp").forward(request, response);
 		

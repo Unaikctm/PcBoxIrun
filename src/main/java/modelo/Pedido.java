@@ -17,7 +17,7 @@ public class Pedido {
 		for (Producto producto : productos) {
 			total=total+producto.getPrecio();
 		}
-		this.total = total;
+        this.total = total;
 		this.fecha=fecha;
 		this.productos = productos;
 	}
@@ -35,7 +35,7 @@ public class Pedido {
 		for (Producto producto : productos) {
 			total=total+producto.getPrecio();
 		}
-		return total;
+        return total;
 	}
 
 	public void setTotal(Double total) {

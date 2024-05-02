@@ -17,10 +17,10 @@ public class Factura {
 	public Factura(int id, Date fecha, Boolean pagado, Pedido pedido) {
 		this.id = id;
 		if (pedido==null) {
-			this.total = reparacion.getPrecio()*(1+IVA);
+			total = reparacion.getPrecio()*(1+IVA);
 		}
 		else if (reparacion==null) {
-			this.total = pedido.getTotal()*(1+IVA);
+			total = pedido.getTotal()*(1+IVA);
 		}
 		this.fecha = fecha;
 		this.pagado = pagado;
@@ -41,8 +41,6 @@ public class Factura {
 			total = pedido.getTotal()*(1+IVA);
 		}
 		//else if (pedido==null) {
-				//	total = reparacion.getPrecio()*(1+IVA);
-				//}
 		return total;
 	}
 
@@ -89,8 +87,20 @@ public class Factura {
 		}
 		return tipo;
 	}
+	
+	public Reparacion getReparacion() {
+		return reparacion;
+	}
+
+	public void setReparacion(Reparacion reparacion) {
+		this.reparacion = reparacion;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 	@Override
 	public String toString() {
-		return id + ", total=" + total + ", fecha=" + fecha + ", pagado=" + pagado + "]";
+		return id + tipo +", total=" + total + ", fecha=" + fecha + ", pagado=" + pagado + "]";
 	}
 }
