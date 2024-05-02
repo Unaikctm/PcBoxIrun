@@ -1,6 +1,6 @@
 package modelo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 public class Pedido {
@@ -8,11 +8,10 @@ public class Pedido {
 	private Double total;
 	private Date fecha;
 	private ArrayList<Producto> productos;
-	private Factura factura;
 
 	public Pedido() {}
 	
-	public Pedido(int id, Date fecha, ArrayList<Producto> productos,Factura factura) {
+	public Pedido(int id, Date fecha, ArrayList<Producto> productos) {
 		this.id = id;
 		Double total = 0.0;
 		for (Producto producto : productos) {
@@ -21,7 +20,6 @@ public class Pedido {
 		this.total = total;
 		this.fecha=fecha;
 		this.productos = productos;
-		this.factura=factura;
 	}
 
 	public int getId() {
@@ -59,18 +57,14 @@ public class Pedido {
 	public void setProductos(ArrayList<Producto> productos) {
 		this.productos = productos;
 	}
-
-	public Factura getFactura() {
-		return factura;
+	public String getDni() {
+		ModeloPedido mp = new ModeloPedido();
+		return mp.getDni(this.id);
 	}
-
-	public void setFactura(Factura factura) {
-		this.factura = factura;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "Pedido [id=" + id + ", total=" + total + ", fecha=" + fecha + ", productos=" + productos + factura;
+		return "Pedido [id=" + id + ", total=" + total + ", fecha=" + fecha + ", productos=" + productos;
 	}
 
 }

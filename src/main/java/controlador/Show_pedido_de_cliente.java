@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ModeloPedido;
-import modelo.Pedido;
+import modelo.*;
 
 /**
  * Servlet implementation class Show_pedido_de_cliente
@@ -33,8 +32,13 @@ public class Show_pedido_de_cliente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String DNI = request.getParameter("dni");
 		
+		ModeloCliente mc = new ModeloCliente();
+		Cliente cliente = mc.getCliente(DNI);
+		
 		ModeloPedido mp = new ModeloPedido();
 		ArrayList<Pedido> pedidos = mp.getPedidosByDNI(DNI);
+		
+		request.setAttribute("cliente", cliente);
 		
 		request.setAttribute("pedidos", pedidos);
 		

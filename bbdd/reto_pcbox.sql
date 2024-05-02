@@ -69,15 +69,16 @@ ALTER TABLE factura MODIFY ID INT AUTO_INCREMENT;
 
 -- Foreign Keys
 ALTER TABLE reparacion ADD CONSTRAINT FK_Reparacion FOREIGN KEY (DNI_CLIENTE)
-    REFERENCES cliente(DNI);
+    REFERENCES cliente(DNI) ON DELETE CASCADE;
 ALTER TABLE pedido ADD CONSTRAINT FK_Pedido FOREIGN KEY (DNI_Cliente)
-    REFERENCES cliente(DNI);
+    REFERENCES cliente(DNI) ON DELETE CASCADE;
 ALTER TABLE lineapedido ADD CONSTRAINT FK_LineaPedido FOREIGN KEY (ID_Pedido)
-    REFERENCES pedido(ID);
+    REFERENCES pedido(ID) ON DELETE CASCADE;
 ALTER TABLE lineapedido ADD CONSTRAINT FK_LineaPedido1 FOREIGN KEY (ID_Producto)
-    REFERENCES producto(ID);
+    REFERENCES producto(ID) ON DELETE CASCADE;
 ALTER TABLE factura ADD CONSTRAINT FK_Factura FOREIGN KEY (ID)
-    REFERENCES pedido(ID);
+
+REFERENCES pedido(ID) ON DELETE CASCADE;
 
 -- Checks
 ALTER TABLE factura ADD CHECK (Pagado IN ('Si', 'No'));
@@ -88,6 +89,8 @@ DELIMITER //
 
 DROP PROCEDURE IF EXISTS Insertar_Pedido //
 DROP PROCEDURE IF EXISTS Insertar_Reparacion //
+DROP PROCEDURE IF EXISTS Eliminar_Pedido //
+DROP PROCEDURE IF EXISTS Eliminar_Reparacion //
 
 CREATE PROCEDURE Insertar_Pedido (
     p_ID_Pedido INT,
@@ -131,6 +134,43 @@ BEGIN
     SELECT CONCAT('Factura creada correctamente para la reparacion ', r_ID_Reparacion, ' de tipo reparacion.') AS Message;
 END//
 
+CREATE PROCEDURE Eliminar_Pedido(
+	pedido_id INT
+)
+BEGIN
+    -- Iniciar una transacción
+    START TRANSACTION;
+    
+    -- Eliminar las facturas asociadas al pedido
+    DELETE FROM factura WHERE ID IN (SELECT ID FROM pedido WHERE ID = pedido_id) AND Tipo_Factura = 'Pedido';
+    
+    -- Luego, eliminar el pedido
+    DELETE FROM pedido WHERE ID = pedido_id;
+    
+    -- Confirmar la transacción
+    COMMIT;
+    
+    SELECT 'Pedido eliminado exitosamente' AS Message;
+END//
+
+CREATE PROCEDURE Eliminar_Reparacion(
+	reparacion_id INT
+)
+BEGIN
+    -- Iniciar una transacción
+    START TRANSACTION;
+    
+    -- Eliminar las facturas asociadas al pedido
+    DELETE FROM factura WHERE ID IN (SELECT ID FROM reparacion WHERE ID = reparacion_id) AND Tipo_Factura = 'Reparacion';
+    
+    -- Luego, eliminar el pedido
+    DELETE FROM reparacion WHERE ID = reparacion_id;
+    
+    -- Confirmar la transacción
+    COMMIT;
+    
+    SELECT 'Reparacion eliminada exitosamente' AS Message;
+END//
 DELIMITER ;
 
 INSERT INTO `cliente` (`DNI`, `Nombre`, `Apellido`, `Direccion`, `CodigoPostal`, `Email`, `Telefono`) VALUES
@@ -164,7 +204,6 @@ INSERT INTO `lineapedido` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
 (4,2,2),
 (5,3,2),
 (6,6,1);
-
 
 -- Create roles
 -- CREATE ROLE appAdmin;
