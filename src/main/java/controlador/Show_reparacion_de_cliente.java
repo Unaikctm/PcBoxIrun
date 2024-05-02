@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.*;
 
 /**
- * Servlet implementation class Index_reparacion
+ * Servlet implementation class Show_reparacion_de_cliente
  */
-@WebServlet("/Index_reparacion")
-public class Index_reparacion extends HttpServlet {
+@WebServlet("/Show_reparacion_de_cliente")
+public class Show_reparacion_de_cliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index_reparacion() {
+    public Show_reparacion_de_cliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,21 +30,21 @@ public class Index_reparacion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ModeloReparacion mr = new ModeloReparacion();
+		String DNI = request.getParameter("dni");
 		
-		ArrayList<Reparacion> reparaciones = mr.getReparaciones();
+		ModeloCliente mc = new ModeloCliente();
+		Cliente cliente = mc.getCliente(DNI);
+		
+		ModeloReparacion mr = new ModeloReparacion();
+		ArrayList<Reparacion> reparaciones = mr.getReparacionesByDNI(DNI);
+		
+		System.out.println(reparaciones);
+		
+		request.setAttribute("cliente", cliente);
 		
 		request.setAttribute("reparaciones", reparaciones);
 		
-		ArrayList<Cliente> clientes = new ModeloCliente().getClientes();; 
-		ArrayList<String> listaDNI = new ArrayList<String>();
-		for (Cliente cliente : clientes) {
-			listaDNI.add(cliente.getDni());
-		}
-		
-		request.setAttribute("listaDNI", listaDNI);
-		
-		request.getRequestDispatcher("reparacion.jsp").forward(request, response);
+		request.getRequestDispatcher("show_reparacion_de_cliente.jsp").forward(request, response);
 	}
 
 	/**

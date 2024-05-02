@@ -41,12 +41,13 @@ public class Store_reparacion extends HttpServlet {
 		reparacion.setDescripcion(request.getParameter("descripcion"));
 		reparacion.setHoras(Integer.parseInt(request.getParameter("horas")));
 		reparacion.setPrecio(Double.parseDouble(request.getParameter("precio")));
-	
+
 		ModeloCliente mc = new ModeloCliente();
 		String dni = mc.getCliente(request.getParameter("dni")).getDni();
 		ModeloReparacion mr = new ModeloReparacion();
 		mr.insert(reparacion,dni);
-				
+		
+		
 		response.sendRedirect("Index_reparacion");
 	}
 

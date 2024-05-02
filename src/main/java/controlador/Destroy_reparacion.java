@@ -1,27 +1,26 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.*;
+import modelo.ModeloPedido;
+import modelo.ModeloReparacion;
 
 /**
- * Servlet implementation class Index_reparacion
+ * Servlet implementation class Destroy_reparacion
  */
-@WebServlet("/Index_reparacion")
-public class Index_reparacion extends HttpServlet {
+@WebServlet("/Destroy_reparacion")
+public class Destroy_reparacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index_reparacion() {
+    public Destroy_reparacion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,21 +29,15 @@ public class Index_reparacion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//recibir la id
+		int id = Integer.parseInt(request.getParameter("id")); 
+		//eliminar la tarea
 		ModeloReparacion mr = new ModeloReparacion();
-		
-		ArrayList<Reparacion> reparaciones = mr.getReparaciones();
-		
-		request.setAttribute("reparaciones", reparaciones);
-		
-		ArrayList<Cliente> clientes = new ModeloCliente().getClientes();; 
-		ArrayList<String> listaDNI = new ArrayList<String>();
-		for (Cliente cliente : clientes) {
-			listaDNI.add(cliente.getDni());
-		}
-		
-		request.setAttribute("listaDNI", listaDNI);
-		
-		request.getRequestDispatcher("reparacion.jsp").forward(request, response);
+		mr.delete(id);
+						
+		//abrir lo que quiera, en mi caso inicio
+		//como ya tengo un controlador que abra el inicio redirijo a ese controlador
+		response.sendRedirect("Index_reparacion");
 	}
 
 	/**

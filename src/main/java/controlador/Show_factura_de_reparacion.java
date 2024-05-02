@@ -1,8 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,18 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.*;
-
 /**
- * Servlet implementation class Index_reparacion
+ * Servlet implementation class Show_factura_de_reparacion
  */
-@WebServlet("/Index_reparacion")
-public class Index_reparacion extends HttpServlet {
+@WebServlet("/Show_factura_de_reparacion")
+public class Show_factura_de_reparacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index_reparacion() {
+    public Show_factura_de_reparacion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,21 +27,20 @@ public class Index_reparacion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		String tipo = "Reparacion";
+		
+		ModeloFactura mf = new ModeloFactura();
+		Factura factura = mf.getFactura(id, tipo);
+		
 		ModeloReparacion mr = new ModeloReparacion();
+		Reparacion reparacion = mr.getReparacion(id);
 		
-		ArrayList<Reparacion> reparaciones = mr.getReparaciones();
+		request.setAttribute("factura", factura);
 		
-		request.setAttribute("reparaciones", reparaciones);
+		request.setAttribute("reparacion", reparacion);
 		
-		ArrayList<Cliente> clientes = new ModeloCliente().getClientes();; 
-		ArrayList<String> listaDNI = new ArrayList<String>();
-		for (Cliente cliente : clientes) {
-			listaDNI.add(cliente.getDni());
-		}
-		
-		request.setAttribute("listaDNI", listaDNI);
-		
-		request.getRequestDispatcher("reparacion.jsp").forward(request, response);
+		request.getRequestDispatcher("show_factura_de_reparacion.jsp").forward(request, response);
 	}
 
 	/**

@@ -16,13 +16,13 @@
 	<%@ include file="partes/navbar.jsp" %>
 	
     <div class="container">
-	    <h1 style="margin-top: 3%; margin-bottom: 3%;">Pedidos de ${cliente.nombre} ${cliente.apellido}</h1>
-	    <c:forEach var="pedido" items="${pedidos}">
+	    <h1 style="margin-top: 3%; margin-bottom: 3%;">Reparaciones de ${cliente.nombre} ${cliente.apellido}</h1>
+	    <c:forEach var="reparacion" items="${reparaciones}">
 	        <div class="card mb-3">
 	            <div class="card-header d-flex justify-content-between">
-	                <h2>Pedido ID: ${pedido.id}</h2>
+	                <h2>Reparación ID: ${reparacion.id}</h2>
 	                <!-- Eliminar -->
-	                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmacionModal${pedido.id}">
+	                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmacionModal${reparacion.id}">
 	                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 	                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
 	                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
@@ -30,50 +30,31 @@
 	                </button>
 	            </div>
 	            <div class="card-body">
-	                <p class="card-text">Total: ${pedido.total}</p>
-	                <p class="card-text">Fecha: ${pedido.fecha}</p>
-	                <h3>Líneas de Productos:</h3>
-	                <table class="table">
-	                    <thead>
-	                        <tr>
-	                            <th>ID</th>
-	                            <th>Tipo</th>
-	                            <th>Marca</th>
-	                            <th>Nombre</th>
-	                            <th>Precio</th>
-	                        </tr>
-	                    </thead>
-	                    <tbody>
-	                        <c:forEach var="producto" items="${pedido.productos}">
-	                            <tr>
-	                                <td>${producto.id}</td>
-	                                <td>${producto.tipo}</td>
-	                                <td>${producto.marca}</td>
-	                                <td>${producto.nombre}</td>
-	                                <td>${producto.precio}</td>
-	                            </tr>
-	                        </c:forEach>
-	                    </tbody>
-	                </table>
+	                <p class="card-text">Tipo: ${reparacion.tipo}</p>
+	                <p class="card-text">Descripción: ${reparacion.descripcion}</p>
+	                <p class="card-text">Horas: ${reparacion.horas}</p>
+	                <p class="card-text">Precio: ${reparacion.precio}</p>
 	            </div>
-	            <div class="modal fade" id="confirmacionModal${pedido.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	            <div class="modal fade" id="confirmacionModal${reparacion.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	                <div class="modal-dialog">
 	                    <div class="modal-content">
 	                        <div class="modal-header">
-	                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Pedido</h5>
+	                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Reparación</h5>
 	                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	                        </div>
-	                        <div class="modal-body">¿Estás seguro de que quieres eliminar este pedido?</div>
+	                        <div class="modal-body">¿Estás seguro de que quieres eliminar esta reparación?</div>
 	                        <div class="modal-footer">
 	                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-	                            <a href="Destroy_pedido?id=${pedido.id}" class="btn btn-danger">Eliminar</a>
+	                            <a href="Destroy_reparacion?id=${reparacion.id}" class="btn btn-danger">Eliminar</a>
 	                        </div>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
 	    </c:forEach>
-	</div>
+</div>
+
+
 
 
     <!-- Bootstrap JS and other scripts here -->

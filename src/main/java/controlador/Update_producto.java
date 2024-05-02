@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ModeloCliente;
-import modelo.ModeloProducto;
-import modelo.Producto;
-
+import modelo.*;
 /**
  * Servlet implementation class Update_producto
  */
