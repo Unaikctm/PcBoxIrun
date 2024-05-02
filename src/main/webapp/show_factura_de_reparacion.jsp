@@ -12,7 +12,7 @@
 </head>
 <body>
     
-    <%@ include file="partes/navbar.jsp" %>
+    <%@ include file="/partes/navbar.jsp" %>
     
     <div class="container">
 	    <h1 style="margin-top: 3%; margin-bottom: 3%;">Detalles de la Reparación #${reparacion.id}</h1>

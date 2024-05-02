@@ -13,7 +13,7 @@
 </head>
 <body>
 	
-	<%@ include file="partes/navbar.jsp" %>
+	<%@ include file="/partes/navbar.jsp" %>
 	
     <div class="container">
 	    <h1 style="margin-top: 3%; margin-bottom: 3%;">Pedidos de ${cliente.nombre} ${cliente.apellido}</h1>

@@ -172,12 +172,12 @@
 								
 								<!-- Mostrar sus reparaciones -->
 								<a href="Show_reparacion_de_cliente?dni=${cliente.dni}" class="btn btn-success float-end me-2" title="Visualizar Pedidos de un cliente"> 
-									Visualizar Reparación de Cliente
+									Mostrar reparaciones
 								</a> 
 								
 								<!-- Mostrar sus pedidos -->
 								<a href="Show_pedido_de_cliente?dni=${cliente.dni}" class="btn btn-success float-end me-2" title="Visualizar Pedidos de un cliente"> 
-									Visualizar Pedido de Cliente	
+									Mostrar pedidos	
 								</a> 
 
 								<!-- Eliminar -->
