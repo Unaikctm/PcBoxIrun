@@ -84,6 +84,7 @@
             <th scope="col">Descripcion</th>
             <th scope="col">Horas</th>
             <th scope="col">Precio</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">

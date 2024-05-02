@@ -63,6 +63,7 @@
             <th scope="col">DNI Cliente</th>
             <th scope="col">Total</th>
             <th scope="col">Fecha</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">

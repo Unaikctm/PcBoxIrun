@@ -77,6 +77,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Tipo</th>
             <th scope="col">Marca</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
