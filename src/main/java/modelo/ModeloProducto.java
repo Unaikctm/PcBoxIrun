@@ -24,7 +24,6 @@ public class ModeloProducto extends Conector{
 
 
 				productos.add(producto);
-				System.out.println(producto);
 			}
 
 		} catch (SQLException e) {

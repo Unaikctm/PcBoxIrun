@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ModeloPedido;
-import modelo.ModeloReparacion;
+import modelo.*;
 
 /**
  * Servlet implementation class Destroy_reparacion

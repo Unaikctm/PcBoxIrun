@@ -33,7 +33,6 @@ public class ModeloLineaPedido extends Conector{
 			e.printStackTrace();
 			return null;
 		}
-		System.out.println(lineapedidos);
 		return lineapedidos;
 	}
 
@@ -77,7 +76,6 @@ public class ModeloLineaPedido extends Conector{
 				producto=modeloProducto.getProducto(rs.getInt("id_producto"));
 				productos.add(producto);
 			}
-			System.out.println(productos);
 			return productos;
 			
 		} catch (SQLException e) {

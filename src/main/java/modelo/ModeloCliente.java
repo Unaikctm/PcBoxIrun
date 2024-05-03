@@ -26,7 +26,6 @@ public class ModeloCliente extends Conector{
 				cliente.setPedidos(new ModeloPedido().getPedidosByDNI(rs.getString("dni")));
 
 				clientes.add(cliente);
-				System.out.println(cliente);
 			}
 
 		} catch (SQLException e) {

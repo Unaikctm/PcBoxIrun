@@ -12,6 +12,8 @@ public class ModeloFactura extends Conector{
 		ArrayList<Factura> facturas = new ArrayList<Factura>();
 		
 		ModeloPedido mP = new ModeloPedido();
+		
+		ModeloReparacion mr = new ModeloReparacion();
 
 		try {
 			Statement st = cn.createStatement();
@@ -24,6 +26,13 @@ public class ModeloFactura extends Conector{
 					factura.setPagado(true);
 				}else if ((rs.getString("pagado").equals("No"))) {
 					factura.setPagado(false);
+				}
+				factura.setTipo(rs.getString("tipo_factura"));
+				if (factura.getTipo()=="Pedido") {
+					factura.setPedido(mP.getPedido(rs.getInt("id")));
+				}
+				else if (factura.getTipo()=="Reparacion") {
+					factura.setReparacion(mr.getReparacion(rs.getInt("id")));
 				}
 				factura.setPedido(mP.getPedido(rs.getInt("id")));
 				factura.setTotal(factura.getTotal());
@@ -39,6 +48,7 @@ public class ModeloFactura extends Conector{
 
 	public Factura getFactura(int id, String tipo) {
 		ModeloPedido mP = new ModeloPedido();
+		ModeloReparacion mr = new ModeloReparacion();
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM factura WHERE id=? AND tipo_factura=?");
 			pst.setInt(1, id);
@@ -53,7 +63,13 @@ public class ModeloFactura extends Conector{
 				}else if ((rs.getString("pagado").equals("No"))) {
 					factura.setPagado(false);
 				}
-				factura.setPedido(mP.getPedido(rs.getInt("id")));
+				factura.setTipo(tipo);
+				if (tipo=="Pedido") {
+					factura.setPedido(mP.getPedido(rs.getInt("id")));
+				}
+				else if (tipo=="Reparacion") {
+					factura.setReparacion(mr.getReparacion(rs.getInt("id")));
+				}
 				factura.setTotal(factura.getTotal());
 				return factura;
 			}
