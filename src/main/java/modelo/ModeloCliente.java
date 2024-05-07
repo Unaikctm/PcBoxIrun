@@ -107,4 +107,31 @@ public class ModeloCliente extends Conector{
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean testDNI(String dni) {
+		
+		Boolean dniExiste = false;
+		
+		try {
+			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM cliente WHERE dni=?");
+			pst.setString(1, dni);
+			ResultSet rs = pst.executeQuery();
+			
+			
+
+			if (rs.next()) {
+				Cliente cliente = new Cliente();
+				if(cliente.getDni().equals(dni)) {
+					dniExiste = true;
+					return dniExiste;
+				}else {
+					return dniExiste;
+				}
+		
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return dniExiste;
+	}
 }

@@ -1,28 +1,25 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ModeloProducto;
-import modelo.Producto;
+import modelo.*;
 
 /**
- * Servlet implementation class main_page
+ * Servlet implementation class Store_Carrito
  */
-@WebServlet("/main_page")
-public class main_page extends HttpServlet {
+@WebServlet("/Store_Carrito")
+public class Store_Carrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public main_page() {
+    public Store_Carrito() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +29,30 @@ public class main_page extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ModeloProducto mp = new ModeloProducto();
-		ArrayList<Producto> productos = mp.getProductos();
-
 		
-		request.setAttribute("productos", productos);
 		
-		request.getRequestDispatcher("main_page.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+		int id = Integer.parseInt(request.getParameter("productId"));
+
+		
+		ArticuloCarrito  ac = new ArticuloCarrito();
+		ModeloProducto mp = new ModeloProducto();
+		ModeloArticuloCarrito mac = new ModeloArticuloCarrito();
+		
+		ac.setProducto(mp.getProducto(id));
+		ac.setCantidad(cantidad);
+		ac.setPrecio(mp.getProducto(id).getPrecio());
+		
+		mac.insert(ac);
+		
+		response.sendRedirect("Main_page");
 	}
 
 }
