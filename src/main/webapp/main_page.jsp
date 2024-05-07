@@ -81,31 +81,33 @@
 					                <h5 class="modal-title" id="exampleModalLabel">Detalles del Carrito</h5>
 					                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					            </div>
-					            <div class="modal-body">
-					                <!-- Aquí se mostrarán los detalles del carrito -->
-					                <c:forEach items="${articulos}" var="articulo">
-					                    <div class="d-flex align-items-center mb-3">
-					                        <img src="img/img_producto/${articulo.producto.nombre.replaceAll(" ","_")}.png" alt="producto" style="max-width: 50px;" class="me-3">
-					                        <div>
-					                            <h6 class="mb-1">${articulo.producto.nombre}</h6>
-					                            <p>${articulo.cantidad} x <b>${articulo.precio} &euro;</b></p>
-					                        </div>
-					                    </div>
-					                </c:forEach>
-					                <!-- Precio total -->
-					                <div>
-					                    <p class="fw-bold fs-5 text-center mt-3">Precio Total: ${precioTotal} &euro;</p>
-					                </div>
-					                <div>
-					                    <label for="dni" class="form-label">DNI:</label><br>
-					                    <input type="text" class="form-control" id="dni" nombre="dni" requi></input>
-					                </div>
-					            </div>
-					            <div class="modal-footer">
-					                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-					                <!-- Botón para finalizar la compra -->
-					                <a href="Main_Page" class="btn btn-success">Finalizar Compra</a>
-					            </div>
+					            <form action="Main_page" method="POST">
+						            <div class="modal-body">
+						            	<input type="hidden" name="articulos" value="${articulos}">
+						                <!-- Aquí se mostrarán los detalles del carrito -->
+						                <c:forEach items="${articulos}" var="articulo">
+						                    <div class="d-flex align-items-center mb-3">
+						                        <img src="img/img_producto/${articulo.producto.nombre.replaceAll(" ","_")}.png" alt="producto" style="max-width: 50px;" class="me-3">
+						                        <div>
+						                            <h6 class="mb-1">${articulo.producto.nombre}</h6>
+						                            <p>${articulo.cantidad} x <b>${articulo.precio} &euro;</b></p>
+						                        </div>
+						                    </div>
+						                </c:forEach>
+						                <!-- Precio total -->
+						                <div>
+						                    <p class="fw-bold fs-5 text-center mt-3">Precio Total: ${precioTotal} &euro;</p>
+						                </div>
+						                <div>
+						                    <label for="dni" class="form-label">DNI:</label><br>
+						                    <input type="text" class="form-control" id="dni" name="dni" required></input>
+						                </div>
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+						            </div>
+						    	</form>
 					        </div>
 					    </div>
 					</div>
