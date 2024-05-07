@@ -55,7 +55,7 @@
 					                    
 					                    <div class="mb-3">
 					                        <label for="precio" class="form-label">Precio:</label>
-					                        <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}">
+					                        <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}&euro;">
 					                    </div>
 					                    
 										<div class="mb-3">
@@ -96,7 +96,7 @@
 	            <td>${reparacion.tipo}</td>
 	            <td>${reparacion.descripcion}</td>
 	            <td>${reparacion.horas}</td>
-	            <td>${reparacion.precio}</td>
+	            <td>${reparacion.precio}&euro;</td>
 	            
 	            <td>
 	            	<!--  Hemos decidido prescindir de su uso
@@ -152,7 +152,7 @@
 					                    
 					                    <div class="mb-3">
 					                        <label for="precio" class="form-label">Precio:</label>
-					                        <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}">
+					                        <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}&euro;">
 					                    </div>
 	                    			
 								    </div>
