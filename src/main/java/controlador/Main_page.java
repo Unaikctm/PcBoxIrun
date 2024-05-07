@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.*;
+import modelo.carrito.ArticuloCarrito;
+import modelo.carrito.ModeloArticuloCarrito;
+import modelo.cliente.ModeloCliente;
+import modelo.producto.ModeloProducto;
+import modelo.producto.Producto;
 
 /**
  * Servlet implementation class main_page
