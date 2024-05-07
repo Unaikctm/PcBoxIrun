@@ -37,7 +37,6 @@ public class ModeloArticuloCarrito extends Conector{
 	}
 
 	public void insert(ArticuloCarrito articuloCarrito) {
-		ModeloProducto mp = new ModeloProducto();
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("INSERT INTO carrito (ID_Producto, cantidad,precio) VALUES (?,?,?)");
 			int idProducto = articuloCarrito.getProducto().getId();
