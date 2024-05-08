@@ -1,7 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.carrito.ArticuloCarrito;
 import modelo.carrito.ModeloArticuloCarrito;
 import modelo.cliente.ModeloCliente;
+import modelo.pedido.ModeloPedido;
+import modelo.pedido.Pedido;
 import modelo.producto.ModeloProducto;
 import modelo.producto.Producto;
 
@@ -68,11 +72,8 @@ public class Main_page extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String dni = request.getParameter("dni");
-		
+		//int id = request.getParameter("");
 		System.out.println(dni);
-
-		
-		//ArrayList<ArticuloCarrito> articulos= request.getParameter("articulos");
 
 		
 		// Realizar una consulta a la base de datos para verificar el DNI
@@ -81,10 +82,21 @@ public class Main_page extends HttpServlet {
 		boolean dniValido = mc.testDNI(dni); // Este m�todo debe devolver true si el DNI es v�lido
 		    
 		if (dniValido) {
+			
+		        	//ModeloPedido mp = new ModeloPedido();
+		        	//Pedido pedido = new Pedido();
+		        	//Date fechaActual = new Date();
+		        	
+		        	//pedido.setFecha(fechaActual);
+		        	
+		        	//mp.insert(,pedido.getFecha(), dni);
+		        	
+		        
 		    // Si el DNI es v�lido, puedes permitir que se finalice la compra
 		    // Puedes redirigir al usuario a otra p�gina, o realizar alguna otra acci�n
 		    // Por ejemplo, aqu� simplemente redirigimos al usuario a una p�gina de confirmaci�n de compra
 		    response.sendRedirect("Main_page");
+		    
 		} else {
 		    // Si el DNI no es v�lido, puedes mostrar un mensaje de error o redirigir al usuario a otra p�gina
 		    // Por ejemplo, aqu� redirigimos al usuario de nuevo a la p�gina del carrito con un mensaje de error
