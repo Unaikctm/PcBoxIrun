@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.*;
 import modelo.cliente.Cliente;
 import modelo.cliente.ModeloCliente;
 import modelo.reparacion.ModeloReparacion;

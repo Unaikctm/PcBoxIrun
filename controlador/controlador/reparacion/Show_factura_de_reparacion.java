@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.*;
 import modelo.factura.Factura;
 import modelo.factura.ModeloFactura;
 import modelo.reparacion.ModeloReparacion;

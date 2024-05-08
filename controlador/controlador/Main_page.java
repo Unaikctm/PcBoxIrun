@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.*;
 import modelo.carrito.ArticuloCarrito;
 import modelo.carrito.ModeloArticuloCarrito;
 import modelo.cliente.ModeloCliente;
@@ -77,18 +76,18 @@ public class Main_page extends HttpServlet {
 
 		
 		// Realizar una consulta a la base de datos para verificar el DNI
-		// Supongamos que tienes un método en tu clase ModeloUsuario para verificar el DNI
+		// Supongamos que tienes un mï¿½todo en tu clase ModeloUsuario para verificar el DNI
 		ModeloCliente mc = new ModeloCliente();
-		boolean dniValido = mc.testDNI(dni); // Este método debe devolver true si el DNI es válido
+		boolean dniValido = mc.testDNI(dni); // Este mï¿½todo debe devolver true si el DNI es vï¿½lido
 		    
 		if (dniValido) {
-		    // Si el DNI es válido, puedes permitir que se finalice la compra
-		    // Puedes redirigir al usuario a otra página, o realizar alguna otra acción
-		    // Por ejemplo, aquí simplemente redirigimos al usuario a una página de confirmación de compra
+		    // Si el DNI es vï¿½lido, puedes permitir que se finalice la compra
+		    // Puedes redirigir al usuario a otra pï¿½gina, o realizar alguna otra acciï¿½n
+		    // Por ejemplo, aquï¿½ simplemente redirigimos al usuario a una pï¿½gina de confirmaciï¿½n de compra
 		    response.sendRedirect("Main_page");
 		} else {
-		    // Si el DNI no es válido, puedes mostrar un mensaje de error o redirigir al usuario a otra página
-		    // Por ejemplo, aquí redirigimos al usuario de nuevo a la página del carrito con un mensaje de error
+		    // Si el DNI no es vï¿½lido, puedes mostrar un mensaje de error o redirigir al usuario a otra pï¿½gina
+		    // Por ejemplo, aquï¿½ redirigimos al usuario de nuevo a la pï¿½gina del carrito con un mensaje de error
 		    response.sendRedirect("Main_page?error=dni_invalido");
 		}
 	}
