@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
+
 import modelo.conexion.Conector;
 import modelo.pedido.Pedido;
 import modelo.producto.ModeloProducto;
@@ -38,6 +40,34 @@ public class ModeloArticuloCarrito extends Conector{
 		}
 		
 		return lineaCarritos;
+		
+	}
+	
+public ArticuloCarrito getArticulo(int ID_Producto){
+		
+		ModeloProducto mp = new ModeloProducto();
+		
+		try {
+			PreparedStatement pst = cn.prepareStatement("SELECT * FROM carrito WHERE ID_Producto=?");
+			pst.setInt(1, ID_Producto);
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				ArticuloCarrito lc = new ArticuloCarrito();
+				
+				lc.setProducto(mp.getProducto(rs.getInt("ID_Producto")));
+				lc.setCantidad(rs.getInt("cantidad"));
+				lc.setPrecio(rs.getDouble("precio"));
+				
+				return lc;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return null;
 		
 	}
 

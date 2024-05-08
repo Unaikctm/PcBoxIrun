@@ -23,7 +23,7 @@
         <thead>
           <tr>
             <th scope="col">
-            	<button type="button" class="btn btn-success" title="Añadir Pedido" data-bs-toggle="modal" data-bs-target="#insertModal">
+            	<button type="button" class="btn btn-success" title="AÃ±adir Pedido" data-bs-toggle="modal" data-bs-target="#insertModal">
 	  				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
 					  	<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/>
 					</svg>
@@ -33,7 +33,7 @@
     					<div class="modal-dialog modal-lg">
         					<div class="modal-content">
             					<div class="modal-header bg-success text-white">
-                					<h5 class="modal-title" id="exampleModalLabel">No está implementado</h5>
+                					<h5 class="modal-title" id="exampleModalLabel">No estÃ¡ implementado</h5>
                 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             					</div>
             					<!--  
@@ -106,7 +106,7 @@
     					<div class="modal-dialog">
         					<div class="modal-content">
             					<div class="modal-header bg-success text-white">
-                					<h5 class="modal-title" id="exampleModalLabel">No está implementado</h5>
+                					<h5 class="modal-title" id="exampleModalLabel">No estÃ¡ implementado</h5>
                 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             					</div>
             					<!--  
@@ -151,7 +151,7 @@
 									<h5 class="modal-title" id="exampleModalLabel">Eliminar Pedido</h5>
 									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
-								<div class="modal-body">¿Estás seguro de que quieres eliminar este pedido?</div>
+								<div class="modal-body">Â¿EstÃ¡s seguro de que quieres eliminar este pedido?</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 									<a href="Destroy_pedido?id=${pedido.id}" class="btn btn-danger">Eliminar</a>

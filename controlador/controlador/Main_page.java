@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -72,7 +73,7 @@ public class Main_page extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String dni = request.getParameter("dni");
-		
+		//int id = request.getParameter("");
 		System.out.println(dni);
 
 		//ArrayList<ArticuloCarrito> articulos= request.getParameter("articulos");
@@ -84,6 +85,16 @@ public class Main_page extends HttpServlet {
 		boolean dniValido = mc.testDNI(dni); // Este m�todo debe devolver true si el DNI es v�lido
 		    
 		if (dniValido) {
+			
+		        	//ModeloPedido mp = new ModeloPedido();
+		        	//Pedido pedido = new Pedido();
+		        	//Date fechaActual = new Date();
+		        	
+		        	//pedido.setFecha(fechaActual);
+		        	
+		        	//mp.insert(,pedido.getFecha(), dni);
+		        	
+		        
 		    // Si el DNI es v�lido, puedes permitir que se finalice la compra
 			
 			//Creo el pedido en Java
@@ -102,6 +113,7 @@ public class Main_page extends HttpServlet {
 				new ModeloArticuloCarrito().insertLineaPedido(articulo, pedido.getId());
 			}
 		    response.sendRedirect("Main_page");
+		    
 		} else {
 		    // Si el DNI no es v�lido, puedes mostrar un mensaje de error o redirigir al usuario a otra p�gina
 			
