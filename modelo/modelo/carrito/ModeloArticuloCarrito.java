@@ -1,5 +1,6 @@
 package modelo.carrito;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
 
 import modelo.conexion.Conector;
+import modelo.pedido.Pedido;
 import modelo.producto.ModeloProducto;
 
 public class ModeloArticuloCarrito extends Conector{
@@ -110,5 +112,20 @@ public ArticuloCarrito getArticulo(int ID_Producto){
 		}
 	} 
 	
+	public void insertLineaPedido(ArticuloCarrito aCarrito, int id_pedido) {
+		try {
+			CallableStatement cs = this.cn.prepareCall("{call Insertar_Carrito_LineaPedido(?, ?, ?)}");
+			
+			// Establecer los parámetros del procedimiento almacenado
+			cs.setInt(1, id_pedido);
+			cs.setInt(2, aCarrito.getProducto().getId());
+			cs.setInt(3, aCarrito.getCantidad());
+
+			// Ejecutar el procedimiento almacenado
+			cs.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
 	

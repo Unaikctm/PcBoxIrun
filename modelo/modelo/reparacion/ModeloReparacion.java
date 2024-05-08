@@ -3,6 +3,7 @@ package modelo.reparacion;
 import java.sql.*;
 import java.util.ArrayList;
 
+import modelo.cliente.Cliente;
 import modelo.conexion.Conector;
 
 public class ModeloReparacion extends Conector{
@@ -21,6 +22,9 @@ public class ModeloReparacion extends Conector{
                 reparacion.setDescripcion(rs.getString("descripcion"));;
                 reparacion.setHoras(rs.getInt("id"));
                 reparacion.setPrecio(rs.getDouble("precio"));
+                Cliente cliente = new Cliente();
+    			cliente.setDni(rs.getString("DNI_cliente"));
+    			reparacion.setCliente(cliente);
                 reparaciones.add(reparacion);
             }
 
@@ -45,7 +49,9 @@ public class ModeloReparacion extends Conector{
                 reparacion.setDescripcion(rs.getString("descripcion"));;
                 reparacion.setHoras(rs.getInt("id"));
                 reparacion.setPrecio(rs.getDouble("precio"));
-
+                Cliente cliente = new Cliente();
+    			cliente.setDni(rs.getString("DNI_cliente"));
+    			reparacion.setCliente(cliente);
                 reparaciones.add(reparacion);
             }
 
@@ -70,30 +76,14 @@ public class ModeloReparacion extends Conector{
             reparacion.setDescripcion(rs.getString("descripcion"));;
             reparacion.setHoras(rs.getInt("id"));
             reparacion.setPrecio(rs.getDouble("precio"));
-
+            Cliente cliente = new Cliente();
+			cliente.setDni(rs.getString("DNI_cliente"));
+			reparacion.setCliente(cliente);
             return reparacion;
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-    
-    public String getDni(int id) {
-        try {
-            PreparedStatement pst = this.cn.prepareStatement("SELECT dni_cliente FROM reparacion WHERE id=?");
-            pst.setInt(1, id);
-            ResultSet rs = pst.executeQuery();
-
-            String dni;
-            rs.next();
-            dni = rs.getString("dni_cliente");
-            
-            return dni;
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
         return null;
     }
 
@@ -138,7 +128,7 @@ public class ModeloReparacion extends Conector{
 			pst.setString(2, reparacion.getDescripcion());
 			pst.setInt(3, reparacion.getHoras());
 			pst.setDouble(4, reparacion.getPrecio());
-			pst.setString(5, reparacion.getDni());
+			pst.setString(5, reparacion.getCliente().getDni());
 			pst.setInt(6, reparacion.getId());
 			
 			pst.executeUpdate();

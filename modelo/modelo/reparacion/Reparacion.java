@@ -1,12 +1,15 @@
 package modelo.reparacion;
 
+import modelo.cliente.Cliente;
+
 public class Reparacion {
 	private int id;
 	private String tipo;
 	private String descripcion;
 	private int horas; 
 	private Double precio;
-	
+	private Cliente cliente;
+
 	public Reparacion() {}
 	
 	public Reparacion(int id, String tipo, String descripcion, int horas, Double precio) {
@@ -56,10 +59,13 @@ public class Reparacion {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	
-	public String getDni() {
-		ModeloReparacion mr = new ModeloReparacion();
-		return mr.getDni(this.id);
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override

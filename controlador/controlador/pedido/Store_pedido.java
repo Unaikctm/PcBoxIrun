@@ -40,6 +40,7 @@ public class Store_pedido extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		/*
 		Pedido pedido = new Pedido();
 		pedido.setTotal(Double.parseDouble(request.getParameter("total")));
 		pedido.setFecha(Date.valueOf(request.getParameter("fecha")));
@@ -47,7 +48,7 @@ public class Store_pedido extends HttpServlet {
 		ModeloCliente mc = new ModeloCliente();
 		String dni = mc.getCliente(request.getParameter("dni")).getDni();
 		ModeloPedido mp = new ModeloPedido();
-		mp.insert(pedido,dni);
+		mp.insert(pedido,dni);*/
 				
 		response.sendRedirect("Index_pedido");
 	}

@@ -41,6 +41,10 @@ public class Show_pedido_de_cliente extends HttpServlet {
 		ModeloPedido mp = new ModeloPedido();
 		ArrayList<Pedido> pedidos = mp.getPedidosByDNI(DNI);
 		
+		for (Pedido pedido : pedidos) {
+			pedido.setCliente(cliente);
+		}
+		
 		request.setAttribute("cliente", cliente);
 		
 		request.setAttribute("pedidos", pedidos);

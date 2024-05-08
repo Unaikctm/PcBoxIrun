@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import modelo.conexion.Conector;
 import modelo.pedido.ModeloPedido;
+import modelo.pedido.Pedido;
 import modelo.producto.ModeloProducto;
 import modelo.producto.Producto;
 
@@ -41,18 +42,49 @@ public class ModeloLineaPedido extends Conector{
 		return lineapedidos;
 	}
 
-	public LineaPedido getLineaPedidoByIdPedido(int id_pedido) {
+	public ArrayList<LineaPedido> getLineaPedidosByIdPedido(int id_pedido) {
 		ModeloPedido modeloPedido = new ModeloPedido();
 		ModeloProducto modeloProducto = new ModeloProducto();
-		
+		ArrayList<LineaPedido> listaLineaPedidos = new ArrayList<LineaPedido>();
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM lineapedido WHERE id_pedido=?");
 			pst.setInt(1, id_pedido);
 			ResultSet rs = pst.executeQuery();
 
+			while (rs.next()) {
+				LineaPedido lineapedido = new LineaPedido();
+//				lineapedido.setPedido(modeloPedido.getPedido(rs.getInt("id_pedido")));
+				Pedido pedido = new Pedido();
+				pedido.setId(id_pedido);
+				lineapedido.setPedido(pedido);
+				lineapedido.setProducto(modeloProducto.getProducto(rs.getInt("id_producto")));
+				lineapedido.setCantidad(rs.getInt("cantidad"));
+				listaLineaPedidos.add(lineapedido);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return listaLineaPedidos;
+	}
+		
+	public LineaPedido getLineaPedidoByBothIds(int id_pedido, int id_producto) {
+		ModeloPedido modeloPedido = new ModeloPedido();
+		ModeloProducto modeloProducto = new ModeloProducto();
+		
+		try {
+			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM lineapedido WHERE id_pedido=? AND id_producto=?");
+			pst.setInt(1, id_pedido);
+			pst.setInt(2, id_producto);
+			ResultSet rs = pst.executeQuery();
+
 			if (rs.next()) {
 				LineaPedido lineapedido = new LineaPedido();
-				lineapedido.setPedido(modeloPedido.getPedido(rs.getInt("id_pedido")));
+				//lineapedido.setPedido(modeloPedido.getPedido(rs.getInt("id_pedido")));
+				Pedido pedido = new Pedido();
+				pedido.setId(id_pedido);
+				lineapedido.setPedido(pedido);
 				lineapedido.setProducto(modeloProducto.getProducto(rs.getInt("id_producto")));
 				lineapedido.setCantidad(rs.getInt("cantidad"));
 
@@ -62,9 +94,7 @@ public class ModeloLineaPedido extends Conector{
 			e.printStackTrace();
 		}
 		return null;
-	}
-		
-		
+	}	
 		
 	public ArrayList<Producto> getProductosByIdPedido(int id_pedido) {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
