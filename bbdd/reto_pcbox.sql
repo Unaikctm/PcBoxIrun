@@ -4,6 +4,8 @@ DROP TABLE IF EXISTS producto;
 DROP TABLE IF EXISTS pedido;
 DROP TABLE IF EXISTS reparacion;
 DROP TABLE IF EXISTS cliente;
+DROP TABLE IF EXISTS historico;
+DROP TABLE IF EXISTS carrito;
 
 CREATE TABLE cliente (
     DNI VARCHAR(9) NOT NULL,
@@ -20,7 +22,7 @@ CREATE TABLE reparacion (
     Tipo VARCHAR(20) NOT NULL,
     Descripcion VARCHAR(90) NOT NULL,
     Horas INT NOT NULL,
-    Precio DECIMAL(5,2) NOT NULL,
+    Precio DECIMAL(6,2) NOT NULL,
     DNI_CLIENTE VARCHAR(9) NOT NULL
 );
 
@@ -48,9 +50,22 @@ CREATE TABLE lineapedido (
 CREATE TABLE factura (
     ID INT NOT NULL,
     Fecha DATE NOT NULL,
-    Total DECIMAL(5,2) NOT NULL,
+    Total DECIMAL(6,2) NOT NULL,
     Pagado CHAR(2) NOT NULL,
     Tipo_Factura VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE historico (
+    ID INT NOT NULL,
+    Mes DATE NOT NULL,
+    Producto_Mas_Vendido INT NOT NULL,
+    Cantidad_Vendida INT NOT NULL
+);
+
+CREATE TABLE carrito (
+    ID_Producto INT NOT NULL,
+    Cantidad INT NOT NULL,
+    Precio DECIMAL(6,2) NOT NULL
 );
 
 -- Primary Keys
@@ -60,12 +75,14 @@ ALTER TABLE pedido ADD PRIMARY KEY (ID);
 ALTER TABLE producto ADD PRIMARY KEY (ID);
 ALTER TABLE lineapedido ADD PRIMARY KEY (ID_Pedido, ID_Producto);
 ALTER TABLE factura ADD PRIMARY KEY (ID, Tipo_Factura);
+ALTER TABLE historico ADD PRIMARY KEY (ID);
 
 -- Auto-increments
 ALTER TABLE producto MODIFY ID INT AUTO_INCREMENT;
 ALTER TABLE pedido MODIFY ID INT AUTO_INCREMENT;
 ALTER TABLE reparacion MODIFY ID INT AUTO_INCREMENT;
 ALTER TABLE factura MODIFY ID INT AUTO_INCREMENT;
+ALTER TABLE historico MODIFY ID INT AUTO_INCREMENT;
 
 -- Foreign Keys
 ALTER TABLE reparacion ADD CONSTRAINT FK_Reparacion FOREIGN KEY (DNI_CLIENTE)
@@ -77,8 +94,7 @@ ALTER TABLE lineapedido ADD CONSTRAINT FK_LineaPedido FOREIGN KEY (ID_Pedido)
 ALTER TABLE lineapedido ADD CONSTRAINT FK_LineaPedido1 FOREIGN KEY (ID_Producto)
     REFERENCES producto(ID) ON DELETE CASCADE;
 ALTER TABLE factura ADD CONSTRAINT FK_Factura FOREIGN KEY (ID)
-
-REFERENCES pedido(ID) ON DELETE CASCADE;
+    REFERENCES pedido(ID) ON DELETE CASCADE;
 
 -- Checks
 ALTER TABLE factura ADD CHECK (Pagado IN ('Si', 'No'));
@@ -91,24 +107,42 @@ DROP PROCEDURE IF EXISTS Insertar_Pedido //
 DROP PROCEDURE IF EXISTS Insertar_Reparacion //
 DROP PROCEDURE IF EXISTS Eliminar_Pedido //
 DROP PROCEDURE IF EXISTS Eliminar_Reparacion //
+DROP PROCEDURE IF EXISTS Producto_Mas_Vendido //
+DROP EVENT IF EXISTS Calcular_Producto_Mas_Vendido //
 
 CREATE PROCEDURE Insertar_Pedido (
     p_ID_Pedido INT,
     p_Fecha DATE,
-    f_Total DECIMAL(5,2),
+    f_Total DECIMAL(6,2),
     p_DNI_Cliente VARCHAR(9)
-)
+) 
+-- QUIERO CALCULAR EL TOTAL, ASI QUE NO SE LO PASARIA Y QUIERO HACER LINEAPEDIDO AQUI DENTRO
 BEGIN
     -- Insertar el pedido
-    INSERT INTO pedido(ID, Fecha, DNI_Cliente)
-    VALUES (p_ID_Pedido, p_Fecha, p_DNI_Cliente);
+    INSERT INTO pedido(Fecha, DNI_Cliente)
+    VALUES (p_Fecha, p_DNI_Cliente);
     
     -- Insertar la factura
     INSERT INTO factura(ID, Fecha, Total, Pagado, Tipo_Factura)
     VALUES (p_ID_Pedido, p_Fecha, f_Total, 'No', 'Pedido');
 
     COMMIT;
-    -- SELECT CONCAT('Factura creada correctamente para el pedido ', p_ID_Pedido, ' de tipo pedido.') AS Message;
+
+END//
+
+CREATE PROCEDURE Insertar_Carrito_LineaPedido (
+	ID_Pedido INT,
+    ID_Producto INT,
+    Cantidad INT
+) 
+BEGIN
+
+    -- Insertar la lineapedido
+    INSERT INTO lineapedido(ID_Pedido, ID_Producto, Cantidad)
+    VALUES (ID_Pedido, ID_Producto, Cantidad);
+    
+    COMMIT;
+
 END//
 
 CREATE PROCEDURE Insertar_Reparacion (
@@ -131,7 +165,6 @@ BEGIN
     VALUES (r_ID_Reparacion, f_Fecha, f_Total, 'No', 'Reparacion');
 
     COMMIT;
-    SELECT CONCAT('Factura creada correctamente para la reparacion ', r_ID_Reparacion, ' de tipo reparacion.') AS Message;
 END//
 
 CREATE PROCEDURE Eliminar_Pedido(
@@ -149,8 +182,6 @@ BEGIN
     
     -- Confirmar la transacción
     COMMIT;
-    
-    SELECT 'Pedido eliminado exitosamente' AS Message;
 END//
 
 CREATE PROCEDURE Eliminar_Reparacion(
@@ -168,8 +199,33 @@ BEGIN
     
     -- Confirmar la transacción
     COMMIT;
+END//
+
+
+CREATE PROCEDURE Producto_Mas_Vendido()
+BEGIN
+    DECLARE fechaInicio DATE;
+    DECLARE fechaFin DATE;
+    DECLARE mesActual DATE;
+    DECLARE productoID INT;
+    DECLARE cantidadMaxima INT;
     
-    SELECT 'Reparacion eliminada exitosamente' AS Message;
+    SET fechaInicio = LAST_DAY(DATE_SUB(NOW(), INTERVAL 2 MONTH)) + INTERVAL 1 DAY; -- Primer día del mes anterior
+    SET fechaFin = LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)); -- Último día del mes anterior
+	
+    SELECT ID_Producto, SUM(Cantidad) AS Total_Vendido
+    INTO productoID, cantidadMaxima
+    FROM lineapedido lp
+    JOIN pedido p ON lp.ID_Pedido = p.ID
+    WHERE p.Fecha BETWEEN fechaInicio AND fechaFin
+    GROUP BY ID_Producto
+    ORDER BY Total_Vendido DESC
+    LIMIT 1;
+
+    IF productoID IS NOT NULL THEN
+        INSERT INTO historico (Mes, Producto_Mas_Vendido, Cantidad_Vendida)
+        VALUES (fechaInicio, productoID, cantidadMaxima);
+    END IF;
 END//
 DELIMITER ;
 
@@ -184,17 +240,18 @@ INSERT INTO `cliente` (`DNI`, `Nombre`, `Apellido`, `Direccion`, `CodigoPostal`,
 INSERT INTO `producto`(`Nombre`, `Tipo`, `Marca`, `Precio`, `Stock`) VALUES
 ('GeForce RTX 4060 Ti OC 8GB GDD','Tarjeta gráfica','Asus',275.00,80),
 ('B760 GAMING PLUS WIFI','Placa base','MSI',154.99,150),
-('Vengance RGB 8GB','Memoria RAM','Corsair',30.99,500),
+('Vengeance RGB 8GB','Memoria RAM','Corsair',30.99,500),
 ('Ryzen 7 5800X 3.8GHz','Procesador','AMD',219.00,120),
 ('EXCERIA PLUS G3 2TB SSD M.2','Disco Duro SSD','Kioxia',105.99,340),
 ('Liquid Cooler 360 ARGB 360mm','Refrigeración Líquida','Tempest',134.99,175);
 
-CALL Insertar_Pedido (1,'2024-04-04',0.0,'54647912K');
-CALL Insertar_Pedido (2,'2024-04-14',0.0,'89211425L');
-CALL Insertar_Pedido (3,'2024-04-12',0.0,'21376754C');
+CALL Insertar_Pedido (1,'2024-01-04',0.0,'54647912K');
+CALL Insertar_Pedido (2,'2024-02-14',0.0,'89211425L');
+CALL Insertar_Pedido (3,'2024-03-12',0.0,'21376754C');
 CALL Insertar_Pedido (4,'2024-04-03',0.0,'90987654G');
-CALL Insertar_Pedido (5,'2024-04-27',0.0,'76343784D');
+CALL Insertar_Pedido (5,'2024-02-27',0.0,'76343784D');
 CALL Insertar_Pedido (6,'2024-04-18',0.0,'21376754C');
+CALL Insertar_Pedido (7,'2024-05-03',0.0,'54647912K');
 
 INSERT INTO `lineapedido` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
 (1,1,1),
@@ -203,7 +260,44 @@ INSERT INTO `lineapedido` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
 (3,1,1),
 (4,2,2),
 (5,3,2),
-(6,6,1);
+(6,6,1),
+(7,2,1);
+
+CALL Insertar_Reparacion(1, 'Reemplazo', 'Reemplazo del disco duro dañado por uno nuevo de 1TB', 2, 80.00, 90.00, '2024-04-15', '21376754C');
+CALL Insertar_Reparacion(2, 'Instalaciones', 'Instalación y configuración del paquete de software de diseño gráfico', 3, 120.00, 130.00, '2024-04-20', '44577788E');
+CALL Insertar_Reparacion(3, 'Limpieza', 'Limpieza interna y externa de la computadora portátil', 1, 50.00, 60.00, '2024-04-25', '54647912K');
+CALL Insertar_Reparacion(4, 'Reemplazo', 'Instalación de módulos de memoria RAM adicionales para mejorar el rendimiento', 2, 70.00, 80.00, '2024-04-28', '76343784D');
+CALL Insertar_Reparacion(5, 'Reemplazo', 'Reemplazo de la pantalla LCD dañada por una nueva de alta resolución', 3, 150.00, 160.00, '2024-05-02', '89211425L');
+CALL Insertar_Reparacion(6, 'Soluciones', 'Diagnóstico y solución de problemas de hardware detectados', 2, 90.00, 100.00, '2024-05-05', '90987654G');
+
+CREATE EVENT Calcular_Producto_Mas_Vendido
+ON SCHEDULE
+    EVERY 1 MONTH  -- Ejecutar cada mes
+    STARTS '2024-01-01 00:00:00'  -- Fecha de inicio del evento
+DO CALL ProductoMasVendido();
+
+SELECT *
+FROM historico;
+
+/*
+DELIMITER //
+DROP PROCEDURE IF EXISTS obtenerFechas //
+
+CREATE PROCEDURE obtenerFechas()
+BEGIN
+    DECLARE fechaInicio DATE;
+    DECLARE fechaFin DATE;
+    
+    SET fechaInicio = LAST_DAY(DATE_SUB(NOW(), INTERVAL 2 MONTH)) + INTERVAL 1 DAY;
+    SET fechaFin = LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH));
+
+    SELECT fechaInicio, fechaFin;
+END //
+
+DELIMITER ;
+
+CALL obtenerFechas();
+*/
 
 -- Create roles
 -- CREATE ROLE appAdmin;
