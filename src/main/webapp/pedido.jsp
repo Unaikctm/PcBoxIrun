@@ -73,7 +73,7 @@
 	          <tr>
 	            <th scope="row"></th>
 	            <td>${pedido.id}</td>
-	            <td>${pedido.dni}</td>
+	            <td>${pedido.cliente.dni}</td>
 	            <td>${pedido.total}</td>
 	            <td>${pedido.fecha}</td>
 	            

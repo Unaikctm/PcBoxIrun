@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import modelo.cliente.Cliente;
 import modelo.conexion.Conector;
+import modelo.lineapedido.LineaPedido;
 import modelo.lineapedido.ModeloLineaPedido;
 
 
@@ -25,7 +27,10 @@ public class ModeloPedido extends Conector{
 				Pedido pedido = new Pedido();
 				pedido.setId(rs.getInt("id"));
 				pedido.setFecha(rs.getDate("fecha"));
-				pedido.setProductos(modeloLineaPedido.getProductosByIdPedido(rs.getInt("id")));
+				pedido.setLineapedidos(modeloLineaPedido.getLineaPedidosByIdPedido(rs.getInt("id")));
+				Cliente cliente = new Cliente();
+				cliente.setDni(rs.getString("DNI_cliente"));
+				pedido.setCliente(cliente);
 				pedido.getTotal();
 
 				pedidos.add(pedido);
@@ -50,7 +55,10 @@ public class ModeloPedido extends Conector{
 				Pedido pedido = new Pedido();
 				pedido.setId(rs.getInt("id"));
 				pedido.setFecha(rs.getDate("fecha"));
-				pedido.setProductos(modeloLineaPedido.getProductosByIdPedido(rs.getInt("id")));
+				pedido.setLineapedidos(modeloLineaPedido.getLineaPedidosByIdPedido(rs.getInt("id")));
+				Cliente cliente = new Cliente();
+				cliente.setDni(rs.getString("DNI_cliente"));
+				pedido.setCliente(cliente);
 				pedido.getTotal();
 
 				pedidos.add(pedido);
@@ -65,8 +73,6 @@ public class ModeloPedido extends Conector{
 	
 	public Pedido getPedido(int id) {
 		
-		ModeloLineaPedido modeloLineaPedido = new ModeloLineaPedido();
-		
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM pedido WHERE id=?");
 			pst.setInt(1, id);
@@ -76,7 +82,10 @@ public class ModeloPedido extends Conector{
 			rs.next();
 			pedido.setId(rs.getInt("id"));
 			pedido.setFecha(rs.getDate("fecha"));
-			pedido.setProductos(modeloLineaPedido.getProductosByIdPedido(rs.getInt("id")));
+			pedido.setLineapedidos(new ModeloLineaPedido().getLineaPedidosByIdPedido(rs.getInt("id")));
+			Cliente cliente = new Cliente();
+			cliente.setDni(rs.getString("DNI_cliente"));
+			pedido.setCliente(cliente);
 			pedido.getTotal();
 
 			return pedido;
@@ -84,24 +93,6 @@ public class ModeloPedido extends Conector{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
-	}
-	
-	public String getDni(int id) {
-		try {
-			PreparedStatement pst = this.cn.prepareStatement("SELECT dni_cliente FROM pedido WHERE id=?");
-			pst.setInt(1, id);
-			ResultSet rs = pst.executeQuery();
-
-			String dni;
-			rs.next();
-			dni = rs.getString("dni_cliente");
-			
-			return dni;
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
 		return null;
 	}
 
@@ -118,15 +109,15 @@ public class ModeloPedido extends Conector{
 	}
 
 
-	public void insert(Pedido pedido, String dni) {
+	public void insert(Pedido pedido) {
 		try {
-			CallableStatement cs = this.cn.prepareCall("{call Insertar_Pedido(?, ?, ?, ?)}");
-
+			CallableStatement cs = this.cn.prepareCall("{call Insertar_Pedido(?, ?, ?, ?, ?, ?)}");
+			
 			// Establecer los parámetros del procedimiento almacenado
 			cs.setInt(1, pedido.getId());
 			cs.setDate(2, new java.sql.Date(pedido.getFecha().getTime()));
 			cs.setDouble(3, pedido.getTotal());
-			cs.setString(4, dni);
+			cs.setString(4, pedido.getCliente().getDni());
 
 			// Ejecutar el procedimiento almacenado
 			cs.execute();

@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.cliente.ModeloCliente;
 import modelo.pedido.ModeloPedido;
 import modelo.pedido.Pedido;
 
 /**
  * Servlet implementation class Show_pedido
  */
+
 @WebServlet("/Show_pedido")
 public class Show_pedido extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,6 +36,7 @@ public class Show_pedido extends HttpServlet {
 		
 		ModeloPedido mp = new ModeloPedido();
 		Pedido pedido = mp.getPedido(id);
+		pedido.setCliente(new ModeloCliente().getCliente(pedido.getCliente().getDni()));
 		
 		request.setAttribute("pedido", pedido);
 		

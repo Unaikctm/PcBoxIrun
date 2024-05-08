@@ -41,7 +41,9 @@ public class Show_reparacion_de_cliente extends HttpServlet {
 		ModeloReparacion mr = new ModeloReparacion();
 		ArrayList<Reparacion> reparaciones = mr.getReparacionesByDNI(DNI);
 		
-		request.setAttribute("cliente", cliente);
+		for (Reparacion reparacion : reparaciones) {
+			reparacion.setCliente(cliente);
+		}
 		
 		request.setAttribute("reparaciones", reparaciones);
 		

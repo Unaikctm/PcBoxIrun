@@ -38,17 +38,19 @@
 	                    <th>Tipo</th>
 	                    <th>Marca</th>
 	                    <th>Nombre</th>
+	                    <th>Cantidad</th>
 	                    <th>Precio</th>
 	                </tr>
 	            </thead>
 	            <tbody>
-	               	<c:forEach var="producto" items="${pedido.productos}">
+	               	<c:forEach var="lineapedido" items="${pedido.lineapedidos}">
 	                    	<tr>
-	                        	<td>${producto.id}</td>
-	                        	<td>${producto.tipo}</td>
-	                        	<td>${producto.marca}</td>
-	                        	<td>${producto.nombre}</td>
-	                        	<td>${producto.precio}</td>
+	                        	<td>${lineapedido.producto.id}</td>
+	                        	<td>${lineapedido.producto.tipo}</td>
+	                        	<td>${lineapedido.producto.marca}</td>
+	                        	<td>${lineapedido.producto.nombre}</td>
+	                        	<td>${lineapedido.cantidad}</td>
+	                        	<td>${lineapedido.producto.precio}</td>
 	                    	</tr>
 	                </c:forEach>
 	            </tbody>

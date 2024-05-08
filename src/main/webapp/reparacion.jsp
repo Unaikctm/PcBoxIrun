@@ -92,7 +92,7 @@
 	          <tr>
 	            <th scope="row"></th>
 	            <td>${reparacion.id}</td>
-	            <td>${reparacion.dni}</td>
+	            <td>${reparacion.cliente.dni}</td>
 	            <td>${reparacion.tipo}</td>
 	            <td>${reparacion.descripcion}</td>
 	            <td>${reparacion.horas}</td>
