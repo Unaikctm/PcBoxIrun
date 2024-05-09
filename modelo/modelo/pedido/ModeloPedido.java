@@ -72,7 +72,7 @@ public class ModeloPedido extends Conector{
 	}
 	
 	public Pedido getPedido(int id) {
-		
+		System.out.println("llegue");
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM pedido WHERE id=?");
 			pst.setInt(1, id);
@@ -88,6 +88,7 @@ public class ModeloPedido extends Conector{
 			pedido.setCliente(cliente);
 			pedido.getTotal();
 
+			System.out.println(pedido.getLineapedidos()+" hola");
 			return pedido;
 			
 		} catch (SQLException e) {
@@ -95,6 +96,24 @@ public class ModeloPedido extends Conector{
 		}
 		return null;
 	}
+	
+	public int getPedidoId() {
+		int id=0;
+		try {
+			PreparedStatement pst = this.cn.prepareStatement("SELECT id FROM pedido WHERE id=LAST_INSERT_ID()");
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+
+			rs.next();
+
+			return id;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+		
 
 	public boolean delete(int id) {
 		try {
@@ -111,13 +130,11 @@ public class ModeloPedido extends Conector{
 
 	public void insert(Pedido pedido) {
 		try {
-			CallableStatement cs = this.cn.prepareCall("{call Insertar_Pedido(?, ?, ?, ?, ?, ?)}");
+			CallableStatement cs = this.cn.prepareCall("{call Insertar_Pedido(?, ?)}");
 			
 			// Establecer los parámetros del procedimiento almacenado
-			cs.setInt(1, pedido.getId());
-			cs.setDate(2, new java.sql.Date(pedido.getFecha().getTime()));
-			cs.setDouble(3, pedido.getTotal());
-			cs.setString(4, pedido.getCliente().getDni());
+			cs.setDate(1, new java.sql.Date(pedido.getFecha().getTime()));
+			cs.setString(2, pedido.getCliente().getDni());
 
 			// Ejecutar el procedimiento almacenado
 			cs.execute();

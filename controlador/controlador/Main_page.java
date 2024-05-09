@@ -16,6 +16,7 @@ import modelo.carrito.ArticuloCarrito;
 import modelo.carrito.ModeloArticuloCarrito;
 import modelo.cliente.Cliente;
 import modelo.cliente.ModeloCliente;
+import modelo.lineapedido.LineaPedido;
 import modelo.pedido.ModeloPedido;
 import modelo.pedido.Pedido;
 import modelo.producto.ModeloProducto;
@@ -76,9 +77,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		ArrayList<ArticuloCarrito> articulos = mc.getCarrito();
 		String dni = request.getParameter("dni");
-		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 
-		System.out.println(dni);
+
+
 
 		// Realizar una consulta a la base de datos para verificar el DNI
 		// Supongamos que tienes un m�todo en tu clase ModeloUsuario para verificar el DNI
@@ -89,6 +90,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		        
 		    // Si el DNI es v�lido, puedes permitir que se finalice la compra
 			
+			//insertar pedideo
 			//Creo el pedido en Java
 			Pedido pedido = new Pedido();
 			pedido.setFecha(new Date());
@@ -101,9 +103,16 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ModeloPedido mp = new ModeloPedido();
 			mp.insert(pedido);
 			
-			for (ArticuloCarrito articulo : articulos) { //No se como se llama el carrito ni la lista{
-				new ModeloArticuloCarrito().insertLineaPedido(articulo, pedido.getId());
+			//conseguir el id del pedido insertado
+			int id_pedido = mp.getPedidoId();
+			//int idPedido = metodo para conseguirlo()
+			
+			for (ArticuloCarrito articulo : articulos) {
+				new ModeloArticuloCarrito().insertLineaPedido(articulo, id_pedido);
 			}
+			
+			//limpiar carrito
+			
 		    response.sendRedirect("Main_page");
 		    
 		} else {

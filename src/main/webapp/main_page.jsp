@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +18,7 @@
 			<!-- Logo -->
 			<a class="navbar-brand bg-light" href="Landing"> <img src="img/main_page/pcboxlogo.png" alt="Logo" height="90px"></a>
 			
-			<!-- Botón para colapsar en dispositivos pequeños -->
+			<!-- BotÃ³n para colapsar en dispositivos pequeÃ±os -->
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -68,7 +67,7 @@
     			<div class="d-flex justify-content-between mb-4">
         			<h5 class="mb-4">Carrito</h5>
         			 <!-- Finalizar Compra -->
-        			<!-- Botón para abrir el modal -->
+        			<!-- BotÃ³n para abrir el modal -->
 					<button type="button" title="Finalizar Compra" data-bs-toggle="modal" data-bs-target="#insertarPedido" class="btn btn-success">
 					    <i class="bi bi-cart-check"></i> Finalizar compra
 					</button>
@@ -84,7 +83,7 @@
 					            <form action="Main_page" method="POST">
 						            <div class="modal-body">
 						            	<input type="hidden" name="articulos" value="${articulos}">
-						                <!-- Aquí se mostrarán los detalles del carrito -->
+						                <!-- AquÃ­ se mostrarÃ¡n los detalles del carrito -->
 						                <c:forEach items="${articulos}" var="articulo">
 						                    <div class="d-flex align-items-center mb-3">
 						                        <img src="img/img_producto/${articulo.producto.nombre.replaceAll(" ","_")}.png" alt="producto" style="max-width: 50px;" class="me-3">

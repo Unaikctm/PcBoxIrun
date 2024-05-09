@@ -43,7 +43,6 @@ public class ModeloLineaPedido extends Conector{
 	}
 
 	public ArrayList<LineaPedido> getLineaPedidosByIdPedido(int id_pedido) {
-		ModeloPedido modeloPedido = new ModeloPedido();
 		ModeloProducto modeloProducto = new ModeloProducto();
 		ArrayList<LineaPedido> listaLineaPedidos = new ArrayList<LineaPedido>();
 		try {
@@ -59,6 +58,7 @@ public class ModeloLineaPedido extends Conector{
 				lineapedido.setPedido(pedido);
 				lineapedido.setProducto(modeloProducto.getProducto(rs.getInt("id_producto")));
 				lineapedido.setCantidad(rs.getInt("cantidad"));
+				
 				listaLineaPedidos.add(lineapedido);
 				
 			}

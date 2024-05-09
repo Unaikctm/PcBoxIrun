@@ -42,7 +42,7 @@ public class LineaPedido {
 	
 	@Override
 	public String toString() {
-		return "LineaPedido [producto=" + producto + ", pedido=" + pedido + ", cantidad=" + cantidad + "]";
+		return "LineaPedido [producto=" + producto.getId() + ", pedido=" + pedido.getId() + ", cantidad=" + cantidad + "]";
 	}
 	
 }

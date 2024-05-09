@@ -109,22 +109,37 @@ DROP PROCEDURE IF EXISTS Eliminar_Pedido //
 DROP PROCEDURE IF EXISTS Eliminar_Reparacion //
 DROP PROCEDURE IF EXISTS Producto_Mas_Vendido //
 DROP EVENT IF EXISTS Calcular_Producto_Mas_Vendido //
+DROP PROCEDURE IF EXISTS Insertar_Carrito_LineaPedido //
 
 CREATE PROCEDURE Insertar_Pedido (
-    p_ID_Pedido INT,
     p_Fecha DATE,
-    f_Total DECIMAL(6,2),
     p_DNI_Cliente VARCHAR(9)
 ) 
--- QUIERO CALCULAR EL TOTAL, ASI QUE NO SE LO PASARIA Y QUIERO HACER LINEAPEDIDO AQUI DENTRO
+-- QUIERO CALCULAR EL TOTAL, PERO DA CONSTRAINT FOREIGN KEY ERROR. LINEA PEDIDO SE INSERTA MAS TARDE, POR LO QUE NO SE COMO HACERLO
 BEGIN
+
+	DECLARE ID INT;
+    DECLARE TOTAL DECIMAL(6,2);
+    
     -- Insertar el pedido
     INSERT INTO pedido(Fecha, DNI_Cliente)
     VALUES (p_Fecha, p_DNI_Cliente);
     
+    SET ID = LAST_INSERT_ID();
+    
+    -- Realizar la consulta para calcular el total del pedido
+    SELECT SUM(producto.Precio * lineapedido.Cantidad)
+    INTO TOTAL
+    FROM pedido
+    JOIN lineapedido ON pedido.ID = lineapedido.ID_Pedido
+    JOIN producto ON lineapedido.ID_Producto = producto.ID
+    WHERE pedido.ID = ID;
+    
+    SET TOTAL = TOTAL * 1.21;
+    
     -- Insertar la factura
     INSERT INTO factura(ID, Fecha, Total, Pagado, Tipo_Factura)
-    VALUES (p_ID_Pedido, p_Fecha, f_Total, 'No', 'Pedido');
+    VALUES (ID, p_Fecha, TOTAL, 'No', 'Pedido');
 
     COMMIT;
 
@@ -146,7 +161,6 @@ BEGIN
 END//
 
 CREATE PROCEDURE Insertar_Reparacion (
-    r_ID_Reparacion INT,
     r_Tipo VARCHAR(20),
     r_Descripcion VARCHAR(90),
     r_Horas INT,
@@ -156,13 +170,16 @@ CREATE PROCEDURE Insertar_Reparacion (
     r_DNI_Cliente VARCHAR(9)
 )
 BEGIN
+
+	DECLARE ID INT;
     -- Insertar la reparacion
-    INSERT INTO reparacion(ID, Tipo, Descripcion, Horas, Precio, DNI_Cliente)
-    VALUES (r_ID_Reparacion, r_Tipo, r_Descripcion, r_Horas, r_Precio, r_DNI_Cliente);
-    
+    INSERT INTO reparacion(Tipo, Descripcion, Horas, Precio, DNI_Cliente)
+    VALUES (r_Tipo, r_Descripcion, r_Horas, r_Precio, r_DNI_Cliente);
+     
+	SET ID = LAST_INSERT_ID();
     -- Insertar la factura
     INSERT INTO factura(ID, Fecha, Total, Pagado, Tipo_Factura)
-    VALUES (r_ID_Reparacion, f_Fecha, f_Total, 'No', 'Reparacion');
+    VALUES (ID, f_Fecha, f_Total, 'No', 'Reparacion');
 
     COMMIT;
 END//
@@ -171,7 +188,7 @@ CREATE PROCEDURE Eliminar_Pedido(
 	pedido_id INT
 )
 BEGIN
-    -- Iniciar una transacción
+    -- Iniciar una transaccion
     START TRANSACTION;
     
     -- Eliminar las facturas asociadas al pedido
@@ -180,7 +197,7 @@ BEGIN
     -- Luego, eliminar el pedido
     DELETE FROM pedido WHERE ID = pedido_id;
     
-    -- Confirmar la transacción
+    -- Confirmar la transaccion
     COMMIT;
 END//
 
@@ -188,7 +205,7 @@ CREATE PROCEDURE Eliminar_Reparacion(
 	reparacion_id INT
 )
 BEGIN
-    -- Iniciar una transacción
+    -- Iniciar una transaccion
     START TRANSACTION;
     
     -- Eliminar las facturas asociadas al pedido
@@ -197,7 +214,7 @@ BEGIN
     -- Luego, eliminar el pedido
     DELETE FROM reparacion WHERE ID = reparacion_id;
     
-    -- Confirmar la transacción
+    -- Confirmar la transacciÃ³n
     COMMIT;
 END//
 
@@ -210,8 +227,8 @@ BEGIN
     DECLARE productoID INT;
     DECLARE cantidadMaxima INT;
     
-    SET fechaInicio = LAST_DAY(DATE_SUB(NOW(), INTERVAL 2 MONTH)) + INTERVAL 1 DAY; -- Primer día del mes anterior
-    SET fechaFin = LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)); -- Último día del mes anterior
+    SET fechaInicio = LAST_DAY(DATE_SUB(NOW(), INTERVAL 2 MONTH)) + INTERVAL 1 DAY; -- Primer dÃ­a del mes anterior
+    SET fechaFin = LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)); -- Ãšltimo dÃ­a del mes anterior
 	
     SELECT ID_Producto, SUM(Cantidad) AS Total_Vendido
     INTO productoID, cantidadMaxima
@@ -238,20 +255,20 @@ INSERT INTO `cliente` (`DNI`, `Nombre`, `Apellido`, `Direccion`, `CodigoPostal`,
 ('90987654G', 'Xabier', 'Vacas', 'Av. Gipuzkoa, 5', 20300, 'ponytail32@gmail.com', 643326766);
 
 INSERT INTO `producto`(`Nombre`, `Tipo`, `Marca`, `Precio`, `Stock`) VALUES
-('GeForce RTX 4060 Ti OC 8GB GDD','Tarjeta gráfica','Asus',275.00,80),
+('GeForce RTX 4060 Ti OC 8GB GDD','Tarjeta grafica','Asus',275.00,80),
 ('B760 GAMING PLUS WIFI','Placa base','MSI',154.99,150),
 ('Vengeance RGB 8GB','Memoria RAM','Corsair',30.99,500),
 ('Ryzen 7 5800X 3.8GHz','Procesador','AMD',219.00,120),
 ('EXCERIA PLUS G3 2TB SSD M.2','Disco Duro SSD','Kioxia',105.99,340),
-('Liquid Cooler 360 ARGB 360mm','Refrigeración Líquida','Tempest',134.99,175);
+('Liquid Cooler 360 ARGB 360mm','Refrigeracion Liquida','Tempest',134.99,175);
 
-CALL Insertar_Pedido (1,'2024-01-04',0.0,'54647912K');
-CALL Insertar_Pedido (2,'2024-02-14',0.0,'89211425L');
-CALL Insertar_Pedido (3,'2024-03-12',0.0,'21376754C');
-CALL Insertar_Pedido (4,'2024-04-03',0.0,'90987654G');
-CALL Insertar_Pedido (5,'2024-02-27',0.0,'76343784D');
-CALL Insertar_Pedido (6,'2024-04-18',0.0,'21376754C');
-CALL Insertar_Pedido (7,'2024-05-03',0.0,'54647912K');
+CALL Insertar_Pedido ('2024-01-04','54647912K');
+CALL Insertar_Pedido ('2024-02-14','89211425L');
+CALL Insertar_Pedido ('2024-03-12','21376754C');
+CALL Insertar_Pedido ('2024-04-03','90987654G');
+CALL Insertar_Pedido ('2024-02-27','76343784D');
+CALL Insertar_Pedido ('2024-04-18','21376754C');
+CALL Insertar_Pedido ('2024-05-03','54647912K');
 
 INSERT INTO `lineapedido` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
 (1,1,1),
@@ -263,12 +280,12 @@ INSERT INTO `lineapedido` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
 (6,6,1),
 (7,2,1);
 
-CALL Insertar_Reparacion(1, 'Reemplazo', 'Reemplazo del disco duro dañado por uno nuevo de 1TB', 2, 80.00, 90.00, '2024-04-15', '21376754C');
-CALL Insertar_Reparacion(2, 'Instalaciones', 'Instalación y configuración del paquete de software de diseño gráfico', 3, 120.00, 130.00, '2024-04-20', '44577788E');
-CALL Insertar_Reparacion(3, 'Limpieza', 'Limpieza interna y externa de la computadora portátil', 1, 50.00, 60.00, '2024-04-25', '54647912K');
-CALL Insertar_Reparacion(4, 'Reemplazo', 'Instalación de módulos de memoria RAM adicionales para mejorar el rendimiento', 2, 70.00, 80.00, '2024-04-28', '76343784D');
-CALL Insertar_Reparacion(5, 'Reemplazo', 'Reemplazo de la pantalla LCD dañada por una nueva de alta resolución', 3, 150.00, 160.00, '2024-05-02', '89211425L');
-CALL Insertar_Reparacion(6, 'Soluciones', 'Diagnóstico y solución de problemas de hardware detectados', 2, 90.00, 100.00, '2024-05-05', '90987654G');
+CALL Insertar_Reparacion('Reemplazo', 'Reemplazo del disco duro dañado por uno nuevo de 1TB', 2, 80.00, 90.00, '2024-04-15', '21376754C');
+CALL Insertar_Reparacion('Instalaciones', 'Instalacion y configuracion del paquete de software de diseño grafico', 3, 120.00, 130.00, '2024-04-20', '44577788E');
+CALL Insertar_Reparacion('Limpieza', 'Limpieza interna y externa de la computadora portÃ¡til', 1, 50.00, 60.00, '2024-04-25', '54647912K');
+CALL Insertar_Reparacion('Reemplazo', 'Instalacion de modulos de memoria RAM adicionales para mejorar el rendimiento', 2, 70.00, 80.00, '2024-04-28', '76343784D');
+CALL Insertar_Reparacion('Reemplazo', 'Reemplazo de la pantalla LCD dañada por una nueva de alta resolucion', 3, 150.00, 160.00, '2024-05-02', '89211425L');
+CALL Insertar_Reparacion('Soluciones', 'Diagnostico y solucion de problemas de hardware detectados', 2, 90.00, 100.00, '2024-05-05', '90987654G');
 
 CREATE EVENT Calcular_Producto_Mas_Vendido
 ON SCHEDULE
@@ -279,6 +296,7 @@ DO CALL ProductoMasVendido();
 SELECT *
 FROM historico;
 
+SELECT id FROM pedido WHERE id=LAST_INSERT_ID()
 /*
 DELIMITER //
 DROP PROCEDURE IF EXISTS obtenerFechas //
