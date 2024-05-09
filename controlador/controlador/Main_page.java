@@ -70,30 +70,22 @@ public class Main_page extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	*/
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ModeloArticuloCarrito mc = new ModeloArticuloCarrito();
+		
+		ArrayList<ArticuloCarrito> articulos = mc.getCarrito();
 		String dni = request.getParameter("dni");
-		//int id = request.getParameter("");
+		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+
 		System.out.println(dni);
 
-		//ArrayList<ArticuloCarrito> articulos= request.getParameter("articulos");
-
-		
 		// Realizar una consulta a la base de datos para verificar el DNI
 		// Supongamos que tienes un m�todo en tu clase ModeloUsuario para verificar el DNI
-		ModeloCliente mc = new ModeloCliente();
-		boolean dniValido = mc.testDNI(dni); // Este m�todo debe devolver true si el DNI es v�lido
+		ModeloCliente mcl = new ModeloCliente();
+		boolean dniValido = mcl.testDNI(dni); // Este m�todo debe devolver true si el DNI es v�lido
 		    
 		if (dniValido) {
-			
-		        	//ModeloPedido mp = new ModeloPedido();
-		        	//Pedido pedido = new Pedido();
-		        	//Date fechaActual = new Date();
-		        	
-		        	//pedido.setFecha(fechaActual);
-		        	
-		        	//mp.insert(,pedido.getFecha(), dni);
-		        	
 		        
 		    // Si el DNI es v�lido, puedes permitir que se finalice la compra
 			
@@ -109,7 +101,7 @@ public class Main_page extends HttpServlet {
 			ModeloPedido mp = new ModeloPedido();
 			mp.insert(pedido);
 			
-			for (Articulo articulo : listaArticulo) { //No se como se llama el carrito ni la lista{
+			for (ArticuloCarrito articulo : articulos) { //No se como se llama el carrito ni la lista{
 				new ModeloArticuloCarrito().insertLineaPedido(articulo, pedido.getId());
 			}
 		    response.sendRedirect("Main_page");
