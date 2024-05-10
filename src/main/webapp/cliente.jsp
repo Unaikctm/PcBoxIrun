@@ -47,6 +47,11 @@
 													</div>
 													<form action="Store_cliente" method="POST">
 														<div class="modal-body">
+															
+															<div class="mb-3">
+																<label for="dni" class="form-label">DNI:</label> 
+																<input type="text" class="form-control" id="dni" name="dni" value="${cliente.dni}" required>
+															</div>
 			
 															<div class="mb-3">
 																<label for="nombre" class="form-label">Nombre:</label> 
@@ -56,11 +61,6 @@
 															<div class="mb-3">
 																<label for="apellido" class="form-label">Apellido:</label>
 																<input type="text" class="form-control" id="apellido" name="apellido" value="${cliente.apellido}" required>
-															</div>
-			
-															<div class="mb-3">
-																<label for="dni" class="form-label">DNI:</label> 
-																<input type="text" class="form-control" id="dni" name="dni" value="${cliente.dni}">
 															</div>
 			
 															<div class="mb-3">
