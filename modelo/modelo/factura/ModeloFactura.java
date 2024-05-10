@@ -83,19 +83,19 @@ public class ModeloFactura extends Conector{
 		return null;
 	}
 	
-	public void pagar(int id, String tipo) {
-		Factura factura = getFactura(id, tipo);
+	public void pagar(int id, String tipo, boolean pagado) {
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("UPDATE factura SET pagado = ? WHERE id = ? AND tipo_factura=?");
 			
-			if (factura.getPagado()==true){
+			if (pagado==true){
 				pst.setString(1, "Si");
-			}else if (factura.getPagado()==false) {
+			}else if (pagado==false) {
 				pst.setString(1, "No");
 			}
 			pst.setInt(2, id);
 			pst.setString(3, tipo);
 
+			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
