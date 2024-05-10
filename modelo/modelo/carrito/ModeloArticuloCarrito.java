@@ -115,12 +115,12 @@ public ArticuloCarrito getArticulo(int ID_Producto){
 	public void insertLineaPedido(ArticuloCarrito aCarrito, int id_pedido) {
 		try {
 			CallableStatement cs = this.cn.prepareCall("{call Insertar_Carrito_LineaPedido(?, ?, ?)}");
-			
+
 			// Establecer los parámetros del procedimiento almacenado
 			cs.setInt(1, id_pedido);
 			cs.setInt(2, aCarrito.getProducto().getId());
 			cs.setInt(3, aCarrito.getCantidad());
-
+			
 			// Ejecutar el procedimiento almacenado
 			cs.execute();
 		} catch (SQLException e) {

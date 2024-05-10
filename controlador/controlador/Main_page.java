@@ -1,7 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,15 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.carrito.ArticuloCarrito;
-import modelo.carrito.ModeloArticuloCarrito;
-import modelo.cliente.Cliente;
-import modelo.cliente.ModeloCliente;
-import modelo.lineapedido.LineaPedido;
-import modelo.pedido.ModeloPedido;
-import modelo.pedido.Pedido;
-import modelo.producto.ModeloProducto;
-import modelo.producto.Producto;
+import modelo.carrito.*;
+import modelo.cliente.*;
+import modelo.pedido.*;
+import modelo.producto.*;
 
 /**
  * Servlet implementation class main_page
@@ -108,10 +102,13 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			//int idPedido = metodo para conseguirlo()
 			
 			for (ArticuloCarrito articulo : articulos) {
-				new ModeloArticuloCarrito().insertLineaPedido(articulo, id_pedido);
+				mc.insertLineaPedido(articulo, id_pedido);
 			}
 			
 			//limpiar carrito
+			mc.delete();
+			
+			System.out.println(mc.getCarrito());
 			
 		    response.sendRedirect("Main_page");
 		    

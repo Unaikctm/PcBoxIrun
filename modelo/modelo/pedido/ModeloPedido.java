@@ -72,7 +72,6 @@ public class ModeloPedido extends Conector{
 	}
 	
 	public Pedido getPedido(int id) {
-		System.out.println("llegue");
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM pedido WHERE id=?");
 			pst.setInt(1, id);
@@ -87,8 +86,7 @@ public class ModeloPedido extends Conector{
 			cliente.setDni(rs.getString("DNI_cliente"));
 			pedido.setCliente(cliente);
 			pedido.getTotal();
-
-			System.out.println(pedido.getLineapedidos()+" hola");
+			
 			return pedido;
 			
 		} catch (SQLException e) {
@@ -100,12 +98,12 @@ public class ModeloPedido extends Conector{
 	public int getPedidoId() {
 		int id=0;
 		try {
-			PreparedStatement pst = this.cn.prepareStatement("SELECT id FROM pedido WHERE id=LAST_INSERT_ID()");
-			pst.setInt(1, id);
-			ResultSet rs = pst.executeQuery();
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery("SELECT id FROM pedido WHERE id=LAST_INSERT_ID()");
 
-			rs.next();
-
+			if(rs.next()) {
+				id=rs.getInt("id");
+			}
 			return id;
 			
 		} catch (SQLException e) {
