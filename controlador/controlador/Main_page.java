@@ -108,8 +108,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			//limpiar carrito
 			mc.delete();
 			
-			System.out.println(mc.getCarrito());
-			
 		    response.sendRedirect("Main_page");
 		    
 		} else {
