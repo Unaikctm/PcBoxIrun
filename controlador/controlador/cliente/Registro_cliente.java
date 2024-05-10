@@ -14,14 +14,14 @@ import modelo.utils.Validador;
 /**
  * Servlet implementation class Store_cliente
  */
-@WebServlet("/Store_cliente")
-public class Store_cliente extends HttpServlet {
+@WebServlet("/Registro_cliente")
+public class Registro_cliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Store_cliente() {
+    public Registro_cliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -66,7 +66,7 @@ public class Store_cliente extends HttpServlet {
 			//como ya tengo un controlador que abra el inicio redirijo a ese controlador
 			response.sendRedirect("Main_page?msg=okayRegistro");
 		} else {
-			response.sendRedirect("Store_cliente?msg=failRegistro");
+			response.sendRedirect("Landing?msg=failRegistro");
 		}
 		
 		

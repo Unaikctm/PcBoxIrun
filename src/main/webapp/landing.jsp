@@ -26,6 +26,13 @@
 
 	<%@ include file="/partes/navbar.jsp"%>
 
+	<c:if test="${param.msg == 'failRegistro'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan carácteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+
     <div class="container-fluid-izq">
         <div class="row">
             <!-- Columna con botón -->
@@ -41,7 +48,7 @@
 								<h5 class="modal-title" id="exampleModalLabel">¡Registrate para verlas!</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
-							<form action="Store_cliente" method="POST">
+							<form action="Registro_cliente" method="POST">
 								<div class="modal-body">
 
 									<div class="mb-3">

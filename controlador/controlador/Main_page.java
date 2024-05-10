@@ -15,6 +15,7 @@ import modelo.carrito.*;
 import modelo.cliente.*;
 import modelo.pedido.*;
 import modelo.producto.*;
+import modelo.utils.Validador;
 
 /**
  * Servlet implementation class main_page
@@ -66,19 +67,16 @@ public class Main_page extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	*/
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("msg", request.getParameter("msg"));
 		
 		ModeloArticuloCarrito mc = new ModeloArticuloCarrito();
 		
 		ArrayList<ArticuloCarrito> articulos = mc.getCarrito();
 		String dni = request.getParameter("dni");
 
-
-
-
 		// Realizar una consulta a la base de datos para verificar el DNI
-		// Supongamos que tienes un m�todo en tu clase ModeloUsuario para verificar el DNI
-		ModeloCliente mcl = new ModeloCliente();
-		boolean dniValido = mcl.testDNI(dni); // Este m�todo debe devolver true si el DNI es v�lido
+
+		boolean dniValido = Validador.testDNI(dni); // Este m�todo debe devolver true si el DNI es v�lido
 		    
 		if (dniValido) {
 		        
@@ -108,15 +106,14 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			//limpiar carrito
 			mc.delete();
 			
-		    response.sendRedirect("Main_page");
+		    response.sendRedirect("Main_page?msg=okay");
 		    
 		} else {
-		    // Si el DNI no es v�lido, puedes mostrar un mensaje de error o redirigir al usuario a otra p�gina
+			//limpiar carrito
+			mc.delete();
 			
-			
-			
-		    // Por ejemplo, aqu� redirigimos al usuario de nuevo a la p�gina del carrito con un mensaje de error
-		    response.sendRedirect("Main_page?error=dni_invalido");
+		    //mensaje de error
+		    response.sendRedirect("Main_page?msg=dni_invalido");
 		}
 	}
 }
