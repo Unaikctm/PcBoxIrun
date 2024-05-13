@@ -57,6 +57,29 @@ public class ModeloProducto extends Conector{
 		}
 		return null;
 	}
+	
+	public Producto getProductoByNombre(String nombre) {
+		try {
+			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM producto WHERE nombre=?");
+			pst.setString(1, nombre);
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				Producto producto = new Producto();
+				producto.setId(rs.getInt("id"));
+				producto.setNombre(rs.getString("nombre"));
+				producto.setTipo(rs.getString("tipo"));
+				producto.setMarca(rs.getString("marca"));
+				producto.setPrecio(rs.getDouble("precio"));
+				producto.setStock(rs.getInt("stock"));
+
+				return producto;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public boolean delete(int id) {
 		try {

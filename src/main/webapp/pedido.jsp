@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,13 @@
 <body style="background: rgb(209,214,214); background: linear-gradient(0deg, rgba(209,214,214,1) 7%, rgba(255,255,255,1) 49%);">
 	
 	<%@ include file="/partes/navbar.jsp" %>
+	
+	<c:if test="${param.msg=='okayInsertar'}">
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Ok!</strong> Se ha insertado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
 	
 	<div class="container-fluid">
 		<div class="row">
@@ -37,27 +45,42 @@
 					            					<div class="modal-header bg-success text-white">
 					                					<h5 class="modal-title" id="exampleModalLabel">No est· implementado</h5>
 					                					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					            					</div>
-					            					<!--  
+					            					</div> 
 					           						<form action="Store_pedido" method="POST">
 						                				<div class="modal-body">
 						                    				<div class="mb-3">
-						                        				<label for="total" class="form-label">Total:</label>
-						                        				<input type="text" class="form-control" id="total" name="total" value="${pedido.total}" required>
+															    <label for="dni" class="form-label">Cliente:</label>
+															    <select class="form-select" id="dni" name="dni">
+															        <c:forEach var="dni" items="${listaDNI}">
+															            <option value="${dni}">${dni}</option>
+															        </c:forEach>
+															    </select>
 						                    				</div>
-						                    
-						                    				<div class="mb-3">
-										                        <label for="fecha" class="form-label">Fecha:</label>
-										                        <input type="text" class="form-control" id="fecha" name="fecha" value="${pedido.fecha}">
-										                    </div>
 						                    				
+						                    				<div class="mb-3">
+															    <label for="producto" class="form-label">Producto:</label>
+															    <select class="form-select" id="producto" name="producto">
+															        <c:forEach var="producto" items="${listaNombresProducto}">
+															            <option value="${producto}">${producto}</option>
+															        </c:forEach>
+															    </select>
+						                    				</div>
+						                    				
+						                    				<div class="mb-3">
+															    <label for="fecha" class="form-label">Fecha:</label>
+															    <%-- Obtener la fecha en formato "yyyy-MM-dd" --%>
+															    <%-- Utilizando la funciÛn substring de JSTL --%>
+															    <c:set var="formattedDate" value="${fn:substring(pedido.fecha, 0, 10)}" />
+															    <input type="date" class="form-control" id="fecha" name="fecha" value="${formattedDate}">
+															</div>
+
+
 										                </div>
 										                <div class="modal-footer">
 										                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 										                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
 										                </div>
 					            					</form>
-					            					-->
 					       	 					</div>
 					    					</div>
 										</div>
@@ -79,16 +102,7 @@
 					            <td>${pedido.total}</td>
 					            <td>${pedido.fecha}</td>
 	            
-					            <td>
-					            	<!-- Hemos decidido que no tiene sentido 
-					            	<a href="Show_pedido?id=${pedido.id}" class="btn btn-primary" title="Visualizar Pedido">
-					  					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-											<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-											<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-										</svg>
-									</a>
-									-->
-									
+					            <td>					
 									<!-- Mostrar sus pedidos -->
 									<a href="Show_factura_de_pedido?id=${pedido.id}" class="btn btn-primary" title="Visualizar factura del pedido"> 
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt-cutoff" viewBox="0 0 16 16">
@@ -108,24 +122,20 @@
 				    					<div class="modal-dialog">
 				        					<div class="modal-content">
 				            					<div class="modal-header bg-success text-white">
-				                					<h5 class="modal-title" id="exampleModalLabel">No est√° implementado</h5>
+				                					<h5 class="modal-title" id="exampleModalLabel">Actualizar fecha pedido</h5>
 				                					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				            					</div>
-				            					<!--  
 				            					<form action="Update_pedido" method="POST">
 												    <div class="modal-body">
 												    	<input type="hidden" name="id" value="${pedido.id}">
-													
+
 												        <div class="mb-3">
-												            <label for="total" class="form-label">Total:</label>
-												            <input type="text" class="form-control" id="total" name="total" value="${pedido.total}">
-												        </div>
-												
-												        <div class="mb-3">
-									                        <label for="fecha" class="form-label">Fecha:</label>
-									                        <input type="date" class="form-control" id="fecha" name="fecha" value="${pedido.fecha}">
-									                    </div>
-					                    			
+															<label for="fecha" class="form-label">Fecha:</label>
+															<%-- Obtener la fecha en formato "yyyy-MM-dd" --%>
+															<%-- Utilizando la funciÛn substring de JSTL --%>
+															<c:set var="formattedDate" value="${fn:substring(pedido.fecha, 0, 10)}" />
+															<input type="date" class="form-control" id="fecha" name="fecha" value="${formattedDate}">
+														</div>
 					                    			
 												    </div>
 												    <div class="modal-footer">

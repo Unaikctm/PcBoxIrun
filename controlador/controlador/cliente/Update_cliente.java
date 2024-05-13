@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.cliente.Cliente;
 import modelo.cliente.ModeloCliente;
+import modelo.utils.Validador;
 
 
 /**
@@ -38,31 +39,36 @@ public class Update_cliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//recibir los tatos de la tarea
-		String dni = request.getParameter("dni"); 
+		request.setAttribute("msg", request.getParameter("msg"));
+		
+		String DNI = request.getParameter("dni");
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String direccion = request.getParameter("direccion");
-		int codPostal = Integer.parseInt(request.getParameter("codigopostal"));
+		String codPostal = request.getParameter("codigopostal");
 		String email = request.getParameter("email");
-		int telefono = Integer.parseInt(request.getParameter("telefono"));
+		String telefono = request.getParameter("telefono"); 
 		
-		//almacenar la tarea en BBDD
-		Cliente cliente = new Cliente();
-		cliente.setDni(dni);
-		cliente.setNombre(nombre);
-		cliente.setApellido(apellido);
-		cliente.setDireccion(direccion);
-		cliente.setCodigopostal(codPostal);
-		cliente.setEmail(email);
-		cliente.setTelefono(telefono);
-		
-		ModeloCliente mc = new ModeloCliente();
-		mc.update(cliente);
-				
-		//abrir lo que quiera, en mi caso inicio
-		//como ya tengo un controlador que abra el inicio redirijo a ese controlador
-		response.sendRedirect("Index_cliente");
+		if (Validador.testNumerico(telefono)==true && Validador.testNumerico(codPostal)==true) {
+			//almacenar la tarea en BBDD
+			Cliente cliente = new Cliente();
+			cliente.setDni(DNI);
+			cliente.setNombre(nombre);
+			cliente.setApellido(apellido);
+			cliente.setDireccion(direccion);
+			cliente.setCodigopostal(Integer.parseInt(codPostal));
+			cliente.setEmail(email);
+			cliente.setTelefono(Integer.parseInt(telefono));
+			
+			ModeloCliente mc = new ModeloCliente();
+			mc.update(cliente);
+					
+			//abrir lo que quiera, en mi caso inicio
+			//como ya tengo un controlador que abra el inicio redirijo a ese controlador
+			response.sendRedirect("Index_cliente?msg=okayUpdate");
+		} else {
+			response.sendRedirect("Index_cliente?msg=failUpdate");
+		}
 	}
 
 }

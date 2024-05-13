@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.cliente.Cliente;
+import modelo.cliente.ModeloCliente;
 import modelo.pedido.ModeloPedido;
 import modelo.pedido.Pedido;
+import modelo.producto.ModeloProducto;
+import modelo.producto.Producto;
 
 /**
  * Servlet implementation class Index_pedido
@@ -37,6 +41,22 @@ public class Index_pedido extends HttpServlet {
 		ArrayList<Pedido> pedidos = mPedido.getPedidos();
 		
 		request.setAttribute("pedidos", pedidos);
+		
+		ArrayList<Cliente> clientes = new ModeloCliente().getClientes();; 
+		ArrayList<String> listaDNI = new ArrayList<String>();
+		for (Cliente cliente : clientes) {
+			listaDNI.add(cliente.getDni());
+		}
+		
+		request.setAttribute("listaDNI", listaDNI);
+		
+		ArrayList<Producto> productos = new ModeloProducto().getProductos();; 
+		ArrayList<String> listaNombresProducto = new ArrayList<String>();
+		for (Producto producto : productos) {
+			listaNombresProducto.add(producto.getNombre());
+		}
+		
+		request.setAttribute("listaNombresProducto", listaNombresProducto);
 		
 		request.getRequestDispatcher("pedido.jsp").forward(request, response);
 	}

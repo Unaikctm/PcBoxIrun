@@ -59,6 +59,7 @@ public class Store_reparacion extends HttpServlet {
 			String dni = mc.getCliente(request.getParameter("dni")).getDni();
 			ModeloReparacion mr = new ModeloReparacion();
 			mr.insert(reparacion,dni);
+			
 					
 			//abrir lo que quiera, en mi caso inicio
 			response.sendRedirect("Index_reparacion?msg=okayInsertar");

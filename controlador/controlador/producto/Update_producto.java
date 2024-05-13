@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.producto.ModeloProducto;
 import modelo.producto.Producto;
+import modelo.utils.Validador;
 /**
  * Servlet implementation class Update_producto
  */
@@ -36,19 +37,30 @@ public class Update_producto extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Producto producto = new Producto();
-		producto.setId(Integer.parseInt(request.getParameter("id")));
-		producto.setNombre(request.getParameter("nombre"));
-		producto.setTipo(request.getParameter("tipo"));
-		producto.setMarca(request.getParameter("marca"));
-		producto.setPrecio(Double.parseDouble(request.getParameter("precio")));
-		producto.setStock(Integer.parseInt(request.getParameter("stock")));
+		request.setAttribute("msg", request.getParameter("msg"));
 		
-		ModeloProducto mp = new ModeloProducto();
-		mp.update(producto);
+		String nombre = request.getParameter("nombre");
+		String tipo = request.getParameter("tipo");
+		String marca = request.getParameter("marca");
+		String precio = request.getParameter("precio");
+		String stock = request.getParameter("stock");
 		
-		response.sendRedirect("Index_producto");
+		if (Validador.testNumerico(precio)==true && Validador.testNumerico(stock)==true) {
+			Producto producto = new Producto();
+			producto.setId(Integer.parseInt(request.getParameter("id")));
+			producto.setNombre(nombre);
+			producto.setTipo(tipo);
+			producto.setMarca(marca);
+			producto.setPrecio(Double.parseDouble(precio));
+			producto.setStock(Integer.parseInt(stock));
+					
+			ModeloProducto mp = new ModeloProducto();
+			mp.update(producto);
+					
+			response.sendRedirect("Index_producto?msg=okayUpdate");
+		} else {
+			response.sendRedirect("Index_producto?msg=failUpdate");
+		}
 	}
 
 }

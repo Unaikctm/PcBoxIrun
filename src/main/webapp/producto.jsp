@@ -13,6 +13,34 @@
 
     <%@ include file="/partes/navbar.jsp" %>
 
+	<c:if test="${param.msg == 'failInsertar'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al insertar, revisa que el stock y el precio no contengan carácteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg == 'failUpdate'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al actualizar, revisa que el stock y el precio no contengan carácteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg=='okayInsertar'}">
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Ok!</strong> Se ha insertado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+	
+	<c:if test="${param.msg=='okayUpdate'}">
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Ok!</strong> Se ha actualizado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+
     <div class="container-fluid">
         <div class="row">
             <%@ include file="/partes/sidebar.jsp" %>
@@ -55,12 +83,12 @@
 
                                                         <div class="mb-3">
                                                             <label for="precio" class="form-label">Precio:</label>
-                                                            <input type="text" class="form-control" id="precio" name="precio" value="${producto.precio}">
+                                                            <input maxlength="7" type="text" class="form-control" id="precio" name="precio" value="${producto.precio}">
                                                         </div>
 
                                                         <div class="mb-3">
                                                             <label for="stock" class="form-label">Stock:</label>
-                                                            <input type="text" class="form-control" id="stock" name="stock" value="${producto.stock}">
+                                                            <input maxlength="5" type="text" class="form-control" id="stock" name="stock" value="${producto.stock}">
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
