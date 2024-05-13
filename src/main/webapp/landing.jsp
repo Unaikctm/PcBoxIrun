@@ -29,7 +29,14 @@
 
 	<c:if test="${param.msg == 'failRegistro'}">
 	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan carácteres.
+	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan caracteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg == 'failRegistroDNI'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al registrar, el dni introducido ya se encuentra registrado.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
@@ -38,21 +45,21 @@
         <div class="row">
             <!-- Columna con botón -->
             <div class="col-12 col-md-6">
-                <div class="text-center u_catch">¡Descubre las mejores ofertas en PCs ahora mismo!</div>
+                <div class="text-center u_catch">�Descubre las mejores ofertas en PCs ahora mismo!</div>
                 <div class="text-center">
-                    <button type="button" class="btn-lg u_btn-contrast u_btn-rounded" data-bs-toggle="modal" data-bs-target="#insertModal">¡Explora las ofertas!</button>
+                    <button type="button" class="btn-lg u_btn-contrast u_btn-rounded" data-bs-toggle="modal" data-bs-target="#insertModal">�Explora las ofertas!</button>
                     	<!-- Modal de registro -->
                		<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header bg-success text-white">
-								<h5 class="modal-title" id="exampleModalLabel">¡Registrate para verlas!</h5>
+								<h5 class="modal-title" id="exampleModalLabel">�Registrate para verlas!</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 
 							<form action="Store_cliente_landing" method="POST">
 
-								<div class="modal-body">
+								<div class="modal-body text-start">
 
 									<div class="mb-3">
 										<label for="nombre" class="form-label">Nombre:</label> 
@@ -70,12 +77,12 @@
 									</div>
 
 									<div class="mb-3">
-										<label for="direccion" class="form-label">Dirección:</label>
+										<label for="direccion" class="form-label">Direccion:</label>
 										<input type="text" class="form-control" id="direccion" name="direccion" value="${cliente.direccion}">
 									</div>
 
 									<div class="mb-3">
-										<label for="codigopostal" class="form-label">Código postal:</label>
+										<label for="codigopostal" class="form-label">Codigo postal:</label>
 										<input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
 									</div>
 
@@ -85,7 +92,7 @@
 									</div>
 
 									<div class="mb-3">
-										<label for="telefono" class="form-label">Teléfono:</label>
+										<label for="telefono" class="form-label">Telefono:</label>
 										<input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
 									</div>
 								</div>

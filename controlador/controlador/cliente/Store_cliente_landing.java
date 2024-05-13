@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.cliente.Cliente;
 import modelo.cliente.ModeloCliente;
+import modelo.utils.Validador;
 
 /**
  * Servlet implementation class Store_cliente
@@ -37,30 +38,39 @@ public class Store_cliente_landing extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("msg", request.getParameter("msg"));
+		
 		String DNI = request.getParameter("dni");
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String direccion = request.getParameter("direccion");
-		int codPostal = Integer.parseInt(request.getParameter("codigopostal"));
+		String codPostal = request.getParameter("codigopostal");
 		String email = request.getParameter("email");
-		int telefono = Integer.parseInt(request.getParameter("telefono")); 
+		String telefono = request.getParameter("telefono"); 
 		
-		//almacenar la tarea en BBDD
-		Cliente cliente = new Cliente();
-		cliente.setDni(DNI);
-		cliente.setNombre(nombre);
-		cliente.setApellido(apellido);
-		cliente.setDireccion(direccion);
-		cliente.setCodigopostal(codPostal);
-		cliente.setEmail(email);
-		cliente.setTelefono(telefono);
-		
-		ModeloCliente mc = new ModeloCliente();
-		mc.insert(cliente);
-				
-		//abrir lo que quiera, en mi caso inicio
-		//como ya tengo un controlador que abra el inicio redirijo a ese controlador
-		response.sendRedirect("Main_page");
+		if (Validador.testNumerico(telefono)==true && Validador.testNumerico(codPostal)==true && Validador.testDNI(DNI)==false) {
+			//almacenar la tarea en BBDD
+			Cliente cliente = new Cliente();
+			cliente.setDni(DNI);
+			cliente.setNombre(nombre);
+			cliente.setApellido(apellido);
+			cliente.setDireccion(direccion);
+			cliente.setCodigopostal(Integer.parseInt(codPostal));
+			cliente.setEmail(email);
+			cliente.setTelefono(Integer.parseInt(telefono));
+			
+			ModeloCliente mc = new ModeloCliente();
+			mc.insert(cliente);
+					
+			//abrir lo que quiera, en mi caso inicio
+			//como ya tengo un controlador que abra el inicio redirijo a ese controlador
+			response.sendRedirect("Main_page?msg=okayRegistro");
+		} else if ( Validador.testDNI(DNI)==true) {
+			response.sendRedirect("Landing?msg=failRegistroDNI");
+		}
+		else {
+			response.sendRedirect("Landing?msg=failRegistro");
+		}
 	}
 
 }
