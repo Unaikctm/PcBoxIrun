@@ -65,7 +65,7 @@ public class Store_cliente extends HttpServlet {
 			//abrir lo que quiera, en mi caso inicio
 			//como ya tengo un controlador que abra el inicio redirijo a ese controlador
 			response.sendRedirect("Index_cliente?msg=okayRegistro");
-		} else if ( Validador.testDNI(DNI)==true) {
+		} else if (Validador.testDNI(DNI)==true) {
 			response.sendRedirect("Index_cliente?msg=failRegistroDNI");
 		}
 		else {

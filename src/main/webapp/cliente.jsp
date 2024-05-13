@@ -23,39 +23,53 @@
 	<%@ include file="/partes/navbar.jsp"%>
 	
 	<c:if test="${param.msg == 'failRegistro'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan carácteres.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
 	
 	<c:if test="${param.msg == 'failRegistroDNI'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al registrar, ya está registrado ese DNI.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
 	
 	<c:if test="${param.msg == 'failUpdate'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al actualizar, revisa que el telefono y codigo postal no contengan carácteres.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
 	
 	<c:if test="${param.msg=='okayInsertar'}">
-	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Se ha insertado correctamente.
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
     </c:if>
 	
 	<c:if test="${param.msg=='okayUpdate'}">
-	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Se ha actualizado correctamente.
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
     </c:if>
+    
+    <c:if test="${param.msg=='okayDelete'}">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
+			<strong>Ok!</strong> Se ha borrado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+    
+    <c:if test="${param.msg == 'failDelete'}">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
+	        <strong>Error:</strong> Error, no puedes eliminar clientes con pedidos realizados.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
     
 	<div class="container-fluid">
 		<div class="row">

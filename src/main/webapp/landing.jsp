@@ -28,14 +28,14 @@
 	<%@ include file="/partes/navbar.jsp"%>
 
 	<c:if test="${param.msg == 'failRegistro'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan caracteres.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
 	
 	<c:if test="${param.msg == 'failRegistroDNI'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al registrar, el dni introducido ya se encuentra registrado.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
