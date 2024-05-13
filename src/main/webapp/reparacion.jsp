@@ -24,7 +24,7 @@
 	
 	<c:if test="${param.msg == 'failUpdate'}">
 	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-	        <strong>Error:</strong> Fallo al updatear, revisa que las horas y el precio por hora no contengan carácteres.
+	        <strong>Error:</strong> Fallo al actualizar, revisa que las horas y el precio por hora no contengan carácteres.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>

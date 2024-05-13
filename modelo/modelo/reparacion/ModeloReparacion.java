@@ -20,7 +20,7 @@ public class ModeloReparacion extends Conector{
                 reparacion.setId(rs.getInt("id"));
                 reparacion.setTipo(rs.getString("tipo"));
                 reparacion.setDescripcion(rs.getString("descripcion"));;
-                reparacion.setHoras(rs.getInt("id"));
+                reparacion.setHoras(rs.getInt("horas"));
                 reparacion.setPrecio(rs.getDouble("precio"));
                 Cliente cliente = new Cliente();
     			cliente.setDni(rs.getString("DNI_cliente"));
@@ -47,7 +47,7 @@ public class ModeloReparacion extends Conector{
                 reparacion.setId(rs.getInt("id"));
                 reparacion.setTipo(rs.getString("tipo"));
                 reparacion.setDescripcion(rs.getString("descripcion"));;
-                reparacion.setHoras(rs.getInt("id"));
+                reparacion.setHoras(rs.getInt("horas"));
                 reparacion.setPrecio(rs.getDouble("precio"));
                 Cliente cliente = new Cliente();
     			cliente.setDni(rs.getString("DNI_cliente"));
@@ -74,7 +74,7 @@ public class ModeloReparacion extends Conector{
             reparacion.setId(rs.getInt("id"));
             reparacion.setTipo(rs.getString("tipo"));
             reparacion.setDescripcion(rs.getString("descripcion"));;
-            reparacion.setHoras(rs.getInt("id"));
+            reparacion.setHoras(rs.getInt("horas"));
             reparacion.setPrecio(rs.getDouble("precio"));
             Cliente cliente = new Cliente();
 			cliente.setDni(rs.getString("DNI_cliente"));
@@ -123,13 +123,12 @@ public class ModeloReparacion extends Conector{
 	public void update(Reparacion reparacion) {
 
 		try {
-			PreparedStatement pst = this.cn.prepareStatement("UPDATE reparacion SET tipo = ?, descripcion = ?, horas = ?, precio = ? WHERE dni_cliente = ? AND id = ?");
+			PreparedStatement pst = this.cn.prepareStatement("UPDATE reparacion SET tipo = ?, descripcion = ?, horas = ?, precio = ? WHERE id = ?");
 			pst.setString(1, reparacion.getTipo());
 			pst.setString(2, reparacion.getDescripcion());
 			pst.setInt(3, reparacion.getHoras());
 			pst.setDouble(4, reparacion.getPrecio());
-			pst.setString(5, reparacion.getCliente().getDni());
-			pst.setInt(6, reparacion.getId());
+			pst.setInt(5, reparacion.getId());
 			
 			pst.executeUpdate();
 

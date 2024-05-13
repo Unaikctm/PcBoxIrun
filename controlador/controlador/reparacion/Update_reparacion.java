@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.reparacion.ModeloReparacion;
 import modelo.reparacion.Reparacion;
+import modelo.utils.Validador;
 
 /**
  * Servlet implementation class Update_reparacion
@@ -37,17 +38,30 @@ public class Update_reparacion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Reparacion reparacion = new Reparacion();
-		reparacion.setId(Integer.parseInt(request.getParameter("id")));
-		reparacion.setTipo(request.getParameter("tipo"));
-		reparacion.setDescripcion(request.getParameter("descripcion"));
-		reparacion.setHoras(Integer.parseInt(request.getParameter("horas")));
-		reparacion.setPrecio(Double.parseDouble(request.getParameter("precio")));
+		request.setAttribute("msg", request.getParameter("msg"));
+		
+		String tipo = request.getParameter("tipo");
+		String desc = request.getParameter("descripcion");
+		String horas = request.getParameter("horas");
+		String precio =  request.getParameter("precio");
+		
+		
+		if (Validador.testNumerico(horas)==true && Validador.testNumerico(precio)==true) {
+			Reparacion reparacion = new Reparacion();
+			reparacion.setId(Integer.parseInt(request.getParameter("id")));
+			reparacion.setTipo(tipo);
+			reparacion.setDescripcion(desc);
+			reparacion.setHoras(Integer.parseInt(horas));
+			reparacion.setPrecio(Double.parseDouble(precio));
 
-		ModeloReparacion mr = new ModeloReparacion();
-		mr.update(reparacion);
-
-		response.sendRedirect("Index_reparacion");
+			ModeloReparacion mr = new ModeloReparacion();
+			mr.update(reparacion);
+					
+			//abrir lo que quiera, en mi caso inicio
+			response.sendRedirect("Index_reparacion?msg=okayUpdate");
+		} else {
+			response.sendRedirect("Index_reparacion?msg=failUpdate");
+		}
 
 	}
 
