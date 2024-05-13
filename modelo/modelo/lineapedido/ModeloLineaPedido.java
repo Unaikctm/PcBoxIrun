@@ -70,7 +70,6 @@ public class ModeloLineaPedido extends Conector{
 	}
 		
 	public LineaPedido getLineaPedidoByBothIds(int id_pedido, int id_producto) {
-		ModeloPedido modeloPedido = new ModeloPedido();
 		ModeloProducto modeloProducto = new ModeloProducto();
 		
 		try {
