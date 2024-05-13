@@ -48,7 +48,9 @@
 	                        	<td>${lineapedido.producto.id}</td>
 	                        	<td>${lineapedido.producto.tipo}</td>
 	                        	<td>${lineapedido.producto.marca}</td>
-	                        	<td>${lineapedido.producto.nombre}</td>
+	                        	<td>
+	                        		<a href="Show_producto?id=${lineapedido.producto.id}">${lineapedido.producto.nombre}</a>
+	                        	</td>
 	                        	<td>${lineapedido.cantidad}</td>
 	                        	<td>${lineapedido.producto.precio}</td>
 	                    	</tr>
@@ -92,18 +94,21 @@
 				                    <div class="modal-footer">
 				                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 				                        <button type="submit" class="btn btn-success">Guardar</button>
-				                    </div>
+				                    </div>  
 								</form>
 							</div>
 						</div>
 					</div>					
                 </div>
             </div>
-            </div>
         </div>
-    </div>
+     </div>
+    <a href="javascript:history.back()" class="btn btn-success text-decoration-none">
+    		<i class="bi bi-arrow-left-circle text-white"></i>
+  	</a>
+  </div>
 
-    <!-- Bootstrap JS and other scripts here -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

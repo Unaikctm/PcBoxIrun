@@ -16,6 +16,9 @@
 	<%@ include file="/partes/navbar.jsp" %>
 	
     <div class="container">
+	    <a href="javascript:history.back()" class="btn btn-success text-decoration-none mt-4">
+	    		<i class="bi bi-arrow-left-circle text-white"></i>
+	  	</a>
 	    <h1 style="margin-top: 3%; margin-bottom: 3%;">Pedidos de ${cliente.nombre} ${cliente.apellido}</h1>
 	    <c:forEach var="pedido" items="${pedidos}">
 	        <div class="card mb-3">
@@ -50,7 +53,9 @@
 							        <td>${lineapedido.producto.id}</td>
 							        <td>${lineapedido.producto.tipo}</td>
 							        <td>${lineapedido.producto.marca}</td>
-							        <td>${lineapedido.producto.nombre}</td>
+							        <td>
+							        	<a href="Show_producto?id=${lineapedido.producto.id}">${lineapedido.producto.nombre}</a>
+							        </td>
 							        <td>${lineapedido.cantidad}</td> <!-- Agregar esta línea para mostrar la cantidad -->
 							        <td>${lineapedido.producto.precio}</td>
 							    </tr>
@@ -75,6 +80,7 @@
 	            </div>
 	        </div>
 	    </c:forEach>
+	    
 	</div>
 
 

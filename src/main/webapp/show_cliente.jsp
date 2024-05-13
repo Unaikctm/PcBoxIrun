@@ -14,32 +14,48 @@
 <body>
 	
 	<%@ include file="/partes/navbar.jsp" %>
-	
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">DNI</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Código postal</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telefono</th>
-            
-          </tr>
-        </thead>
-	          <tr>
-	            <th scope="row"></th>
-	            <td>${cliente.dni}</td>
-	            <td>${cliente.nombre}</td>
-	            <td>${cliente.apellido}</td>
-	            <td>${cliente.direccion}</td>
-	            <td>${cliente.codigopostal}</td>
-	            <td>${cliente.email}</td>
-	            <td>${cliente.telefono}</td>
-			</tr>
-      </table>
+		
+	<div class="container">
+    	<h1 class="mt-5 mb-4">Lista de Productos</h1>
+	  	<div class="table-responsive">
+		    <table class="table table-bordered ">
+		      <thead class="thead-dark">
+		          <tr>
+			          <th scope="row">DNI</th>
+			          <td>${cliente.dni}</td>
+		        </tr>
+		        <tr>
+			          <th scope="row">Nombre</th>
+			          <td>${cliente.nombre}</td>
+		        </tr>
+		        <tr>
+			          <th scope="row">Apellidos</th>
+			          <td>${cliente.apellido}</td>
+		        </tr>
+		        <tr>
+			          <th scope="row">Direccion</th>
+			          <td>${cliente.direccion}</td>
+		        </tr>
+		        <tr>
+			          <th scope="row">Codigo postal</th>
+			          <td>${cliente.codigopostal}</td>
+		        </tr>
+		        <tr>
+			          <th scope="row">Email</th>
+			          <td>${cliente.email}</td>
+		        </tr>
+		        <tr>
+			          <th scope="row">Telefono</th>
+			          <td>${cliente.telefono}</td>
+		        </tr>
+		    </table>
+		 </div>
+		 <a href="javascript:history.back()" class="btn btn-success text-decoration-none">
+	    		<i class="bi bi-arrow-left-circle text-white"></i>
+	  	 </a>
+	</div>
+      
+	     
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

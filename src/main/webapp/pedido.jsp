@@ -75,7 +75,9 @@
 					          <tr>
 					            <th scope="row"></th>
 					            <td>${pedido.id}</td>
-					            <td>${pedido.cliente.dni}</td>
+					            <td>
+					            	 <a href="Show_cliente?dni=${pedido.cliente.dni}">${pedido.cliente.dni}</a>
+					            </td>
 					            <td>${pedido.total}</td>
 					            <td>${pedido.fecha}</td>
 	            
