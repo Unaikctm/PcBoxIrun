@@ -16,6 +16,9 @@
 	<%@ include file="/partes/navbar.jsp" %>
 	
     <div class="container">
+	    <a href="javascript:history.back()" class="btn btn-success text-decoration-none mt-4">
+	    		<i class="bi bi-arrow-left-circle text-white"></i>
+	  	</a>
 		<h1 class="mt-5 mb-4">Lista de Productos</h1>
 	  	<div class="table-responsive">
 		    <table class="table table-bordered ">

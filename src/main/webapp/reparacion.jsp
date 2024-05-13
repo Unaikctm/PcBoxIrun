@@ -122,7 +122,9 @@
 					          <tr>
 					            <th scope="row"></th>
 					            <td>${reparacion.id}</td>
-					            <td>${reparacion.cliente.dni}</td>
+					            <td>
+					             <a href="Show_cliente?dni=${reparacion.cliente.dni}">${reparacion.cliente.dni}</a>
+					            </td>
 					            <td>${reparacion.tipo}</td>
 					            <td>${reparacion.descripcion}</td>
 					            <td>${reparacion.horas}</td>

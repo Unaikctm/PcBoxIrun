@@ -29,27 +29,29 @@
 
 	<c:if test="${param.msg == 'failRegistro'}">
 	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan carácteres.
+	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan carÃ¡cteres.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
 
     <div class="container-fluid-izq">
         <div class="row">
-            <!-- Columna con botón -->
+            <!-- Columna con botÃ³n -->
             <div class="col-12 col-md-6">
-                <div class="text-center u_catch">¡Descubre las mejores ofertas en PCs ahora mismo!</div>
+                <div class="text-center u_catch">Â¡Descubre las mejores ofertas en PCs ahora mismo!</div>
                 <div class="text-center">
-                    <button type="button" class="btn-lg u_btn-contrast u_btn-rounded" data-bs-toggle="modal" data-bs-target="#insertModal">¡Explora las ofertas!</button>
+                    <button type="button" class="btn-lg u_btn-contrast u_btn-rounded" data-bs-toggle="modal" data-bs-target="#insertModal">Â¡Explora las ofertas!</button>
                     	<!-- Modal de registro -->
                		<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header bg-success text-white">
-								<h5 class="modal-title" id="exampleModalLabel">¡Registrate para verlas!</h5>
+								<h5 class="modal-title" id="exampleModalLabel">Â¡Registrate para verlas!</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
-							<form action="Registro_cliente" method="POST">
+
+							<form action="Store_cliente_landing" method="POST">
+
 								<div class="modal-body">
 
 									<div class="mb-3">
@@ -68,12 +70,12 @@
 									</div>
 
 									<div class="mb-3">
-										<label for="direccion" class="form-label">Dirección:</label>
+										<label for="direccion" class="form-label">DirecciÃ³n:</label>
 										<input type="text" class="form-control" id="direccion" name="direccion" value="${cliente.direccion}">
 									</div>
 
 									<div class="mb-3">
-										<label for="codigopostal" class="form-label">Código postal:</label>
+										<label for="codigopostal" class="form-label">CÃ³digo postal:</label>
 										<input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
 									</div>
 
@@ -83,7 +85,7 @@
 									</div>
 
 									<div class="mb-3">
-										<label for="telefono" class="form-label">Teléfono:</label>
+										<label for="telefono" class="form-label">TelÃ©fono:</label>
 										<input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
 									</div>
 								</div>
@@ -99,7 +101,7 @@
                
                	
             </div>
-            <!-- Columna con slider de imágenes -->
+            <!-- Columna con slider de imÃ¡genes -->
             <div class="col-12 col-md-6">
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">

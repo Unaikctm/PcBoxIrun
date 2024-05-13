@@ -78,6 +78,9 @@
 	            </div>
 	        </div>
 	    </div>
+	    <a href="javascript:history.back()" class="btn btn-success text-decoration-none">
+    		<i class="bi bi-arrow-left-circle text-white"></i>
+  		</a>
 	</div>
 
     <!-- Bootstrap JS and other scripts here -->

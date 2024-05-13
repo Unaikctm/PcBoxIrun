@@ -1,4 +1,4 @@
-package controlador;
+package controlador.factura;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
