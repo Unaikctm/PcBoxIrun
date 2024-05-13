@@ -2,7 +2,7 @@
     <div class="container-fluid">
     
         <!-- Logo -->
-        <a class="navbar-brand bg-light" href="#">
+        <a class="navbar-brand bg-light" href="Landing">
             <img src="img/logo-pc-box.svg" alt="Logo" width="80" float="left">
         </a>
 
@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a color="white" class="nav-link active text-white" aria-current="page" href="main_page_admin.jsp">Inicio</a>
+                    <a color="white" class="nav-link active text-white" aria-current="page" href="Main_page">Inicio</a>
                 </li>
             </ul>
         </div>
