@@ -22,6 +22,11 @@
 	                        <i class="bi-tools fs-1 text-success"></i> <!-- Reparación -->
 	                    </a>
 	                </li>
+	                <li>
+	                    <a href="Index_historico" class="nav-link py-3" title="Historico" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Historico">
+	                        <i class="bi-trophy-fill fs-1 text-success"></i> <!-- Historico -->
+	                    </a>
+	                </li>
 	            </ul>
 	            <!-- <div class="dropdown">
 	                <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" title="Inicio Sesión" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">

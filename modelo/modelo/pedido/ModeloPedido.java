@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import modelo.cliente.Cliente;
 import modelo.conexion.Conector;
-import modelo.lineapedido.LineaPedido;
 import modelo.lineapedido.ModeloLineaPedido;
 
 
