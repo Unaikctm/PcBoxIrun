@@ -15,16 +15,16 @@ import modelo.reparacion.ModeloReparacion;
 import modelo.reparacion.Reparacion;
 
 /**
- * Servlet implementation class Index_reparacion
+ * Servlet implementation class SolicitarReparacion
  */
-@WebServlet("/Index_reparacion")
-public class Index_reparacion extends HttpServlet {
+@WebServlet("/SolicitarReparacion")
+public class SolicitarReparacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Index_reparacion() {
+    public SolicitarReparacion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +33,7 @@ public class Index_reparacion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ModeloReparacion mr = new ModeloReparacion();
-		
-		ArrayList<Reparacion> reparaciones = mr.getReparaciones();
-		
-		request.setAttribute("reparaciones", reparaciones);
-		
+	
 		ArrayList<Cliente> clientes = new ModeloCliente().getClientes();
 		ArrayList<String> listaDNI = new ArrayList<String>();
 		for (Cliente cliente : clientes) {
@@ -47,15 +42,18 @@ public class Index_reparacion extends HttpServlet {
 		
 		request.setAttribute("listaDNI", listaDNI);
 		
-		request.getRequestDispatcher("reparacion.jsp").forward(request, response);
+		request.getRequestDispatcher("solicitarReparacion.jsp").forward(request, response);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		
+		
+		response.sendRedirect("Main_page");
 	}
 
 }

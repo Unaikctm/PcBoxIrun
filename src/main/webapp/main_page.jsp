@@ -13,17 +13,7 @@
 
 <body style="background: rgb(209, 214, 214); background: linear-gradient(0deg, rgba(209, 214, 214, 1) 7%, rgba(255, 255, 255, 1) 49%);">
 	
-	<nav class="navbar navbar-expand-lg navbar-light bg-success py-2">
-		<div class="container-fluid d-flex justify-content-center">
-			<!-- Logo -->
-			<a class="navbar-brand bg-light" href="Landing"> <img src="img/main_page/pcboxlogo.png" alt="Logo" height="90px"></a>
-			
-			<!-- Botón para colapsar en dispositivos pequeños -->
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	</nav>
+	<%@include file="/partes/navbar_main_page.jsp" %>
 	
 	<c:if test="${param.msg=='okayRegistro'}">
 	    <div class="alert alert-success alert-dismissible fade show" role="alert">

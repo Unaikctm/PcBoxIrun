@@ -102,17 +102,16 @@ public class ModeloReparacion extends Conector{
 
     public void insert(Reparacion reparacion, String dni) {
         try {
-            CallableStatement cs = this.cn.prepareCall("{call Insertar_Reparacion(?, ?, ?, ?, ?, ?, ?, ?)}");
+            CallableStatement cs = this.cn.prepareCall("{call Insertar_Reparacion(?, ?, ?, ?, ?, ?, ?)}");
 
             // Establecer los parámetros del procedimiento almacenado
-            cs.setInt(1, reparacion.getId());
-            cs.setString(2, reparacion.getTipo());
-            cs.setString(3, reparacion.getDescripcion());
-            cs.setInt(4, reparacion.getHoras());
-            cs.setDouble(5, reparacion.getPrecio());
-            cs.setDouble(6, (reparacion.getPrecio()*reparacion.getHoras()*1.21)); //total de la factura
-            cs.setDate(7, new java.sql.Date(new java.util.Date().getTime()));
-            cs.setString(8, dni);
+            cs.setString(1, reparacion.getTipo());
+            cs.setString(2, reparacion.getDescripcion());
+            cs.setInt(3, reparacion.getHoras());
+            cs.setDouble(4, reparacion.getPrecio());
+            cs.setDouble(5, (reparacion.getPrecio()*reparacion.getHoras()*1.21)); //total de la factura
+            cs.setDate(6, new java.sql.Date(new java.util.Date().getTime()));
+            cs.setString(7, dni);
 
             cs.execute();
         } catch (SQLException e) {
