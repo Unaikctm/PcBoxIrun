@@ -83,7 +83,7 @@ public class ModeloFactura extends Conector{
 		return null;
 	}
 	
-	public void pagar(int id, String tipo, boolean pagado) {
+	public int pagar(int id, String tipo, boolean pagado) {
 		try {
 			PreparedStatement pst = this.cn.prepareStatement("UPDATE factura SET pagado = ? WHERE id = ? AND tipo_factura=?");
 			
@@ -95,9 +95,10 @@ public class ModeloFactura extends Conector{
 			pst.setInt(2, id);
 			pst.setString(3, tipo);
 
-			pst.executeUpdate();
+			return pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 }

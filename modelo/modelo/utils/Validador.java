@@ -1,9 +1,12 @@
 package modelo.utils;
 
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import modelo.cliente.ModeloCliente;
+import modelo.lineapedido.LineaPedido;
+import modelo.pedido.Pedido;
 
 public class Validador {
 
@@ -33,4 +36,20 @@ public class Validador {
         // Si es posterior a 2025 devuelve false, ya que no es valida
         return !(fecha.after(fecha2025));
     }
+
+	public static boolean tienePedidosRelacionados(ArrayList<Pedido> pedidos) {
+		if (pedidos!=null) {
+			return true;
+		}else {
+			return false;
+		}	
+	}
+
+	public static boolean tieneLineaPedidosRelacionados(ArrayList<LineaPedido> lineapedidos) {
+		if (lineapedidos.isEmpty()) {
+			return false;
+		}else {
+			return true;
+		}	
+	}
 }

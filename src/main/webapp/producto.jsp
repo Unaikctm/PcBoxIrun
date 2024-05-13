@@ -14,29 +14,43 @@
     <%@ include file="/partes/navbar.jsp" %>
 
 	<c:if test="${param.msg == 'failInsertar'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al insertar, revisa que el stock y el precio no contengan carácteres.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
 	
+	<c:if test="${param.msg=='okayInsertar'}">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
+			<strong>Ok!</strong> Se ha insertado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+		
 	<c:if test="${param.msg == 'failUpdate'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al actualizar, revisa que el stock y el precio no contengan carácteres.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
 	
-	<c:if test="${param.msg=='okayInsertar'}">
-	    <div class="alert alert-success alert-dismissible fade show" role="alert">
-			<strong>Ok!</strong> Se ha insertado correctamente.
+	<c:if test="${param.msg=='okayUpdate'}">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
+			<strong>Ok!</strong> Se ha actualizado correctamente.
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
     </c:if>
+
+	<c:if test="${param.msg == 'failDelete'}">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
+	        <strong>Error:</strong> Error, no puedes eliminar productos que son parte de pedidos realizados.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
 	
-	<c:if test="${param.msg=='okayUpdate'}">
-	    <div class="alert alert-success alert-dismissible fade show" role="alert">
-			<strong>Ok!</strong> Se ha actualizado correctamente.
+	<c:if test="${param.msg=='okayDelete'}">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
+			<strong>Ok!</strong> Se ha eliminado correctamente.
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
     </c:if>

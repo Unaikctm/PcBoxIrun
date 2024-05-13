@@ -26,21 +26,21 @@
 	</nav>
 	
 	<c:if test="${param.msg=='okayRegistro'}">
-	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Te has registrado correctamente.
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
     </c:if>
 	
 	<c:if test="${param.msg=='okay'}">
-	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Pedido realizado correctamente.
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
     </c:if>
 	
 	<c:if test="${param.msg == 'dni_invalido'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> El DNI ingresado no es válido, se ha cancelado el pedido.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>

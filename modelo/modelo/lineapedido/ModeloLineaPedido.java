@@ -68,6 +68,29 @@ public class ModeloLineaPedido extends Conector{
 		}
 		return listaLineaPedidos;
 	}
+	
+	public ArrayList<LineaPedido> getLineaPedidosByIdProducto(int id_producto) {
+		ModeloProducto modeloProducto = new ModeloProducto();
+		ArrayList<LineaPedido> listaLineaPedidos = new ArrayList<LineaPedido>();
+		try {
+			PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM lineapedido WHERE id_producto=?");
+			pst.setInt(1, id_producto);
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				LineaPedido lineapedido = new LineaPedido();
+				lineapedido.setProducto(modeloProducto.getProducto(rs.getInt("id_producto")));
+				lineapedido.setCantidad(rs.getInt("cantidad"));
+				
+				listaLineaPedidos.add(lineapedido);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return listaLineaPedidos;
+	}
 		
 	public LineaPedido getLineaPedidoByBothIds(int id_pedido, int id_producto) {
 		ModeloProducto modeloProducto = new ModeloProducto();

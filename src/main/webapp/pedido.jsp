@@ -17,28 +17,28 @@
 	<%@ include file="/partes/navbar.jsp" %>
 	
 	<c:if test="${param.msg=='okayInsertar'}">
-	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Se ha insertado correctamente.
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
     </c:if>
     
     <c:if test="${param.msg == 'failInsertar'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al insertar, revisa que la fecha no sea posterior a 2025.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
     
     <c:if test="${param.msg == 'failUpdate'}">
-	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al actualizar, revisa que la fecha no sea posterior a 2025.
 	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	    </div>
 	</c:if>
 	
 	<c:if test="${param.msg=='okayUpdate'}">
-	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Se ha actualizado correctamente.
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
@@ -64,7 +64,7 @@
 					    					<div class="modal-dialog modal-lg">
 					        					<div class="modal-content">
 					            					<div class="modal-header bg-success text-white">
-					                					<h5 class="modal-title" id="exampleModalLabel">No está implementado</h5>
+					                					<h5 class="modal-title" id="exampleModalLabel">Realiza un pedido de un producto</h5>
 					                					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					            					</div> 
 					           						<form action="Store_pedido" method="POST">
@@ -186,7 +186,7 @@
 													<h5 class="modal-title" id="exampleModalLabel">Eliminar Pedido</h5>
 													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
-												<div class="modal-body">Â¿EstÃ¡s seguro de que quieres eliminar este pedido?</div>
+												<div class="modal-body">¿Estas seguro de que quieres eliminar este pedido?</div>
 												
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
