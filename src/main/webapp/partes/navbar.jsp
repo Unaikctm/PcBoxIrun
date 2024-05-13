@@ -17,13 +17,6 @@
                 <li class="nav-item">
                     <a color="white" class="nav-link active text-white" aria-current="page" href="main_page_admin.jsp">Inicio</a>
                 </li>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Acción</a></li>
-                        <li><a class="dropdown-item" href="#">Otra acción</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Algo más aquí</a></li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </div>

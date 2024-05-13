@@ -16,6 +16,9 @@
 	<%@ include file="partes/navbar.jsp" %>
 	
     <div class="container">
+	    <a href="javascript:history.back()" class="btn btn-success text-decoration-none mt-4">
+	    		<i class="bi bi-arrow-left-circle text-white"></i>
+	  	</a>
 	    <h1 style="margin-top: 3%; margin-bottom: 3%;">Reparaciones de ${cliente.nombre} ${cliente.apellido}</h1>
 	    <c:forEach var="reparacion" items="${reparaciones}">
 	        <div class="card mb-3">
