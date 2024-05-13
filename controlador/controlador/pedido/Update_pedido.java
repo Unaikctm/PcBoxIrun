@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.pedido.ModeloPedido;
-import modelo.pedido.Pedido;
+import modelo.utils.Validador;
 
 /**
  * Servlet implementation class Update_pedido
@@ -43,13 +43,16 @@ public class Update_pedido extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Date fecha = Date.valueOf(request.getParameter("fecha"));
 		
-		System.out.println(id);
-		System.out.println(fecha);
+		if(Validador.esFechaValida(fecha)==true){
+			ModeloPedido mp = new ModeloPedido();
+			mp.update(fecha,id);
+			
+			response.sendRedirect("Index_pedido?msg=okayUpdate");
+		}
+		else {
+			response.sendRedirect("Index_pedido?msg=failUpdate");
+		}
 		
-		ModeloPedido mp = new ModeloPedido();
-		mp.update(fecha,id);
-		
-		response.sendRedirect("Index_pedido");
 	}
 
 }

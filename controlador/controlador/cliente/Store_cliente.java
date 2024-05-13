@@ -48,7 +48,7 @@ public class Store_cliente extends HttpServlet {
 		String email = request.getParameter("email");
 		String telefono = request.getParameter("telefono"); 
 		
-		if (Validador.testNumerico(telefono)==true && Validador.testNumerico(codPostal)==true) {
+		if (Validador.testNumerico(telefono)==true && Validador.testNumerico(codPostal)==true && Validador.testDNI(DNI)==false) {
 			//almacenar la tarea en BBDD
 			Cliente cliente = new Cliente();
 			cliente.setDni(DNI);
@@ -65,7 +65,10 @@ public class Store_cliente extends HttpServlet {
 			//abrir lo que quiera, en mi caso inicio
 			//como ya tengo un controlador que abra el inicio redirijo a ese controlador
 			response.sendRedirect("Index_cliente?msg=okayRegistro");
-		} else {
+		} else if ( Validador.testDNI(DNI)==true) {
+			response.sendRedirect("Index_cliente?msg=failRegistroDNI");
+		}
+		else {
 			response.sendRedirect("Index_cliente?msg=failRegistro");
 		}
 		

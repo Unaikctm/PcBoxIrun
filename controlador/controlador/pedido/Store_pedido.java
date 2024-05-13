@@ -18,6 +18,7 @@ import modelo.pedido.ModeloPedido;
 import modelo.pedido.Pedido;
 import modelo.producto.ModeloProducto;
 import modelo.producto.Producto;
+import modelo.utils.Validador;
 /**
  * Servlet implementation class Store_pedido
  */
@@ -54,17 +55,23 @@ public class Store_pedido extends HttpServlet {
 		String dni = mc.getCliente(request.getParameter("dni")).getDni();
 		pedido.setCliente(mc.getCliente(dni));
 		
-		mp.insert(pedido);
+		if(Validador.esFechaValida(pedido.getFecha())==true){
+			mp.insert(pedido);
+			
+			ModeloProducto mpro = new ModeloProducto();
+			Producto producto = mpro.getProductoByNombre(request.getParameter("producto"));
+			
+			ArticuloCarrito articuloCarrito = new ArticuloCarrito(producto, 1);
+			ModeloArticuloCarrito mac = new ModeloArticuloCarrito();
+			mac.insertLineaPedido(articuloCarrito, mp.getUltimaID());
+			
+			
+			response.sendRedirect("Index_pedido?msg=okayInsertar");
+		}
+		else {
+			response.sendRedirect("Index_pedido?msg=failInsertar");
+		}
 		
-		ModeloProducto mpro = new ModeloProducto();
-		Producto producto = mpro.getProductoByNombre(request.getParameter("producto"));
-		
-		ArticuloCarrito articuloCarrito = new ArticuloCarrito(producto, 1);
-		ModeloArticuloCarrito mac = new ModeloArticuloCarrito();
-		mac.insertLineaPedido(articuloCarrito, mp.getUltimaID());
-				
-		
-		response.sendRedirect("Index_pedido?msg=okayInsertar");
 	}
 
 }

@@ -29,6 +29,13 @@
 	    </div>
 	</c:if>
 	
+	<c:if test="${param.msg == 'failRegistroDNI'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al registrar, ya está registrado ese DNI.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
 	<c:if test="${param.msg == 'failUpdate'}">
 	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
 	        <strong>Error:</strong> Fallo al actualizar, revisa que el telefono y codigo postal no contengan carácteres.

@@ -22,6 +22,27 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
     </c:if>
+    
+    <c:if test="${param.msg == 'failInsertar'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al insertar, revisa que la fecha no sea posterior a 2025.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+    
+    <c:if test="${param.msg == 'failUpdate'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al actualizar, revisa que la fecha no sea posterior a 2025.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg=='okayUpdate'}">
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Ok!</strong> Se ha actualizado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
 	
 	<div class="container-fluid">
 		<div class="row">
