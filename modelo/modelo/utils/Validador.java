@@ -11,7 +11,7 @@ public class Validador {
 
 	public static boolean testNumerico(String num) {
 		try {
-			Integer.parseInt(num);
+			Double.parseDouble(num);
 			return true;
 		} catch (NumberFormatException e) {
 			return false;
