@@ -9,7 +9,7 @@ import modelo.lineapedido.LineaPedido;
 import modelo.pedido.Pedido;
 
 public class Validador {
-
+	
 	public static boolean testDNI(String dni) {
 		ModeloCliente mc = new ModeloCliente();
 		return mc.testDNI(dni);

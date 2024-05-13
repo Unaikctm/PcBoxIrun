@@ -166,7 +166,6 @@
 												        <button type="submit" class="btn btn-success">Guardar cambios</button>
 												    </div>
 												</form>
-												-->
 				        					</div>
 				   		 				</div>
 									</div>

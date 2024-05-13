@@ -45,12 +45,8 @@
                 </div>
                                                 
                 <div class="mb-3">
-                    <label for="dni" class="form-label">Cliente:</label>
-                    <select class="form-select" id="dni" name="dni">
-                        <c:forEach var="dni" items="${listaDNI}">
-                            <option value="${dni}">${dni}</option>
-                        </c:forEach>
-                    </select>
+                    <label for="dni" class="form-label">DNI:</label>
+                    <input type="text" class="form-control" id="dni" name="dni" value="${reparacion.cliente.dni}">
                 </div>
 
                 <button type="submit" class="btn btn-success">Enviar</button>

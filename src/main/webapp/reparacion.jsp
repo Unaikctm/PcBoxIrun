@@ -179,12 +179,12 @@
 									                    
 									                    <div class="mb-3">
 									                        <label for="horas" class="form-label">Horas:</label>
-									                        <input type="text" class="form-control" id="horas" name="horas" value="${reparacion.horas}">
+									                        <input maxlength="2" type="text" class="form-control" id="horas" name="horas" value="${reparacion.horas}">
 									                    </div>
 									                    
 									                    <div class="mb-3">
 									                        <label for="precio" class="form-label">Precio:</label>
-									                        <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}">
+									                        <input maxlength="7" type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}">
 									                    </div>
 					                    			
 												    </div>

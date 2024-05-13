@@ -36,6 +36,27 @@
 	    </div>
 	</c:if>
 	
+	<c:if test="${param.msg=='okayInsertar'}">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
+			<strong>Ok!</strong> Se ha insertado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+    
+    <c:if test="${param.msg == 'failInsertarInt'}">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
+	        <strong>Error:</strong> Fallo al insertar, revisa que las horas y el precio por hora no contengan carácteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg == 'failInsertarDNI'}">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
+	        <strong>Error:</strong> Error, no has ingresado un dni valido.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
 	<div class="container-fluid mt-4">
         <div class="row">
             <!-- productos -->

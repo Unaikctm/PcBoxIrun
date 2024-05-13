@@ -43,7 +43,7 @@
 
     <div class="container-fluid-izq">
         <div class="row">
-            <!-- Columna con botón -->
+            <!-- Columna con boton -->
             <div class="col-12 col-md-6">
                 <div class="text-center u_catch">�Descubre las mejores ofertas en PCs ahora mismo!</div>
                 <div class="text-center">
@@ -108,7 +108,7 @@
                
                	
             </div>
-            <!-- Columna con slider de imágenes -->
+            <!-- Columna con slider de imqgenes -->
             <div class="col-12 col-md-6">
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">

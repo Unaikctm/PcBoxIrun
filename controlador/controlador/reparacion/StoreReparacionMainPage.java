@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.cliente.ModeloCliente;
 import modelo.reparacion.ModeloReparacion;
 import modelo.reparacion.Reparacion;
+import modelo.utils.Validador;
 
 /**
  * Servlet implementation class Store_reparacion
@@ -38,20 +38,34 @@ public class StoreReparacionMainPage extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Reparacion reparacion = new Reparacion();
-		reparacion.setTipo(request.getParameter("tipo"));
-		reparacion.setDescripcion(request.getParameter("descripcion"));
-		reparacion.setHoras(Integer.parseInt(request.getParameter("horas")));
-		reparacion.setPrecio(Double.parseDouble(request.getParameter("precio")));
+		request.setAttribute("msg", request.getParameter("msg"));
+		
+		String dni = request.getParameter("dni");
+		String tipo = request.getParameter("tipo");
+		String desc = request.getParameter("descripcion");
+		String horas = request.getParameter("horas");
+		String precio =  request.getParameter("precio");
+		
+		
+		if (Validador.testNumerico(horas)==true && Validador.testNumerico(precio)==true && Validador.testDNI(dni)==true) {
+			//almacenar la tarea en BBDD
+			Reparacion reparacion = new Reparacion();
+			reparacion.setTipo(tipo);
+			reparacion.setDescripcion(desc);
+			reparacion.setHoras(Integer.parseInt(horas));
+			reparacion.setPrecio(Double.parseDouble(precio));
 
-		ModeloCliente mc = new ModeloCliente();
-		String dni = mc.getCliente(request.getParameter("dni")).getDni();
-		ModeloReparacion mr = new ModeloReparacion();
-		
-		mr.insert(reparacion,dni);
-		
-		
-		response.sendRedirect("Main_page");
+			ModeloReparacion mr = new ModeloReparacion();
+			mr.insert(reparacion,dni);
+			
+					
+			//abrir lo que quiera, en mi caso inicio
+			response.sendRedirect("Main_page?msg=okayInsertar");
+		} else if(Validador.testDNI(dni)==false){
+			response.sendRedirect("Main_page?msg=failInsertarDNI");
+		}else {
+			response.sendRedirect("Main_page?msg=failInsertarInt");
+		}
 	}
 
 }
