@@ -13,14 +13,14 @@ import modelo.cliente.ModeloCliente;
 /**
  * Servlet implementation class Store_cliente
  */
-@WebServlet("/Store_cliente")
-public class Store_cliente extends HttpServlet {
+@WebServlet("/Store_cliente_landing")
+public class Store_cliente_landing extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Store_cliente() {
+    public Store_cliente_landing() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -60,7 +60,7 @@ public class Store_cliente extends HttpServlet {
 				
 		//abrir lo que quiera, en mi caso inicio
 		//como ya tengo un controlador que abra el inicio redirijo a ese controlador
-		response.sendRedirect("Index_cliente");
+		response.sendRedirect("Main_page");
 	}
 
 }
