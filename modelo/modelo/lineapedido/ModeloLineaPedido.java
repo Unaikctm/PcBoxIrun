@@ -150,7 +150,7 @@ public class ModeloLineaPedido extends Conector{
 			PreparedStatement pst = this.cn.prepareStatement("INSERT INTO lineaPedido (id_pedido, id_producto, cantidad) VALUES (?,?,?)");
 			pst.setInt(1, lineaPedido.getPedido().getId());
 			pst.setInt(2, lineaPedido.getProducto().getId());
-			pst.setInt(4, lineaPedido.getCantidad());
+			pst.setInt(3, lineaPedido.getCantidad());
 
 			pst.execute();
 		} catch (SQLException e) {

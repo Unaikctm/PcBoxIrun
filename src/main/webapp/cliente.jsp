@@ -22,6 +22,41 @@
 
 	<%@ include file="/partes/navbar.jsp"%>
 	
+	<c:if test="${param.msg == 'failRegistro'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan carácteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg == 'failRegistroDNI'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al registrar, ya está registrado ese DNI.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg == 'failUpdate'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al actualizar, revisa que el telefono y codigo postal no contengan carácteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg=='okayInsertar'}">
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Ok!</strong> Se ha insertado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+	
+	<c:if test="${param.msg=='okayUpdate'}">
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Ok!</strong> Se ha actualizado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+    
 	<div class="container-fluid">
 		<div class="row">
 			<%@ include file="/partes/sidebar.jsp"%>
@@ -70,7 +105,7 @@
 			
 															<div class="mb-3">
 																<label for="codigopostal" class="form-label">Código postal:</label>
-																<input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
+																<input maxlength="5" type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
 															</div>
 			
 															<div class="mb-3">
@@ -80,7 +115,7 @@
 			
 															<div class="mb-3">
 																<label for="telefono" class="form-label">Teléfono:</label>
-																<input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
+																<input maxlength="9" type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
 															</div>
 														</div>
 														<div class="modal-footer">
@@ -150,7 +185,7 @@
 			
 																<div class="mb-3">
 																	<label for="codigopostal" class="form-label">Código postal:</label>
-																	<input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
+																	<input maxlength="5" type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
 																</div>
 			
 																<div class="mb-3">
@@ -160,7 +195,7 @@
 			
 																<div class="mb-3">
 																	<label for="telefono" class="form-label">Teléfono:</label>
-																	<input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
+																	<input maxlength="9" type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
 																</div>
 															</div>
 															<div class="modal-footer">

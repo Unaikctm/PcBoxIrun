@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 import modelo.cliente.Cliente;
 import modelo.conexion.Conector;
@@ -138,6 +139,36 @@ public class ModeloPedido extends Conector{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public int getUltimaID() {
+		int id=0;
+		try {
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery("SELECT MAX(ID) AS Ultima_ID FROM pedido;");
+
+			if(rs.next()) {
+				id=rs.getInt("Ultima_ID");
+			}
+			return id;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+
+	public void update(Date fecha, int id) {
+		try {
+			PreparedStatement pst = this.cn.prepareStatement("UPDATE pedido SET fecha = ? WHERE id = ?");
+			pst.setDate(1, (java.sql.Date) fecha);
+			pst.setInt(2, id);
+			pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
 

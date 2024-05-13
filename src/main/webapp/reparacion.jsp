@@ -15,6 +15,34 @@
 	
 	<%@ include file="/partes/navbar.jsp" %>
 	
+	<c:if test="${param.msg == 'failInsertar'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al insertar, revisa que las horas y el precio por hora no contengan carácteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg == 'failUpdate'}">
+	    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	        <strong>Error:</strong> Fallo al actualizar, revisa que las horas y el precio por hora no contengan carácteres.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
+	<c:if test="${param.msg=='okayInsertar'}">
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Ok!</strong> Se ha insertado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+	
+	<c:if test="${param.msg=='okayUpdate'}">
+	    <div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Ok!</strong> Se ha actualizado correctamente.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
+	
 	<div class="container-fluid">
 		<div class="row">
 			<%@ include file="/partes/sidebar.jsp" %>
@@ -52,12 +80,12 @@
 					                    
 									                    <div class="mb-3">
 									                        <label for="horas" class="form-label">Horas:</label>
-									                        <input type="text" class="form-control" id="horas" name="horas" value="${reparacion.horas}">
+									                        <input maxlength="2" type="text" class="form-control" id="horas" name="horas" value="${reparacion.horas}">
 									                    </div>
 									                    
 									                    <div class="mb-3">
 									                        <label for="precio" class="form-label">Precio:</label>
-									                        <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}&euro;">
+									                        <input maxlength="7" type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}">
 									                    </div>
 									                    
 														<div class="mb-3">
@@ -156,7 +184,7 @@
 									                    
 									                    <div class="mb-3">
 									                        <label for="precio" class="form-label">Precio:</label>
-									                        <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}&euro;">
+									                        <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}">
 									                    </div>
 					                    			
 												    </div>

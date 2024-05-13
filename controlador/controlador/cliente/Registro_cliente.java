@@ -14,14 +14,14 @@ import modelo.utils.Validador;
 /**
  * Servlet implementation class Store_cliente
  */
-@WebServlet("/Store_cliente")
-public class Store_cliente extends HttpServlet {
+@WebServlet("/Registro_cliente")
+public class Registro_cliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Store_cliente() {
+    public Registro_cliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +48,7 @@ public class Store_cliente extends HttpServlet {
 		String email = request.getParameter("email");
 		String telefono = request.getParameter("telefono"); 
 		
-		if (Validador.testNumerico(telefono)==true && Validador.testNumerico(codPostal)==true && Validador.testDNI(DNI)==false) {
+		if (Validador.testNumerico(telefono)==true && Validador.testNumerico(codPostal)==true) {
 			//almacenar la tarea en BBDD
 			Cliente cliente = new Cliente();
 			cliente.setDni(DNI);
@@ -64,14 +64,14 @@ public class Store_cliente extends HttpServlet {
 					
 			//abrir lo que quiera, en mi caso inicio
 			//como ya tengo un controlador que abra el inicio redirijo a ese controlador
-			response.sendRedirect("Index_cliente?msg=okayRegistro");
-		} else if ( Validador.testDNI(DNI)==true) {
-			response.sendRedirect("Index_cliente?msg=failRegistroDNI");
+			response.sendRedirect("Main_page?msg=okayRegistro");
+		} else {
+			response.sendRedirect("Landing?msg=failRegistro");
 		}
-		else {
-			response.sendRedirect("Index_cliente?msg=failRegistro");
-		}
-
+		
+		
+		
+		
 	}
 
 }
