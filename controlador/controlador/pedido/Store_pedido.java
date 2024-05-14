@@ -2,7 +2,6 @@ package controlador.pedido;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.carrito.ArticuloCarrito;
 import modelo.carrito.ModeloArticuloCarrito;
 import modelo.cliente.ModeloCliente;
-import modelo.lineapedido.ModeloLineaPedido;
 import modelo.pedido.ModeloPedido;
 import modelo.pedido.Pedido;
 import modelo.producto.ModeloProducto;

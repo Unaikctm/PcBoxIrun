@@ -13,7 +13,7 @@
 </head>
 <bodystyle="background: rgb(209, 214, 214); background: linear-gradient(0deg, rgba(209, 214, 214, 1) 7%, rgba(255, 255, 255, 1) 49%);">
 	
-	<%@ include file="/partes/navbar.jsp" %>
+	<%@ include file="../partes/navbar.jsp" %>
 	
 	<div class="container mt-5">
         <div class="card shadow-sm p-4">

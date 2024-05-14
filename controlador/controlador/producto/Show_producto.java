@@ -36,7 +36,7 @@ public class Show_producto extends HttpServlet {
 		
 		request.setAttribute("producto", producto);
 		
-		request.getRequestDispatcher("show_producto.jsp").forward(request, response);
+		request.getRequestDispatcher("producto/show_producto.jsp").forward(request, response);
 	}
 
 	/**

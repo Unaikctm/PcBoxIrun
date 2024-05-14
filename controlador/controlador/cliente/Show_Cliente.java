@@ -38,7 +38,7 @@ public class Show_Cliente extends HttpServlet {
 		
 		request.setAttribute("cliente", cliente);
 		
-		request.getRequestDispatcher("show_cliente.jsp").forward(request, response);
+		request.getRequestDispatcher("cliente/show_cliente.jsp").forward(request, response);
 	}
 
 	/**

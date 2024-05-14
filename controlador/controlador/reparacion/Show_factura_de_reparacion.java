@@ -43,7 +43,7 @@ public class Show_factura_de_reparacion extends HttpServlet {
 		
 		request.setAttribute("reparacion", reparacion);
 		
-		request.getRequestDispatcher("show_factura_de_reparacion.jsp").forward(request, response);
+		request.getRequestDispatcher("reparacion/show_factura_de_reparacion.jsp").forward(request, response);
 	}
 
 	/**

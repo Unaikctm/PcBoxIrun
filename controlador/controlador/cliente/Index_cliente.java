@@ -38,7 +38,7 @@ public class Index_cliente extends HttpServlet {
 		
 		request.setAttribute("clientes", clientes);
 		
-		request.getRequestDispatcher("cliente.jsp").forward(request, response);
+		request.getRequestDispatcher("cliente/cliente.jsp").forward(request, response);
 	}
 
 	/**
