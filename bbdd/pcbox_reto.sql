@@ -1,11 +1,12 @@
 DROP TABLE IF EXISTS lineapedido;
 DROP TABLE IF EXISTS factura;
+DROP TABLE IF EXISTS historico;
+DROP TABLE IF EXISTS carrito;
 DROP TABLE IF EXISTS producto;
 DROP TABLE IF EXISTS pedido;
 DROP TABLE IF EXISTS reparacion;
 DROP TABLE IF EXISTS cliente;
-DROP TABLE IF EXISTS historico;
-DROP TABLE IF EXISTS carrito;
+
 
 CREATE TABLE cliente (
     DNI VARCHAR(9) NOT NULL,
@@ -58,7 +59,7 @@ CREATE TABLE factura (
 CREATE TABLE historico (
     ID INT NOT NULL,
     Mes DATE NOT NULL,
-    Producto_Mas_Vendido INT NOT NULL,
+    ID_Producto INT NOT NULL,
     Cantidad_Vendida INT NOT NULL
 );
 
@@ -95,6 +96,8 @@ ALTER TABLE lineapedido ADD CONSTRAINT FK_LineaPedido1 FOREIGN KEY (ID_Producto)
     REFERENCES producto(ID) ON DELETE CASCADE;
 ALTER TABLE factura ADD CONSTRAINT FK_Factura FOREIGN KEY (ID)
     REFERENCES pedido(ID) ON DELETE CASCADE;
+ALTER TABLE historico ADD CONSTRAINT FK_Historico FOREIGN KEY (ID_Producto)
+    REFERENCES producto(ID) ON DELETE CASCADE;
 
 -- Checks
 ALTER TABLE factura ADD CHECK (Pagado IN ('Si', 'No'));
@@ -110,6 +113,8 @@ DROP PROCEDURE IF EXISTS Eliminar_Reparacion //
 DROP PROCEDURE IF EXISTS Producto_Mas_Vendido //
 DROP EVENT IF EXISTS Calcular_Producto_Mas_Vendido //
 DROP PROCEDURE IF EXISTS Insertar_Carrito_LineaPedido //
+DROP EVENT IF EXISTS Actualizar_datos //
+DROP PROCEDURE IF EXISTS Actualizar_total //
 
 CREATE PROCEDURE Insertar_Pedido (
     p_Fecha DATE,
@@ -127,15 +132,7 @@ BEGIN
     
     SET ID = LAST_INSERT_ID();
     
-    -- Realizar la consulta para calcular el total del pedido
-    SELECT SUM(producto.Precio * lineapedido.Cantidad)
-    INTO TOTAL
-    FROM pedido
-    JOIN lineapedido ON pedido.ID = lineapedido.ID_Pedido
-    JOIN producto ON lineapedido.ID_Producto = producto.ID
-    WHERE pedido.ID = ID;
-    
-    SET TOTAL = TOTAL * 1.21;
+    SET TOTAL = 0;
     
     -- Insertar la factura
     INSERT INTO factura(ID, Fecha, Total, Pagado, Tipo_Factura)
@@ -146,18 +143,33 @@ BEGIN
 END//
 
 CREATE PROCEDURE Insertar_Carrito_LineaPedido (
-	ID_Pedido INT,
-    ID_Producto INT,
-    Cantidad INT
+    IN p_ID_Pedido INT,
+    IN p_ID_Producto INT,
+    IN p_Cantidad INT
 ) 
 BEGIN
+    DECLARE v_Stock INT;
 
-    -- Insertar la lineapedido
-    INSERT INTO lineapedido(ID_Pedido, ID_Producto, Cantidad)
-    VALUES (ID_Pedido, ID_Producto, Cantidad);
+    -- Obtener el stock actual del producto
+    SELECT Stock INTO v_Stock
+    FROM producto
+    WHERE ID = p_ID_Producto;
+    
+    -- Verificar si hay suficiente stock
+    IF v_Stock >= p_Cantidad THEN
+        
+        UPDATE producto
+        SET Stock = Stock - p_Cantidad
+        WHERE ID = p_ID_Producto;
+        
+        -- Insertar la línea de pedido
+        INSERT INTO lineapedido(ID_Pedido, ID_Producto, Cantidad)
+        VALUES (p_ID_Pedido, p_ID_Producto, p_Cantidad);
+        
+    END IF;
     
     COMMIT;
-
+    
 END//
 
 CREATE PROCEDURE Insertar_Reparacion (
@@ -165,21 +177,25 @@ CREATE PROCEDURE Insertar_Reparacion (
     r_Descripcion VARCHAR(90),
     r_Horas INT,
     r_Precio DECIMAL(5,2),
-    f_total DECIMAL(5,2),
+    f_total DECIMAL(6,2),
     f_Fecha DATE,
     r_DNI_Cliente VARCHAR(9)
 )
 BEGIN
 
 	DECLARE ID INT;
+    DECLARE v_TOTAL DECIMAL(6,2);
+    
     -- Insertar la reparacion
     INSERT INTO reparacion(Tipo, Descripcion, Horas, Precio, DNI_Cliente)
     VALUES (r_Tipo, r_Descripcion, r_Horas, r_Precio, r_DNI_Cliente);
      
+	SET v_TOTAL = r_Precio * r_Horas * 1.21;
+     
 	SET ID = LAST_INSERT_ID();
     -- Insertar la factura
     INSERT INTO factura(ID, Fecha, Total, Pagado, Tipo_Factura)
-    VALUES (ID, f_Fecha, f_Total, 'No', 'Reparacion');
+    VALUES (ID, f_Fecha, v_TOTAL, 'No', 'Reparacion');
 
     COMMIT;
 END//
@@ -188,16 +204,12 @@ CREATE PROCEDURE Eliminar_Pedido(
 	pedido_id INT
 )
 BEGIN
-    -- Iniciar una transaccion
-    START TRANSACTION;
-    
     -- Eliminar las facturas asociadas al pedido
     DELETE FROM factura WHERE ID IN (SELECT ID FROM pedido WHERE ID = pedido_id) AND Tipo_Factura = 'Pedido';
     
     -- Luego, eliminar el pedido
     DELETE FROM pedido WHERE ID = pedido_id;
     
-    -- Confirmar la transaccion
     COMMIT;
 END//
 
@@ -205,16 +217,12 @@ CREATE PROCEDURE Eliminar_Reparacion(
 	reparacion_id INT
 )
 BEGIN
-    -- Iniciar una transaccion
-    START TRANSACTION;
-    
     -- Eliminar las facturas asociadas al pedido
     DELETE FROM factura WHERE ID IN (SELECT ID FROM reparacion WHERE ID = reparacion_id) AND Tipo_Factura = 'Reparacion';
     
     -- Luego, eliminar el pedido
     DELETE FROM reparacion WHERE ID = reparacion_id;
-    
-    -- Confirmar la transacciÃ³n
+
     COMMIT;
 END//
 
@@ -223,13 +231,14 @@ CREATE PROCEDURE Producto_Mas_Vendido()
 BEGIN
     DECLARE fechaInicio DATE;
     DECLARE fechaFin DATE;
-    DECLARE mesActual DATE;
     DECLARE productoID INT;
     DECLARE cantidadMaxima INT;
+    DECLARE productoEncontrado BOOLEAN DEFAULT FALSE;
     
-    SET fechaInicio = LAST_DAY(DATE_SUB(NOW(), INTERVAL 2 MONTH)) + INTERVAL 1 DAY; -- Primer dÃ­a del mes anterior
-    SET fechaFin = LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)); -- Ãšltimo dÃ­a del mes anterior
-	
+    SET fechaInicio = LAST_DAY(DATE_SUB(NOW(), INTERVAL 2 MONTH)) + INTERVAL 1 DAY; -- Primer día del mes anterior
+    SET fechaFin = LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH)); -- Último día del mes anterior
+
+    -- Consulta para encontrar el producto más vendido
     SELECT ID_Producto, SUM(Cantidad) AS Total_Vendido
     INTO productoID, cantidadMaxima
     FROM lineapedido lp
@@ -240,11 +249,45 @@ BEGIN
     LIMIT 1;
 
     IF productoID IS NOT NULL THEN
-        INSERT INTO historico (Mes, Producto_Mas_Vendido, Cantidad_Vendida)
+        INSERT INTO historico (Mes, ID_Producto, Cantidad_Vendida)
         VALUES (fechaInicio, productoID, cantidadMaxima);
     END IF;
+
 END//
+
+CREATE PROCEDURE Actualizar_total()
+BEGIN
+    DECLARE v_Total DECIMAL(6,2);
+    
+    -- Calcular el total de cada factura de tipo 'Pedido' y actualizarlo
+    UPDATE factura f
+    SET Total = (
+        SELECT SUM(p.Precio * lp.Cantidad) * 1.21
+        FROM lineapedido lp
+        JOIN producto p ON lp.ID_Producto = p.ID
+        WHERE lp.ID_Pedido = f.ID
+    )
+    WHERE f.Tipo_Factura = 'Pedido';
+    
+    COMMIT;
+    
+END//
+
 DELIMITER ;
+
+CREATE EVENT Calcular_Producto_Mas_Vendido
+ON SCHEDULE
+    EVERY 1 MONTH  -- Ejecutar cada mes
+    STARTS '2024-04-01 00:00:00'  -- Fecha de inicio del evento
+DO CALL Producto_Mas_Vendido();
+
+CREATE EVENT Actualizar_datos
+ON SCHEDULE
+    EVERY 1 MINUTE  -- Ejecutar cada minuto
+    STARTS '2024-05-14 9:40:00'  -- Fecha de inicio del evento
+DO CALL Actualizar_total();
+
+-- INSERCIÓN DE DATOS
 
 INSERT INTO `cliente` (`DNI`, `Nombre`, `Apellido`, `Direccion`, `CodigoPostal`, `Email`, `Telefono`) VALUES
 ('21376754C', 'Asier', 'Manterola', 'Arbes Kalea, 18', 20304, 'mantequilla@gmail.com', 612095941),
@@ -280,60 +323,33 @@ INSERT INTO `lineapedido` (`ID_Pedido`, `ID_Producto`, `Cantidad`) VALUES
 (6,6,1),
 (7,2,1);
 
-CALL Insertar_Reparacion('Reemplazo', 'Reemplazo del disco duro dañado por uno nuevo de 1TB', 2, 80.00, 90.00, '2024-04-15', '21376754C');
-CALL Insertar_Reparacion('Instalaciones', 'Instalacion y configuracion del paquete de software de diseño grafico', 3, 120.00, 130.00, '2024-04-20', '44577788E');
-CALL Insertar_Reparacion('Limpieza', 'Limpieza interna y externa de la computadora portÃ¡til', 1, 50.00, 60.00, '2024-04-25', '54647912K');
-CALL Insertar_Reparacion('Reemplazo', 'Instalacion de modulos de memoria RAM adicionales para mejorar el rendimiento', 2, 70.00, 80.00, '2024-04-28', '76343784D');
-CALL Insertar_Reparacion('Reemplazo', 'Reemplazo de la pantalla LCD dañada por una nueva de alta resolucion', 3, 150.00, 160.00, '2024-05-02', '89211425L');
-CALL Insertar_Reparacion('Soluciones', 'Diagnostico y solucion de problemas de hardware detectados', 2, 90.00, 100.00, '2024-05-05', '90987654G');
+CALL Insertar_Reparacion('Reemplazo', 'Reemplazo del disco duro dañado por uno nuevo de 1TB', 2, 80.00, 0,'2024-04-15', '21376754C');
+CALL Insertar_Reparacion('Instalaciones', 'Instalacion y configuracion del paquete de software de diseño grafico', 3, 120.00, 0,'2024-04-20', '44577788E');
+CALL Insertar_Reparacion('Limpieza', 'Limpieza interna y externa de la computadora portatil', 1, 50.00, 0,'2024-04-25','54647912K');
+CALL Insertar_Reparacion('Reemplazo', 'Instalacion de modulos de memoria RAM adicionales para mejorar el rendimiento',2, 70.00, 0, '2024-04-28', '76343784D');
+CALL Insertar_Reparacion('Reemplazo', 'Reemplazo de la pantalla LCD dañada por una nueva de alta resolucion', 3, 150.00, 0,'2024-05-02', '89211425L');
+CALL Insertar_Reparacion('Soluciones', 'Diagnostico y solucion de problemas de hardware detectados', 2, 90.00, 0,'2024-05-05','90987654G');
 
-CREATE EVENT Calcular_Producto_Mas_Vendido
-ON SCHEDULE
-    EVERY 1 MONTH  -- Ejecutar cada mes
-    STARTS '2024-01-01 00:00:00'  -- Fecha de inicio del evento
-DO CALL ProductoMasVendido();
+-- SIMULA LOS MESES ANTERIORES EN HISTORICO
+INSERT INTO `historico` (`Mes`, `ID_Producto`, `Cantidad_Vendida`) VALUES
+('2024-01-01',1,1),
+('2024-02-01',3,6),
+('2024-03-01',5,1),
+('2024-04-01',2,2);
 
-SELECT *
-FROM historico;
+CREATE ROLE IF NOT EXISTS appAdmin;
+CREATE ROLE IF NOT EXISTS appUser;
 
-SELECT id FROM pedido WHERE id=LAST_INSERT_ID()
-/*
-DELIMITER //
-DROP PROCEDURE IF EXISTS obtenerFechas //
+GRANT CREATE USER, CREATE TABLESPACE, ALTER ON *.* TO appAdmin;
+GRANT CREATE ON *.* TO appUser;
 
-CREATE PROCEDURE obtenerFechas()
-BEGIN
-    DECLARE fechaInicio DATE;
-    DECLARE fechaFin DATE;
-    
-    SET fechaInicio = LAST_DAY(DATE_SUB(NOW(), INTERVAL 2 MONTH)) + INTERVAL 1 DAY;
-    SET fechaFin = LAST_DAY(DATE_SUB(NOW(), INTERVAL 1 MONTH));
+CREATE USER IF NOT EXISTS 'app_admin'@'localhost' IDENTIFIED BY 'admin';
+CREATE USER IF NOT EXISTS 'app_user'@'localhost' IDENTIFIED BY 'user';
 
-    SELECT fechaInicio, fechaFin;
-END //
+GRANT appAdmin TO 'app_admin'@'localhost';
+GRANT appUser TO 'app_user'@'localhost';
 
-DELIMITER ;
+-- Eliminar un usuario
+-- DROP USER IF EXISTS 'nombre_usuario'@'localhost';
 
-CALL obtenerFechas();
-*/
 
--- Create roles
--- CREATE ROLE appAdmin;
--- CREATE ROLE appUser;
-
--- Grant privileges to appAdmin role
--- GRANT CREATE USER, CREATE TABLESPACE, ALTER ON *.* TO appAdmin;
-
--- Grant privileges to appUser role
--- GRANT CREATE ON *.* TO appUser;
-
--- Create users
--- CREATE USER 'app_admin' IDENTIFIED BY 'admin';
--- CREATE USER 'app_user' IDENTIFIED BY 'user';
-
--- Assign roles to users
--- GRANT appAdmin TO 'app_admin'@'localhost';
--- GRANT appUser TO 'app_user'@'localhost';
-
--- DROP USER 'app_admin'@'localhost';
--- DROP USER 'app_user'@'localhost';
