@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pc Box</title>
+    <link rel="stylesheet" href="css/sidebar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.css" rel="stylesheet">
 	
@@ -48,18 +49,18 @@
 		<div class="row">
 			<%@ include file="/partes/sidebar.jsp" %>
 		   
-		    <div class="col-sm p-3 min-vh-100">
+		    <div class="col-sm p-3">
 		    	<div class="col py-3">
 		        	<table class="table">
 		        		<thead>
 		          			<tr>
 					            <th scope="col">
-					            	<button type="button" class="btn btn-success" title="AÃ±adir Pedido" data-bs-toggle="modal" data-bs-target="#insertModal">
+					            	<button type="button" class="btn btn-success" title="Añadir Pedido" data-bs-toggle="modal" data-bs-target="#insertModal">
 						  				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
 										  	<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/>
 										</svg>
 										</button>
-							
+										
 										<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					    					<div class="modal-dialog modal-lg">
 					        					<div class="modal-content">

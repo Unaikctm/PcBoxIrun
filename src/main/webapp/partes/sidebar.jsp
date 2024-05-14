@@ -1,5 +1,5 @@
 <div class="col-md-1 col-sm-4 bg-dark sticky-top d-flex justify-content-center">
-            <div class="d-flex flex-sm-column bg-dark align-items-center sticky-top" style="height: 100vh; width:100px;">
+            <aside class="d-flex flex-sm-column bg-dark align-items-center sticky-top">
                 <ul class="nav nav-pills nav-flush flex-sm-column mb-auto mx-auto text-center align-items-center">
                     <li class="nav-item">
                         <a href="Index_cliente" class="nav-link py-3" title="Cliente" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Cliente">
@@ -27,14 +27,5 @@
                         </a>
                     </li>
                 </ul>
-                <!-- <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" title="Inicio Sesión" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi-person-circle h2 text-success"></i>
-                    </a>
-                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                        <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
-                        <li><a class="dropdown-item" href="#">Salir</a></li>
-                    </ul>
-                </div>  -->
-            </div>
+            </aside>
         </div>

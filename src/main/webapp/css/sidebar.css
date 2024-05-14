@@ -1,0 +1,37 @@
+@media screen and (min-width: 768px) {
+  /* Estilos que se aplicarán en pantallas medianas o más grandes */
+  aside {
+   	height:100vh !important;
+
+  }
+  
+}
+
+@media screen and (min-width : 600px) {
+  /* Estilos que se aplicarán en pantallas medianas o más grandes */
+
+	#side{
+		padding-right:100px !important;
+	}
+	
+	aside{
+		width:50vh !important;
+	}
+	
+
+}
+
+@media screen and (min-width : 400px) {
+  /* Estilos que se aplicarán en pantallas medianas o más grandes */
+
+	#side{
+		padding-right:100px !important;
+	}
+	
+	aside{
+		width:50vh !important;
+	}
+
+}
+
+
