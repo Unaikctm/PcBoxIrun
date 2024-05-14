@@ -1,4 +1,4 @@
-package controlador.reparacion;
+package controlador.cliente;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,16 +15,16 @@ import modelo.reparacion.ModeloReparacion;
 import modelo.reparacion.Reparacion;
 
 /**
- * Servlet implementation class SolicitarReparacion
+ * Servlet implementation class Show_reparacion_de_cliente
  */
-@WebServlet("/SolicitarReparacion")
-public class SolicitarReparacion extends HttpServlet {
+@WebServlet("/Show_reparacion_de_cliente")
+public class Show_reparacion_de_cliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SolicitarReparacion() {
+    public Show_reparacion_de_cliente() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,27 +33,29 @@ public class SolicitarReparacion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		ArrayList<Cliente> clientes = new ModeloCliente().getClientes();
-		ArrayList<String> listaDNI = new ArrayList<String>();
-		for (Cliente cliente : clientes) {
-			listaDNI.add(cliente.getDni());
+		String DNI = request.getParameter("dni");
+		
+		ModeloCliente mc = new ModeloCliente();
+		Cliente cliente = mc.getCliente(DNI);
+		
+		ModeloReparacion mr = new ModeloReparacion();
+		ArrayList<Reparacion> reparaciones = mr.getReparacionesByDNI(DNI);
+		
+		for (Reparacion reparacion : reparaciones) {
+			reparacion.setCliente(cliente);
 		}
 		
-		request.setAttribute("listaDNI", listaDNI);
+		request.setAttribute("reparaciones", reparaciones);
 		
-		request.getRequestDispatcher("solicitarReparacion.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("cliente/show_reparacion_de_cliente.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
-		
-		response.sendRedirect("Main_page");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

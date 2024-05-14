@@ -38,7 +38,7 @@ public class Index_producto extends HttpServlet {
 		
 		request.setAttribute("productos", productos);
 		
-		request.getRequestDispatcher("producto.jsp").forward(request, response);
+		request.getRequestDispatcher("producto/producto.jsp").forward(request, response);
 		
 	}
 

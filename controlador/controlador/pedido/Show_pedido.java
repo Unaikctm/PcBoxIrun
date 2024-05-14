@@ -40,7 +40,7 @@ public class Show_pedido extends HttpServlet {
 		
 		request.setAttribute("pedido", pedido);
 		
-		request.getRequestDispatcher("show_pedido.jsp").forward(request, response);
+		request.getRequestDispatcher("pedido/show_pedido.jsp").forward(request, response);
 	}
 
 	/**

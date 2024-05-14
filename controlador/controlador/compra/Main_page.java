@@ -1,4 +1,4 @@
-package controlador;
+package controlador.compra;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ public class Main_page extends HttpServlet {
 		request.setAttribute("productos", productos);
 		request.setAttribute("articulos", mc.getCarrito());
 		
-		request.getRequestDispatcher("main_page.jsp").forward(request, response);
+		request.getRequestDispatcher("/compra/main_page.jsp").forward(request, response);
 		}
 		
 	/**

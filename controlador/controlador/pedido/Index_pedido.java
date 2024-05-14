@@ -58,7 +58,7 @@ public class Index_pedido extends HttpServlet {
 		
 		request.setAttribute("listaNombresProducto", listaNombresProducto);
 		
-		request.getRequestDispatcher("pedido.jsp").forward(request, response);
+		request.getRequestDispatcher("pedido/pedido.jsp").forward(request, response);
 	}
 
 	/**

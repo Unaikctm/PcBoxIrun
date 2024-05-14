@@ -72,12 +72,12 @@
             
             <div class="col-md-4">
                 <div class="card mb-4 shadow-lg">
-                    <img src="img/main_page/factura.png" height="320px" class="card-img-top" alt="facturas">
+                    <img src="img/main_page/trofeo.png" height="320px" class="card-img-top" alt="histórico">
                     <br><hr>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Panel de Facturas</h5>
-                        <p class="card-text text-center">Aqui se pueden consultar todas las facturas que se han creado, así como si están pagadas o no.</p>
-                        <a href="Index_factura" class="btn btn-primary px-5 fs-5 d-flex justify-content-center bg-success">Ir al Panel</a>
+                        <h5 class="card-title text-center">Panel del Histórico</h5>
+                        <p class="card-text text-center">Aqui se pueden consultar los productos más vendidos de cada mes.</p>
+                        <a href="Index_historico" class="btn btn-primary px-5 fs-5 d-flex justify-content-center bg-success">Ir al Panel</a>
                     </div>
                 </div>
             </div>

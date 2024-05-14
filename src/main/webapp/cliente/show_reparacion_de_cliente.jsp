@@ -13,7 +13,7 @@
 </head>
 <body>
 	
-	<%@ include file="partes/navbar.jsp" %>
+	<%@ include file="/partes/navbar.jsp" %>
 	
     <div class="container">
 	    <a href="javascript:history.back()" class="btn btn-success text-decoration-none mt-4">

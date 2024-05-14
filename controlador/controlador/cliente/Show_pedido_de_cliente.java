@@ -49,7 +49,7 @@ public class Show_pedido_de_cliente extends HttpServlet {
 		
 		request.setAttribute("pedidos", pedidos);
 		
-		request.getRequestDispatcher("show_pedido_de_cliente.jsp").forward(request, response);
+		request.getRequestDispatcher("cliente/show_pedido_de_cliente.jsp").forward(request, response);
 	}
 
 	/**

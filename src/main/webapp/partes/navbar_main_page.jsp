@@ -13,7 +13,7 @@
 		</div>
 		<div class="d-flex justify-content-end px-6" style="margin-right:30px">
 			<button class="bg-warning">
-				<a href="main_page_admin.jsp" class="text-white text-decoration-none">Panel Admin</a>
+				<a href="Main_Page_Admin" class="text-white text-decoration-none">Panel Admin</a>
 			</button>
 			
 		</div>

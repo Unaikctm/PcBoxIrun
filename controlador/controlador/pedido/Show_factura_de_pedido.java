@@ -46,7 +46,7 @@ public class Show_factura_de_pedido extends HttpServlet {
 		
 		request.setAttribute("pedido", pedido);
 		
-		request.getRequestDispatcher("show_factura_de_pedido.jsp").forward(request, response);
+		request.getRequestDispatcher("pedido/show_factura_de_pedido.jsp").forward(request, response);
 		
 		
 		

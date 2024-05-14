@@ -35,7 +35,7 @@ public class Index_historico extends HttpServlet {
 		
 		request.setAttribute("historicos", historicos);
 		
-		request.getRequestDispatcher("historico.jsp").forward(request, response);
+		request.getRequestDispatcher("historico/historico.jsp").forward(request, response);
 	}
 
 	/**
