@@ -57,6 +57,13 @@
 	    </div>
 	</c:if>
 	
+	<c:if test="${param.msg == 'failInicio'}">
+	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
+	        <strong>Error:</strong> No tienes acceso a la administración.
+	        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	    </div>
+	</c:if>
+	
 	<div class="container-fluid mt-4">
         <div class="row">
             <!-- productos -->
