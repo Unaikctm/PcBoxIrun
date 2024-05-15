@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <p class="card-text">Fecha del Pedido: ${pedido.fecha}</p>
-                <p class="card-text">Total del Pedido: ${pedido.total}</p>
+                <p class="card-text">Total del Pedido: ${pedido.total}&euro;</p>
             </div>
         </div>
         	
@@ -52,14 +52,14 @@
 	                        		<a href="Show_producto?id=${lineapedido.producto.id}">${lineapedido.producto.nombre}</a>
 	                        	</td>
 	                        	<td>${lineapedido.cantidad}</td>
-	                        	<td>${lineapedido.producto.precio}</td>
+	                        	<td>${lineapedido.producto.precio}&euro;</td>
 	                    	</tr>
 	                </c:forEach>
 	            </tbody>
         		</table>
                 <div class="row justify-content-end" style="text-align: right; font-weight: bold;"> <!-- Utilizamos la clase row de Bootstrap con justify-content-end -->
 	                <div class="col-md-6"> <!-- Utilizamos la clase col-md-6 para limitar el ancho y text-right para alinear el texto a la derecha -->
-	                    <p class="card-text">Total de la Factura + IVA incluido: ${factura.total}</p>
+	                    <p class="card-text">Total de la Factura + IVA incluido: ${factura.total}&euro;</p>
 	                    <p class="card-text">Pagado: ${factura.pagado}</p>
 	                    
 	                    <!-- Pagar -->

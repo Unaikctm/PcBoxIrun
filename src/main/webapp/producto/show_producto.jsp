@@ -41,7 +41,7 @@
 		        </tr>
 		        <tr>
 		          <th scope="row">Precio</th>
-		          <td>${producto.precio}</td>
+		          <td>${producto.precio}&euro;</td>
 		        </tr>
 		        <tr>
 		          <th scope="row">Stock</th>

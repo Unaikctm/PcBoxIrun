@@ -25,7 +25,7 @@
 	            <p class="card-text">Tipo: ${reparacion.tipo}</p>
 	            <p class="card-text">Descripción: ${reparacion.descripcion}</p>
 	            <p class="card-text">Horas: ${reparacion.horas}</p>
-	            <p class="card-text">Precio: ${reparacion.precio}</p>
+	            <p class="card-text">Precio: ${reparacion.precio}&euro;</p>
 	        </div>
 	    </div>
 	    <div class="card mb-3">
@@ -35,7 +35,7 @@
 	        <div class="card-body">
 	            <div class="row justify-content-end">
 	                <div class="col-md-6 text-md-end">
-	                    <p class="card-text"><strong>Total de la Factura + IVA incluido:</strong> ${factura.total}</p>
+	                    <p class="card-text"><strong>Total de la Factura + IVA incluido:</strong> ${factura.total}&euro;</p>
 	                    <p class="card-text"><strong>Pagado:</strong> ${factura.pagado}</p>
 	                    <!-- Pagar -->
 						<button type="button" class="btn btn-success" title="Pagar Factura" data-bs-toggle="modal" data-bs-target="#${factura.id}">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" style="zoom: 75%;">
 <head>
@@ -22,6 +23,13 @@
             </button>
         </div>
     </nav>
+    
+    <c:if test="${param.msg=='okay'}">
+	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
+			<strong>Ok!</strong> Inicio de sesión correcto.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+    </c:if>
     
     <div class="container mt-4">
         <div class="row d-flex justify-content-center">

@@ -40,13 +40,13 @@ public class Factura {
 
 	public Double getTotal() {
 		Double total = 0.0;
-		if (tipo=="Pedido") {
-			total = pedido.getTotal()*(1+IVA);
-		}
-		else if (tipo=="Reparacion") {
-			total = reparacion.getPrecio()*reparacion.getHoras()*(1+IVA);
-		}
-		return total;
+	    if ("Pedido".equals(tipo)) {
+	        total = pedido.getTotal() * (1 + IVA);
+	    } else if ("Reparacion".equals(tipo)) {
+	        total = reparacion.getPrecio() * reparacion.getHoras() * (1 + IVA);
+	    }
+	    total = Math.round(total * 100.0) / 100.0; // Redondear a dos decimales
+	    return total;
 	}
 
 	public void setTotal(Double total) {
