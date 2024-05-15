@@ -14,6 +14,8 @@
 
     <%@ include file="/partes/navbar.jsp" %>
 
+	<!-- Mensajes de error -->
+
 	<c:if test="${param.msg == 'failInsertar'}">
 	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al insertar, revisa que el stock y el precio no contengan carácteres.

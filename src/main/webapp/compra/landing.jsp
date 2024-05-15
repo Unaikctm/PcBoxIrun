@@ -27,6 +27,8 @@
 
 	<%@ include file="/partes/navbar.jsp"%>
 
+	<!-- Mensajes de error -->
+
 	<c:if test="${param.msg == 'failRegistro'}">
 	    <div class="alert alert-danger alert-dismissible fade show m-0" role="alert">
 	        <strong>Error:</strong> Fallo al registrar, revisa que el telefono y codigo postal no contengan caracteres.
@@ -48,65 +50,63 @@
                 <div class="text-center u_catch">¡Descubre las mejores ofertas en PCs ahora mismo!</div>
                 <div class="text-center">
                     <button type="button" class="btn-lg u_btn-contrast u_btn-rounded" data-bs-toggle="modal" data-bs-target="#insertModal">¡Explora las ofertas!</button>
-                    	<!-- Modal de registro -->
+                    <!-- Modal de registro -->
                		<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header bg-success text-white">
-								<h5 class="modal-title" id="exampleModalLabel">¡Registrate para verlas!</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header bg-success text-white">
+									<h5 class="modal-title" id="exampleModalLabel">¡Registrate para verlas!</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+
+								<form action="Store_cliente_landing" method="POST">
+	
+									<div class="modal-body text-start">
+	
+										<div class="mb-3">
+											<label for="nombre" class="form-label">Nombre:</label> 
+											<input type="text" class="form-control" id="nombre" name="nombre" value="${cliente.nombre}" required>
+										</div>
+	
+										<div class="mb-3">
+											<label for="apellido" class="form-label">Apellido:</label>
+											<input type="text" class="form-control" id="apellido" name="apellido" value="${cliente.apellido}" required>
+										</div>
+	
+										<div class="mb-3">
+											<label for="dni" class="form-label">DNI:</label> 
+											<input type="text" class="form-control" id="dni" name="dni" value="${cliente.dni}">
+										</div>
+	
+										<div class="mb-3">
+											<label for="direccion" class="form-label">Direccion:</label>
+											<input type="text" class="form-control" id="direccion" name="direccion" value="${cliente.direccion}">
+										</div>
+	
+										<div class="mb-3">
+											<label for="codigopostal" class="form-label">Codigo postal:</label>
+											<input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
+										</div>
+	
+										<div class="mb-3">
+											<label for="email" class="form-label">Email:</label> 
+											<input type="email" class="form-control" id="email" name="email" value="${cliente.email}">
+										</div>
+	
+										<div class="mb-3">
+											<label for="telefono" class="form-label">Telefono:</label>
+											<input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+										<button type="submit" class="btn btn-success">Guardar Cambios</button>
+									</div>
+								</form>
 							</div>
-
-							<form action="Store_cliente_landing" method="POST">
-
-								<div class="modal-body text-start">
-
-									<div class="mb-3">
-										<label for="nombre" class="form-label">Nombre:</label> 
-										<input type="text" class="form-control" id="nombre" name="nombre" value="${cliente.nombre}" required>
-									</div>
-
-									<div class="mb-3">
-										<label for="apellido" class="form-label">Apellido:</label>
-										<input type="text" class="form-control" id="apellido" name="apellido" value="${cliente.apellido}" required>
-									</div>
-
-									<div class="mb-3">
-										<label for="dni" class="form-label">DNI:</label> 
-										<input type="text" class="form-control" id="dni" name="dni" value="${cliente.dni}">
-									</div>
-
-									<div class="mb-3">
-										<label for="direccion" class="form-label">Direccion:</label>
-										<input type="text" class="form-control" id="direccion" name="direccion" value="${cliente.direccion}">
-									</div>
-
-									<div class="mb-3">
-										<label for="codigopostal" class="form-label">Codigo postal:</label>
-										<input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.codigopostal}">
-									</div>
-
-									<div class="mb-3">
-										<label for="email" class="form-label">Email:</label> 
-										<input type="email" class="form-control" id="email" name="email" value="${cliente.email}">
-									</div>
-
-									<div class="mb-3">
-										<label for="telefono" class="form-label">Telefono:</label>
-										<input type="text" class="form-control" id="telefono" name="telefono" value="${cliente.telefono}">
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-									<button type="submit" class="btn btn-success">Guardar Cambios</button>
-								</div>
-										</form>
-									</div>
-								</div>
-							</div>
+						</div>
+					</div>
                 </div>
-               
-               	
             </div>
             <!-- Columna con slider de imqgenes -->
             <div class="col-12 col-md-6">

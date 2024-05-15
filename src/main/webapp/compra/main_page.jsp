@@ -15,6 +15,8 @@
 	
 	<%@include file="/partes/navbar_main_page.jsp" %>
 	
+	<!-- Mensajes de error -->
+	
 	<c:if test="${param.msg=='okayRegistro'}">
 	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Te has registrado correctamente.

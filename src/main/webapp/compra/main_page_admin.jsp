@@ -24,6 +24,8 @@
         </div>
     </nav>
     
+    <!-- Mensajes de error -->
+    
     <c:if test="${param.msg=='okay'}">
 	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Inicio de sesión correcto.

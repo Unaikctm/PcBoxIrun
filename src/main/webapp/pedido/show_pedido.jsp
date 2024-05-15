@@ -17,13 +17,13 @@
 	
     <table class="table">
         <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad</th>
-          </tr>
+	          <tr>
+	            <th scope="col">#</th>
+	            <th scope="col">id</th>
+	            <th scope="col">Nombre</th>
+	            <th scope="col">Precio</th>
+	            <th scope="col">Cantidad</th>
+	          </tr>
         </thead>
 	          <tr>
 	            <th scope="row"></th>
@@ -33,7 +33,6 @@
 	            <td>${producto.marca}${producto.nombre}</td>
 	            <td>${producto.id}</td>
 	            <td>${lineapedido.cantidad}</td>
-
 			</tr>
       </table>
       

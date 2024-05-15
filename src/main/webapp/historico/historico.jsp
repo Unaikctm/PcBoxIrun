@@ -33,7 +33,7 @@
 	                <c:forEach items="${historicos}" var="historico">
 	                    <div class="accordion-item">
 	                        <h2 class="accordion-header">
-	                              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${historico.mes}" aria-expanded="true" aria-controls="collapse${historico.mes}">
+	                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${historico.mes}" aria-expanded="true" aria-controls="collapse${historico.mes}">
 	                              ${historico.mes}
 	                            </button>
                         	</h2>
@@ -50,7 +50,9 @@
 	                                    <tbody>
 	                                        <tr>
 	                                            <td>${historico.producto.marca}</td>
-	                                            <td>${historico.producto.nombre}</td>
+	                                            <td>
+	                                            	<a href="Show_producto?id=${historico.producto.id}">${historico.producto.nombre}</a>
+	                                            </td>
 	                                            <td>${historico.cantidad}</td>
 	                                        </tr>
 	                                    </tbody>
@@ -59,10 +61,10 @@
 	                        </div>
 	                    </div>
 	                </c:forEach>
-	                </div>
 	            </div>
-	        </div>        
-	    </div>
+	        </div>
+	    </div>        
+	</div>
 
 
     <!-- Bootstrap JS -->

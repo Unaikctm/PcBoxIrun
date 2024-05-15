@@ -17,6 +17,8 @@
 	
 	<%@ include file="/partes/navbar.jsp" %>
 	
+	<!-- Mensajes de error -->
+	
 	<c:if test="${param.msg=='okayInsertar'}">
 	    <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
 			<strong>Ok!</strong> Se ha insertado correctamente.
@@ -59,55 +61,51 @@
 						  				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-lg" viewBox="0 0 16 16">
 										  	<path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/>
 										</svg>
-										</button>
+									</button>
 										
-										<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					    					<div class="modal-dialog modal-lg">
-					        					<div class="modal-content">
-					            					<div class="modal-header bg-success text-white">
-					                					<h5 class="modal-title" id="exampleModalLabel">Realiza un pedido de un producto</h5>
-					                					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					            					</div> 
-					           						<form action="Store_pedido" method="POST">
-						                				<div class="modal-body">
-						                    				<div class="mb-3">
-															    <label for="dni" class="form-label">Cliente:</label>
-															    <select class="form-select" id="dni" name="dni">
-															        <c:forEach var="dni" items="${listaDNI}">
-															            <option value="${dni}">${dni}</option>
-															        </c:forEach>
-															    </select>
-						                    				</div>
-						                    				
-						                    				<div class="mb-3">
-															    <label for="producto" class="form-label">Producto:</label>
-															    <select class="form-select" id="producto" name="producto">
-															        <c:forEach var="producto" items="${listaNombresProducto}">
-															            <option value="${producto}">${producto}</option>
-															        </c:forEach>
-															    </select>
-						                    				</div>
-						                    				
-						                    				<div class="mb-3">
-															    <label for="fecha" class="form-label">Fecha:</label>
-															    <%-- Obtener la fecha en formato "yyyy-MM-dd" --%>
-															    <%-- Utilizando la función substring de JSTL --%>
-															    <c:set var="formattedDate" value="${fn:substring(pedido.fecha, 0, 10)}" />
-															    <input type="date" class="form-control" id="fecha" name="fecha" value="${formattedDate}">
-															</div>
+									<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					    				<div class="modal-dialog modal-lg">
+					        				<div class="modal-content">
+					            				<div class="modal-header bg-success text-white">
+					                				<h5 class="modal-title" id="exampleModalLabel">Realiza un pedido de un producto</h5>
+					                				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					            				</div> 
+					           					<form action="Store_pedido" method="POST">
+						                			<div class="modal-body">
+						                    			<div class="mb-3">
+															   <label for="dni" class="form-label">Cliente:</label>
+															   <select class="form-select" id="dni" name="dni">
+															       <c:forEach var="dni" items="${listaDNI}">
+															           <option value="${dni}">${dni}</option>
+															       </c:forEach>
+															   </select>
+						                    			</div>
+						                    			<div class="mb-3">
+															   <label for="producto" class="form-label">Producto:</label>
+															   <select class="form-select" id="producto" name="producto">
+															       <c:forEach var="producto" items="${listaNombresProducto}">
+															           <option value="${producto}">${producto}</option>
+															       </c:forEach>
+															   </select>
+						                    			</div>
+						                    			<div class="mb-3">
+															   <label for="fecha" class="form-label">Fecha:</label>
+															   <%-- Obtener la fecha en formato "yyyy-MM-dd" --%>
+															   <%-- Utilizando la función substring de JSTL --%>
+															   <c:set var="formattedDate" value="${fn:substring(pedido.fecha, 0, 10)}" />
+															   <input type="date" class="form-control" id="fecha" name="fecha" value="${formattedDate}">
+														</div>
+										            </div>
+										            <div class="modal-footer">
+										                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+										                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+										            </div>
+					            				</form>
+					       	 				</div>
+					    				</div>
+									</div>
 
-
-										                </div>
-										                <div class="modal-footer">
-										                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-										                    <button type="submit" class="btn btn-success">Guardar Cambios</button>
-										                </div>
-					            					</form>
-					       	 					</div>
-					    					</div>
-										</div>
-
-									</th>
+								</th>
 					            <th scope="col">ID</th>
 					            <th scope="col">DNI Cliente</th>
 					            <th scope="col">Total</th>
