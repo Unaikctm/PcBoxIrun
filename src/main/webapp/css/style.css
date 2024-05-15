@@ -6,12 +6,16 @@ body{
 }
 
 footer {
-    text-align: left; /* Centrar el texto */
+    text-align: left; /* Alinea el texto */
     padding: 20px; /* Espaciado interno */
     font-family: sans-serif;
-  }
+    width: 100%; /* Ocupa todo el ancho disponible */
+    bottom: 0; /* Fija el footer en la parte inferior */
+    position: fixed; /* Fija la posici�n del footer */
+}
 
-/* Estilo para la sección principal */
+
+/* Estilo para la seccion principal */
 .container-fluid-izq {
     background-color: #ffffff;
     /* Tonalidad diferente de verde */
@@ -21,13 +25,13 @@ footer {
 .u_btn-contrast {
     background-color: #deaa34;
     color: #ffffff; /* Color del texto */
-    padding: 18px 36px; /* Aumentamos el padding para hacerlo más grande */
+    padding: 18px 36px; /* Aumentamos el padding para hacerlo mas grande */
     border: none;
-    border-radius: 10px; /* Hacemos el botón más redondeado */
+    border-radius: 10px; /* Hacemos el boton mas redondeado */
     font-family: sans-serif;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    font-size: 20px; /* Ajustamos el tamaño del texto */
+    font-size: 20px; /* Ajustamos el tama�o del texto */
 }
 
 .u_btn-contrast:hover {

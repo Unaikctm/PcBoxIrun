@@ -2,7 +2,7 @@
     <div class="container-fluid">
     
         <!-- Logo -->
-        <a class="navbar-brand bg-light" href="Landing">
+        <a class="navbar-brand bg-light" href="Landing" style="margin-left:20px">
             <img src="img/logo-pc-box.svg" alt="Logo" width="80" float="left">
         </a>
 
@@ -21,4 +21,5 @@
         </div>
     </div>
 </nav>
+
 

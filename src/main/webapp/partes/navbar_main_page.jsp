@@ -1,19 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-success py-2">
 
-		<div class="d-flex justify-content-start px-6" style="margin-left:30px">
-			<button class="bg-warning">
-				<a href="SolicitarReparacion" class="text-white text-decoration-none">Solicitar Reparación</a>
-			</button>
-		</div>
+		<div class="container-fluid d-flex justify-content-center" style="margin-left:50px">
+        <!-- Logo -->
+        <a class="navbar-brand bg-light" href="Landing"> <img src="img/main_page/pcboxlogo.png" alt="Logo" height="90px"></a>
+    </div>
 
-		<div class="container-fluid d-flex justify-content-center">
-			<!-- Logo -->
-			<a class="navbar-brand bg-light" href="Landing"> <img src="img/main_page/pcboxlogo.png" alt="Logo" height="90px"></a>
-			
-		</div>
-		
-		<div class="d-flex justify-content-end px-6" style="margin-right:30px">
-		    <button class="bg-warning text-white" data-bs-toggle="modal" data-bs-target="#loginModal">Panel Admin</button>
+    <div class="d-flex justify-content-start px-6" style="margin-left:30px">
+			<button class="bg-warning">
+				<a href="SolicitarReparacion" class="text-white text-decoration-none">Solicitar ReparaciÃ³n</a>
+			</button>
+		  <button style="margin-right:10px" class="bg-warning text-white" data-bs-toggle="modal" data-bs-target="#loginModal">
+        Panel Admin
+      </button>
 		</div>
 		
 		<!-- Modal -->
@@ -21,7 +19,7 @@
 		    <div class="modal-dialog">
 		        <div class="modal-content">
 		            <div class="modal-header">
-		                <h5 class="modal-title" id="loginModalLabel">Iniciar sesión</h5>
+		                <h5 class="modal-title" id="loginModalLabel">Iniciar sesiÃ³n</h5>
 		                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		            </div>
 		            <div class="modal-body">
@@ -31,13 +29,13 @@
 		                        <input type="text" class="form-control" id="username" name="username" required>
 		                    </div>
 		                    <div class="mb-3">
-		                        <label for="password" class="form-label">Contraseña</label>
+		                        <label for="password" class="form-label">ContraseÃ±a</label>
 		                        <input type="password" class="form-control" id="password" name="password" required>
 		                    </div>
 
 				            <div class="modal-footer">
 				                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-				                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+				                <button type="submit" class="btn btn-primary">Iniciar sesiÃ³n</button>
 				            </div>
 		            	</form>
 		            </div>
