@@ -53,7 +53,7 @@
 		   
 		    <div class="col-sm p-3">
 		    	<div class="col py-3">
-		    	<h1>Pedidos</h1>
+		    	<h2>Pedidos</h2>
 		        	<table class="table">
 		        		<thead>
 		          			<tr>

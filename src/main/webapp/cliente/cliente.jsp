@@ -80,6 +80,7 @@
 
 				<div class="col-md-11 col-sm p-3 ">
 					<div class="col col-sm py-3">
+						<h2>Clientes</h2>
 						<table class="table table-sm table-responsive">
 							<thead>
 								<tr>

@@ -52,6 +52,7 @@
    
     		<div class="col-sm p-3">
             	<div class="col py-3">
+            		<h2>Reparaciones</h2>
                		<table class="table">
         				<thead>
           					<tr>
