@@ -9,14 +9,41 @@
 <title>Producto más vendido del mes</title>
 <link rel="stylesheet" href="css/sidebar.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous">
-<link
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.css"
-    rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    .accordion-button {
+        background-color: #d4edda; /* Verde claro para el botón del acordeón */
+        color: #155724; /* Color del texto en el botón */
+    }
+    .accordion-button:not(.collapsed) {
+        background-color: #c3e6cb; /* Verde claro cuando el acordeón está abierto */
+        color: #155724;
+    }
+    .accordion-button:focus {
+    	box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.5); /* Sombra verde claro */
+	}
+    .accordion-item {
+        border: 1px solid #c3e6cb; /* Borde verde claro */
+    }
+    .accordion-body {
+        background-color: #f8f9fa; /* Fondo claro para el cuerpo del acordeón */
+        color: #155724; /* Color del texto en el cuerpo */
+    }
+    table thead {
+        background-color: #e9f5e9; /* Fondo verde claro para la cabecera de la tabla */
+        color: #155724; /* Color del texto en la cabecera de la tabla */
+    }
+    table tbody tr {
+        background-color: #ffffff; /* Fondo blanco para las filas de la tabla */
+        color: #155724; /* Color del texto en las filas de la tabla */
+    }
+    table tbody tr:hover {
+        background-color: #e9f5e9; /* Fondo verde claro al pasar el ratón sobre una fila */
+    }
+</style>
+
 </head>
 <body>
     
