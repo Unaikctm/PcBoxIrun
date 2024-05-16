@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import modelo.conexion.Conector;
 import modelo.pedido.ModeloPedido;
+import modelo.reparacion.ModeloReparacion;
 
 public class ModeloCliente extends Conector{
 
@@ -54,7 +55,6 @@ public class ModeloCliente extends Conector{
 				cliente.setEmail(rs.getString("email"));
 				cliente.setTelefono(rs.getInt("telefono"));
 				cliente.setPedidos(new ModeloPedido().getPedidosByDNI(rs.getString("dni")));
-
 
 				return cliente;
 			}

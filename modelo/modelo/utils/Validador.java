@@ -38,10 +38,10 @@ public class Validador {
     }
 
 	public static boolean tienePedidosRelacionados(ArrayList<Pedido> pedidos) {
-		if (pedidos!=null) {
-			return true;
-		}else {
+		if (pedidos.isEmpty()) {
 			return false;
+		}else {
+			return true;
 		}	
 	}
 

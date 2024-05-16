@@ -2,6 +2,7 @@ package testValidacion;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import modelo.cliente.Cliente;
 import modelo.cliente.ModeloCliente;
+import modelo.lineapedido.LineaPedido;
+import modelo.pedido.Pedido;
 import modelo.utils.Validador;
 
 class ValidadorTest {
@@ -43,36 +46,50 @@ class ValidadorTest {
 	    Date fechaEsperada = null;
 	    String fecha = "2024-02-08";
 	    
-	    try {
-			fechaEsperada = sdf.parse(fecha);
-		     if(validador.esFechaValida(fechaEsperada)){
-			      	Date fechaActual = fechaEsperada;
-					assertEquals(true,validador.esFechaValida(fechaEsperada));
-			      }else{
-			    	  assertEquals(false,validador.esFechaValida(fechaEsperada));
-			      }
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	   
-	 
+			try {
+				fechaEsperada = sdf.parse(fecha);
+				Date fechaActual = fechaEsperada;
+				assertEquals(true,validador.esFechaValida(fechaEsperada));
+			} catch (ParseException e) {
+				
+			}
 
-	    
 
-		
+
 	}
 
 	@Test
 	void testTienePedidosRelacionados() {
 		
+		Validador validador = new Validador();
+		Pedido pedido = new Pedido();
+		ModeloCliente mc = new ModeloCliente();
+		ArrayList<LineaPedido> lineapedidos = new ArrayList<LineaPedido>();
+		ArrayList<Pedido>pedidos = new ArrayList<Pedido>();
+		ArrayList<Pedido>pedidos1 = new ArrayList<Pedido>();
 		
+		pedido.setCliente(mc.getCliente("21376754C"));
+		pedido.setFecha(new Date());
+		lineapedidos.add(new LineaPedido());
+		pedido.setLineapedidos(lineapedidos);
+		pedidos.add(pedido);
+		pedidos1 = null;
+		
+		assertEquals(true,validador.tienePedidosRelacionados(pedidos));
+		assertEquals(false,validador.tienePedidosRelacionados(pedidos1));
 	}
 
 	@Test
 	void testTieneLineaPedidosRelacionados() {
-		fail("Not yet implemented");
+		
+		Validador validador = new Validador();
+		ArrayList<LineaPedido> lineapedidos = new ArrayList<LineaPedido>();
+		ArrayList<LineaPedido> lineapedidos1 = new ArrayList<LineaPedido>();
+		lineapedidos.add(new LineaPedido());
+		
+		assertEquals(true,validador.tieneLineaPedidosRelacionados(lineapedidos));
+		assertEquals(false,validador.tieneLineaPedidosRelacionados(lineapedidos1));
+		
 	}
 
 }

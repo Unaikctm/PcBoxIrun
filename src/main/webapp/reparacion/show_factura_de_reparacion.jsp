@@ -33,6 +33,7 @@
 	            <h2>Información de la Factura:</h2>
 	        </div>
 	        <div class="card-body">
+
 	            <div class="row justify-content-end" style="text-align: right; font-weight: bold;"> <!-- Utilizamos la clase row de Bootstrap con justify-content-end -->
 	                <div class="col-md-6"> <!-- Utilizamos la clase col-md-6 para limitar el ancho y text-right para alinear el texto a la derecha -->
 	                    <p class="card-text">Total de la Factura + IVA incluido: ${factura.total}&euro;</p>
@@ -42,8 +43,6 @@
 						<button type="button" class="btn btn-success" title="Pagar Factura" data-bs-toggle="modal" data-bs-target="#${factura.id}">
 					    	Estado
 						</button>
-						
-											
                 	</div>
             	</div>
             	

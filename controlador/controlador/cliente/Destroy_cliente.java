@@ -36,7 +36,6 @@ public class Destroy_cliente extends HttpServlet {
 		//recibir la id
 		String DNI = request.getParameter("dni"); 
 		
-		
 		ModeloPedido mp = new ModeloPedido();
 		ArrayList<Pedido> pedidos = mp.getPedidosByDNI(DNI);
 		

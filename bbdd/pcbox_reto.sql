@@ -352,4 +352,3 @@ GRANT appUser TO 'app_user'@'localhost';
 -- Eliminar un usuario
 -- DROP USER IF EXISTS 'nombre_usuario'@'localhost';
 
-

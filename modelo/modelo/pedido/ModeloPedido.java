@@ -12,9 +12,37 @@ import modelo.cliente.Cliente;
 import modelo.conexion.Conector;
 import modelo.lineapedido.ModeloLineaPedido;
 
-
 public class ModeloPedido extends Conector{
 
+	public Pedido getPedidoByDNI(String dni) {
+		ModeloLineaPedido modeloLineaPedido = new ModeloLineaPedido();
+		
+
+		try {
+			PreparedStatement pst = cn.prepareStatement("SELECT * FROM pedido WHERE DNI_Cliente=?");
+			pst.setString(1, dni);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				Pedido pedido = new Pedido();
+				pedido.setId(rs.getInt("id"));
+				pedido.setFecha(rs.getDate("fecha"));
+				pedido.setLineapedidos(modeloLineaPedido.getLineaPedidosByIdPedido(rs.getInt("id")));
+				Cliente cliente = new Cliente();
+				cliente.setDni(rs.getString("DNI_cliente"));
+				pedido.setCliente(cliente);
+				pedido.getTotal();
+
+				return pedido;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return null;
+	}
+	
 	
 	public ArrayList<Pedido> getPedidos() {
 		ModeloLineaPedido modeloLineaPedido = new ModeloLineaPedido();

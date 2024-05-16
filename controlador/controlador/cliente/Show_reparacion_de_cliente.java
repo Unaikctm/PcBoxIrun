@@ -37,6 +37,7 @@ public class Show_reparacion_de_cliente extends HttpServlet {
 		
 		ModeloCliente mc = new ModeloCliente();
 		Cliente cliente = mc.getCliente(DNI);
+		System.out.println(cliente);
 		
 		ModeloReparacion mr = new ModeloReparacion();
 		ArrayList<Reparacion> reparaciones = mr.getReparacionesByDNI(DNI);
@@ -46,6 +47,7 @@ public class Show_reparacion_de_cliente extends HttpServlet {
 		}
 		
 		request.setAttribute("reparaciones", reparaciones);
+		request.setAttribute("cliente", cliente);
 		
 		request.getRequestDispatcher("cliente/show_reparacion_de_cliente.jsp").forward(request, response);
 	}

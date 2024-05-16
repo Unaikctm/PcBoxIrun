@@ -16,7 +16,7 @@
 	<%@ include file="/partes/navbar.jsp" %>
 		
 	<div class="container">
-    	<h1 class="mt-5 mb-4">Lista de Productos</h1>
+    	<h1 class="mt-5 mb-4">Datos del Cliente:</h1>
 	  	<div class="table-responsive">
 		    <table class="table table-bordered ">
 		      <thead class="thead-dark">

@@ -22,7 +22,7 @@ public class ModeloProductoTest {
 
 	
 	@Test
-	public void testInsertUpdateDeleteProducto() {
+	 public void testInsertUpdateDeleteProducto() {
 		
 		ModeloProducto mp = new ModeloProducto();
 		Producto producto1 = new Producto();
@@ -45,6 +45,30 @@ public class ModeloProductoTest {
 		mp.update(producto1);
 
 		boolean del = mp.delete(producto1.getId());
+	}
+	
+	@Test
+	public void testGetProductos() {
+		
+		ModeloProducto mp = new ModeloProducto();
+		mp.getProductos();
+		
+	}
+	
+	@Test
+	public void testGetProducto() {
+		
+		ModeloProducto mp = new ModeloProducto();
+		mp.getProducto(1);
+		
+	}
+	
+	@Test
+	public void testGetProductoByNombre() {
+		
+		ModeloProducto mp = new ModeloProducto();
+		mp.getProductoByNombre("Vengeance RGB 8GB");
+		
 	}
 	
 }

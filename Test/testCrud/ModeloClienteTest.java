@@ -39,7 +39,7 @@ public class ModeloClienteTest {
 	}
 	
 	@Test
-	public void getClientes() {
+	public void testGetClientes() {
 		
 		ModeloCliente mc = new ModeloCliente();
 		mc.getClientes();
@@ -47,7 +47,7 @@ public class ModeloClienteTest {
 	}
 	
 	@Test
-	public void getCliente() {
+	public void testGetCliente() {
 		
 		ModeloCliente mc = new ModeloCliente();
 		Cliente cliente = new Cliente();
@@ -63,7 +63,7 @@ public class ModeloClienteTest {
 	}
 	
 	@Test
-	public void testDNI() {
+	public void testTestDNI() {
 		
 		ModeloCliente mc = new ModeloCliente();
 		Cliente cliente = new Cliente();

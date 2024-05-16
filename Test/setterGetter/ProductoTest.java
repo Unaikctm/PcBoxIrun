@@ -12,16 +12,11 @@ class ProductoTest {
 	
 	private Producto producto;
 	
-	 @Before
-	    public void setUp() {
-	        producto = new Producto();
-	    }
-	
 	 @Test
 	    public void testConstructorCompleto() {
 	        Producto producto1 = new Producto(10,"Producto", "Tipo", 10.0, "Marca", 10);
 
-	        assertEquals(1, producto1.getId());
+	        assertEquals(10, producto1.getId());
 	        assertEquals("Producto", producto1.getNombre());
 	        assertEquals("Tipo", producto1.getTipo());
 	        assertEquals(10.0, producto1.getPrecio(), 0.01);

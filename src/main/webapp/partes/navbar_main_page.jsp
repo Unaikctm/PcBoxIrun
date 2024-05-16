@@ -35,7 +35,7 @@
 
 				           <div class="modal-footer">
 				               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-				               <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+				               <button type="submit" class="btn btn-success">Iniciar sesion</button>
 				           </div>
 		           		</form>
 		           </div>

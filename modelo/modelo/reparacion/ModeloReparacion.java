@@ -86,6 +86,31 @@ public class ModeloReparacion extends Conector{
         }
         return null;
     }
+    public Reparacion getReparacion(Reparacion r) {
+        
+        try {
+            PreparedStatement pst = this.cn.prepareStatement("SELECT * FROM reparacion WHERE DNI_CLIENTE=? AND Descripcion=?");
+            pst.setString(1, r.getCliente().getDni());
+            pst.setString(2, r.getDescripcion());
+            ResultSet rs = pst.executeQuery();
+
+            Reparacion reparacion = new Reparacion();
+            rs.next();
+            reparacion.setId(rs.getInt("id"));
+            reparacion.setTipo(rs.getString("tipo"));
+            reparacion.setDescripcion(rs.getString("descripcion"));;
+            reparacion.setHoras(rs.getInt("horas"));
+            reparacion.setPrecio(rs.getDouble("precio"));
+            Cliente cliente = new Cliente();
+			cliente.setDni(rs.getString("DNI_cliente"));
+			reparacion.setCliente(cliente);
+            return reparacion;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public boolean delete(int id) {
         try {

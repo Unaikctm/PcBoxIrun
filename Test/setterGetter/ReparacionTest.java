@@ -14,12 +14,8 @@ import java.util.ArrayList;
 class ReparacionTest {
 
 	 private Reparacion reparacion;
-
-	@Before
-	public void setUp() {
-	     reparacion = new Reparacion();
-	}
 	
+	 
 	@Test
 	public void testConstructorPorDefecto() {
 	    assertEquals(reparacion,reparacion);
