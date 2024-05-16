@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a color="white" class="nav-link active text-white" aria-current="page" href="Main_page">Inicio</a>
+                    <a color="white" class="nav-link active text-white" aria-current="page" href="Main_page">Compra</a>
                 </li>
             </ul>
         </div>
