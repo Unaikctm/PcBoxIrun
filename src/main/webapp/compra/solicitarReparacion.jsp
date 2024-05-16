@@ -32,14 +32,11 @@
             
                 <div class="mb-3 row">
                     <div class="col">
-                        <label for="horas" class="form-label">Horas:</label>
-                        <input type="text" class="form-control" id="horas" name="horas" value="${reparacion.horas}">
+                        <input type="hidden" class="form-control" id="horas" name="horas" value="0">
                     </div>
                     <div class="col">
-                        <label for="precio" class="form-label">Precio:</label>
                         <div class="input-group">
-                            <span class="input-group-text">&euro;</span>
-                            <input type="text" class="form-control" id="precio" name="precio" value="${reparacion.precio}">
+                            <input type="hidden" class="form-control" id="precio" name="precio" value="0.0">
                         </div>
                     </div>
                 </div>
