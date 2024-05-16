@@ -64,7 +64,7 @@
 	                    
 	                    <!-- Pagar -->
 						<button type="button" class="btn btn-success" title="Pagar Factura" data-bs-toggle="modal" data-bs-target="#${factura.id}">
-					    	Pagar
+					    	Estado
 						</button>
 						
 											
