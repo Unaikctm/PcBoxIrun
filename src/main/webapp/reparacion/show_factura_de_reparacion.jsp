@@ -33,49 +33,51 @@
 	            <h2>Información de la Factura:</h2>
 	        </div>
 	        <div class="card-body">
-	            <div class="row justify-content-end">
-	                <div class="col-md-6 text-md-end">
-	                    <p class="card-text"><strong>Total de la Factura + IVA incluido:</strong> ${factura.total}&euro;</p>
-	                    <p class="card-text"><strong>Pagado:</strong> ${factura.pagado}</p>
+	            <div class="row justify-content-end" style="text-align: right; font-weight: bold;"> <!-- Utilizamos la clase row de Bootstrap con justify-content-end -->
+	                <div class="col-md-6"> <!-- Utilizamos la clase col-md-6 para limitar el ancho y text-right para alinear el texto a la derecha -->
+	                    <p class="card-text">Total de la Factura + IVA incluido: ${factura.total}&euro;</p>
+	                    <p class="card-text">Pagado: ${factura.pagado}</p>
+	                    
 	                    <!-- Pagar -->
 						<button type="button" class="btn btn-success" title="Pagar Factura" data-bs-toggle="modal" data-bs-target="#${factura.id}">
 					    	Estado
 						</button>
-					
-						<!-- Modal -->
-						<div class="modal fade" id="${factura.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						
 											
-					    	<div class="modal-dialog">
-					        	<div class="modal-content">
-					            	<div class="modal-header bg-success text-white">
-					                	<h5 class="modal-title" id="exampleModalLabel">Pagar factura</h5>
-					                	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					            	</div>
-					            	<form action="Update_pago" method="POST">
-										<div class="form-check">
-					                        <input class="form-check-input" type="radio" name="pagado" id="pagado_si" value="Si">
-					                        <label class="form-check-label" for="pagado_si">
-					                            Pagado
-					                        </label>
-					                    </div>
-					                    <div class="form-check">
-					                        <input class="form-check-input" type="radio" name="pagado" id="pagado_no" value="No" required>
-					                        <label class="form-check-label" for="pagado_no">
-					                            Pendiente
-					                        </label>
-					                    </div>
-					                    <input type="hidden" name="factura_id" value="${factura.id}">
-					                    <input type="hidden" name="factura_tipo" value="${factura.tipo}">
-					                    <div class="modal-footer">
-					                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					                        <button type="submit" class="btn btn-success">Guardar</button>
-					                    </div>
-									</form>
-								</div>
-							</div>
-						</div>	
-	                </div>
-	            </div>
+                	</div>
+            	</div>
+            	
+            	<!-- Modal -->
+				<div class="modal fade" id="${factura.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					      <div class="modal-content">
+					          <div class="modal-header bg-success text-white">
+					              <h5 class="modal-title" id="exampleModalLabel">Pagar factura</h5>
+					              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					          </div>
+					          <form action="Update_pago" method="POST">
+							  		<div class="form-check">
+					                     <input class="form-check-input" type="radio" name="pagado" id="pagado_si" value="Si">
+					                     <label class="form-check-label" for="pagado_si">
+					                      Pagado
+					                     </label>
+					                </div>
+					                <div class="form-check">
+					                    <input class="form-check-input" type="radio" name="pagado" id="pagado_no" value="No" required>
+					                    <label class="form-check-label for="pagado_no">
+					                     	Pendiente
+					                    </label>
+					                </div>
+					                <input type="hidden" name="factura_id" value="${factura.id}">
+					                <input type="hidden" name="factura_tipo" value="${factura.tipo}">
+					                <div class="modal-footer">
+					                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					                    <button type="submit" class="btn btn-success">Guardar</button>
+					                </div>  
+							</form>
+						</div>
+					</div>
+				</div>
 	        </div>
 	    </div>
 	    <a href="javascript:history.back()" class="btn btn-success text-decoration-none">
