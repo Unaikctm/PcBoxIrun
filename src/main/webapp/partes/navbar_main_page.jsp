@@ -2,7 +2,7 @@
 
 	<div class="container-fluid d-flex justify-content-center" style="margin-left:50px">
         <!-- Logo -->
-        <a class="navbar-brand bg-light" href="Landing"> <img src="img/main_page/pcboxlogo.png" alt="Logo" height="90px"></a>
+        <a class="navbar-brand bg-light" href="Landing"> <img class="logo" src="img/main_page/pcboxlogo.png" alt="Logo" height="90px"></a>
     </div>
 
     <div class="d-flex justify-content-start px-6" style="margin-left:30px">

@@ -24,6 +24,11 @@
     .accordion-button:focus {
     	box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.5); /* Sombra verde claro */
 	}
+	
+	 .accordion-item:hover {
+        transform: scale(1.01); /* Efecto de zoom */
+    }
+	
     .accordion-item {
         border: 1px solid #c3e6cb; /* Borde verde claro */
     }
@@ -46,7 +51,6 @@
 
 </head>
 <body>
-    
     
     <%@ include file="/partes/navbar.jsp" %>
     

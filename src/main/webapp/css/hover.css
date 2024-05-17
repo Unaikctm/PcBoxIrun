@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+
+ .btn:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+.card:hover {
+	        transform: scale(1.05);
+	        transition: transform 0.3s ease;
+	    }
+
+.navbar-brand img {
+        transition: transform 0.3s ease;
+    }
+    .navbar-brand img:hover {
+        transform: scale(1.1);
+    }
+    .nav-link {
+        transition: transform 0.3s ease;
+    }
+    .nav-link:hover {
+        transform: scale(1.1);
+    }
